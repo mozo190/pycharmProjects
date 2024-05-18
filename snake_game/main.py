@@ -14,10 +14,10 @@ screen.tracer(0)
 
 snake = Snake()
 screen.listen()
-screen.onkey(snake.up(), "UP")
-screen.onkey(snake.down(), "DOWN")
-screen.onkey(snake.left(), "LEFT")
-screen.onkey(snake.right(), "RIGHT")
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 
 food = Food()
 scoreboard = Scoreboard()
@@ -30,7 +30,7 @@ while game_is_on:
 
     if snake.head.distance(food) < 15:
         food.refresh()
-        snake.extended()
+        snake.extend()
         turtle.clear()
         scoreboard.update_scoreboard()
 

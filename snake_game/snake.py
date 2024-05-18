@@ -49,5 +49,5 @@ class Snake:
         if self.segments[0].heading() != LEFT:
             self.segments[0].setheading(RIGHT)
 
-    def extended(self):
+    def extend(self):
         self.segments[-1].position()
