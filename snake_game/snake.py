@@ -50,4 +50,4 @@ class Snake:
             self.segments[0].setheading(RIGHT)
 
     def extend(self):
-        self.segments[-1].position()
+        self.add_segment(self.segments[-1].position())
