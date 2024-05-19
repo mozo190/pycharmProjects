@@ -17,8 +17,8 @@ def stop_game():
 screen.title("TURTLE CROSSING")
 screen.setup(width=600, height=600)
 screen.bgcolor("white")
-
 screen.tracer(0)
+
 screen.listen()
 screen.onkey(player.move_forward(), "Up")
 screen.onkey(player.move_backward(), "Down")
