@@ -3,10 +3,12 @@ import time
 from scoreboard import Scoreboard
 from player import Player
 from turtle import Screen
+from car_manager import CarManager
 
 screen = Screen()
 player = Player()
 scoreboard = Scoreboard()
+car_manager = CarManager((300, 0))
 
 
 def stop_game():
