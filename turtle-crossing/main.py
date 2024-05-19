@@ -12,5 +12,4 @@ screen.bgcolor("white")
 screen.tracer(0)
 screen.listen()
 
-
 screen.exitonclick()

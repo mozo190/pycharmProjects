@@ -18,3 +18,11 @@ class Scoreboard(Turtle):
     def update_scoreboard(self):
         self.clear()
         self.write(f"You have {self.score} score.", align=ALIGNMENT, font=FONT)
+
+    def game_over(self):
+        self.clear()
+        self.write("GAME OVER", align=ALIGNMENT, font=FONT)
+
+    def increase_score(self):
+        self.score += 1
+        self.update_scoreboard()
