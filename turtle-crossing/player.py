@@ -9,11 +9,11 @@ class Player(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.penup()
         self.shape("turtle")
+        self.penup()
         self.color("red")
         self.goto(STARTING_POSITION)
-        self.left(90)
+        self.setheading(90)
 
     def move_forward(self):
         new_y = self.ycor() + MOVE_DISTANCE
