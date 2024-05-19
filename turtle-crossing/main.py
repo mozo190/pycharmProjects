@@ -8,7 +8,7 @@ from car_manager import CarManager
 screen = Screen()
 player = Player()
 scoreboard = Scoreboard()
-car_manager = CarManager((300, 0))
+car_manager = CarManager()
 
 
 def stop_game():
@@ -31,10 +31,11 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+    car_manager.create_cars()
     car_manager.move()
 
-    if player.ycor() > 280:
-        player.back_start()
-        scoreboard.increase_score()
+    # if player.ycor() > 280:
+    #     player.back_start()
+    #     scoreboard.increase_score()
 
 screen.exitonclick()
