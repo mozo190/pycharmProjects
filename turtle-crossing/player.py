@@ -23,3 +23,6 @@ class Player(Turtle):
     def move_backward(self):
         new_y = self.ycor() - MOVE_DISTANCE
         self.goto(self.ycor(), new_y)
+
+    def back_start(self):
+        self.goto(STARTING_POSITION)

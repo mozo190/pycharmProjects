@@ -14,7 +14,7 @@ class CarManager(Turtle):
         self.color("orange")
         self.shapesize(stretch_wid=1, stretch_len=2)
         self.goto(position)
-        self.x_move = STARTING_MOVE_DISTANCE
+        self.x_move = MOVE_INCREMENT
         self.move_speed = 0.1
 
     def move(self):
