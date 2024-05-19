@@ -11,7 +11,7 @@ class Scoreboard(Turtle):
         self.penup()
         self.hideturtle()
         self.color("black")
-        self.score = 0
+        self.score = 1
         self.goto(-240, 260)
         self.update_scoreboard()
 
