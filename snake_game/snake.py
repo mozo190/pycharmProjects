@@ -20,7 +20,7 @@ class Snake:
             self.add_segment(position)
 
     def add_segment(self, position):
-        snake_body = Turtle(shape="square")
+        snake_body = Turtle("square")
         snake_body.color("white")
         snake_body.penup()
         snake_body.goto(position)
@@ -31,7 +31,7 @@ class Snake:
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
-        self.segments[0].forward(MOVE_DISTANCE)
+        self.head.forward(MOVE_DISTANCE)
 
     def up(self):
         if self.segments[0].heading() != DOWN:
