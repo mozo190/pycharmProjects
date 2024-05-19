@@ -16,13 +16,7 @@ class Player(Turtle):
         self.setheading(90)
 
     def move_forward(self):
-        new_y = self.ycor() + MOVE_DISTANCE
-        # if self.position(self.ycor()) < 280:
-        self.goto(self.ycor(), new_y)
-
-    def move_backward(self):
-        new_y = self.ycor() - MOVE_DISTANCE
-        self.goto(self.ycor(), new_y)
+        self.forward(MOVE_DISTANCE)
 
     def back_start(self):
         self.goto(STARTING_POSITION)

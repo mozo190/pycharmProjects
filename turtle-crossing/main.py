@@ -23,7 +23,6 @@ screen.tracer(0)
 
 screen.listen()
 screen.onkey(player.move_forward, "Up")
-screen.onkey(player.move_backward, "Down")
 
 screen.onkey(stop_game, "q")
 
