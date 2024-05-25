@@ -3,10 +3,12 @@ import tkinter
 window = tkinter.Tk()
 window.title("This is my first GUI program")
 window.minsize(width=500, height=300)
+window.config(padx=20, pady=20)
 
 my_label = tkinter.Label(text="I am a label", font=("Arial", 14, "bold"))
 # my_label.place(x=0, y=200)
 my_label.grid(column=0, row=0)
+my_label.config(padx=10, pady=10)
 
 my_label["text"] = "New text"
 
