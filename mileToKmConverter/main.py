@@ -25,7 +25,7 @@ km_label.grid(column=2, row=1)
 
 
 def miles_to_km():
-    new_text = float(input_box.get()) * 1.609
+    new_text = round(float(input_box.get()) * 1.609)
     km_result_label.config(text=f"{new_text}")
 
 
