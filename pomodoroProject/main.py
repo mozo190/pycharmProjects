@@ -24,10 +24,13 @@ def start_timer():
 
     if reps % 8 == 0:
         count_down(short_break_min)
+        timer_label.config(text="Short Break", font=(FONT_NAME, 24, "bold"), fg=PINK, bg=YELLOW)
     elif reps % 2 == 0:
         count_down(long_break_sec)
+        timer_label.config(text="Long Break", font=(FONT_NAME, 24, "bold"), fg=RED, bg=YELLOW)
     else:
         count_down(work_sec)
+        timer_label.config(text="Work", font=(FONT_NAME, 24, "bold"), fg=GREEN, bg=YELLOW)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
