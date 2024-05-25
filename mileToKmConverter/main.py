@@ -3,33 +3,33 @@ from tkinter import *
 FONT = ("Arial", 12, "normal")
 
 window = Tk()
-window.title("Mile to km converter")
-window.minsize(width=300, height=150)
+window.title("Miles to Kilometer Converter")
+# window.minsize(width=300, height=150)
 window.config(padx=25, pady=25)
 
 input_box = Entry(width=15)
 input_box.get()
 input_box.grid(column=1, row=0)
 
-label1 = Label(text="Mile", font=FONT)
-label1.grid(column=2, row=0)
+miles_label = Label(text="Mile", font=FONT)
+miles_label.grid(column=2, row=0)
 
-label2 = Label(text="is equal to", font=FONT)
-label2.grid(column=0, row=1)
+is_equal_to_label = Label(text="is equal to", font=FONT)
+is_equal_to_label.grid(column=0, row=1)
 
-label3 = Label(text=0, font=FONT)
-label3.grid(column=1, row=1)
+km_result_label = Label(text=0, font=FONT)
+km_result_label.grid(column=1, row=1)
 
-label4 = Label(text="Km", font=FONT)
-label4.grid(column=2, row=1)
+km_label = Label(text="Km", font=FONT)
+km_label.grid(column=2, row=1)
 
 
-def button_clicked():
+def miles_to_km():
     new_text = int(input_box.get()) * 1.7
-    label3.config(text=new_text)
+    km_result_label.config(text=new_text)
 
 
-button1 = Button(text="Calculate", command=button_clicked)
+button1 = Button(text="Calculate", command=miles_to_km)
 button1.grid(column=1, row=2)
 
 window.mainloop()
