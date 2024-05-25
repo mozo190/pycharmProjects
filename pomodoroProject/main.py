@@ -12,6 +12,7 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 
+
 # ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -52,6 +53,13 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_min_zero}{count_min}:{count_sec_zero}{count_sec}")
     if count > 0:
         window.after(1000, count_down, count - 1)
+    else:
+        start_timer()
+        mark = ""
+        work_session = math.floor(reps / 2)
+        for _ in range(work_session):
+            mark += "✔"
+            tick_label.config(text=mark, font=(FONT_NAME, 24, "bold"), fg=GREEN, bg=YELLOW)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -74,7 +82,7 @@ start_button.grid(column=0, row=2)
 reset_button = Button(text="Reset", highlightthickness=0)
 reset_button.grid(column=2, row=2)
 
-tick_label = Label(text="✓", font=(FONT_NAME, 24, "bold"), fg=GREEN, bg=YELLOW)
+tick_label = Label(font=(FONT_NAME, 24, "bold"), fg=GREEN, bg=YELLOW)
 tick_label.grid(column=1, row=3)
 
 window.mainloop()
