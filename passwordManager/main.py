@@ -18,12 +18,14 @@ website_label.grid(column=0, row=1)
 
 website_input = Entry(width=50)
 website_input.grid(column=1, row=1, columnspan=2)
+website_input.focus()
 
 email_label = Label(text="Email/Username: ", font=("Arial", 10, "normal"))
 email_label.grid(column=0, row=2)
 
 email_input = Entry(width=50)
 email_input.grid(column=1, row=2, columnspan=2)
+email_input.insert(0, "pelda@gmail.com")
 
 password_label = Label(text="Password: ", font=("Arial", 10, "normal"))
 password_label.grid(column=0, row=3)
