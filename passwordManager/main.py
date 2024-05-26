@@ -1,11 +1,12 @@
+import json
+import random
 from tkinter import *
 from tkinter import messagebox
-import random
+
 import pyperclip
-import json
 
 
-#Password Generator Project
+# Password Generator Project
 # ------------------------------------ SEARCH ----------------------------------- #
 def search():
     website = website_input.get()
@@ -60,7 +61,6 @@ def generate_password():
 
     password = "".join(password_list)
     password_input.insert(0, password)
-    # print(f"Your password is: {password}")
     pyperclip.copy(password)
 
 
@@ -94,8 +94,6 @@ def save():
             with open("pass.json", "w") as data_file:
                 # Saving updated data
                 json.dump(data, data_file, indent=4)
-                # print(type(data))
-                # data_file.write(f"{website} | {email} | {password}\n")
 
         finally:
             website_input.delete(0, END)
