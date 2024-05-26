@@ -4,8 +4,8 @@ import random
 import pyperclip
 
 
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
+# ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
