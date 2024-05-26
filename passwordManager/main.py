@@ -6,6 +6,11 @@ import json
 
 
 #Password Generator Project
+# ------------------------------------ SEARCH ----------------------------------- #
+def search():
+    print()
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def generate_password():
@@ -47,6 +52,7 @@ def generate_password():
     pyperclip.copy(password)
 
 
+# ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     website = website_input.get()
     email = email_input.get()
@@ -64,9 +70,11 @@ def save():
             with open("pass.json", "r") as data_file:
                 # Reading old data
                 data = json.load(data_file)
+
         except FileNotFoundError:
             with open("pass.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
+
         else:
             # Updating old data with new data
             data.update(new_data)
@@ -76,12 +84,10 @@ def save():
                 json.dump(data, data_file, indent=4)
                 # print(type(data))
                 # data_file.write(f"{website} | {email} | {password}\n")
+
         finally:
             website_input.delete(0, END)
             password_input.delete(0, END)
-
-
-
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -97,10 +103,12 @@ canvas.grid(column=1, row=0)
 website_label = Label(text="Website: ", font=("Arial", 10, "normal"))
 website_label.grid(column=0, row=1)
 
-website_input = Entry(width=50)
-website_input.grid(column=1, row=1, columnspan=2)
+website_input = Entry(width=37)
+website_input.grid(column=1, row=1)
 website_input.focus()
-# ---------------------------- SAVE PASSWORD ------------------------------- #
+
+website_search = Button(text="Search", width=10, command=search)
+website_search.grid(column=2, row=1)
 
 email_label = Label(text="Email/Username: ", font=("Arial", 10, "normal"))
 email_label.grid(column=0, row=2)
