@@ -8,7 +8,19 @@ import json
 #Password Generator Project
 # ------------------------------------ SEARCH ----------------------------------- #
 def search():
-    print()
+    website = input("Enter the website!: ")
+    try:
+        with open("pass.json", "r") as search_data:
+            data = json.load(search_data)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Message", message="No data yet")
+    else:
+        if website in data:
+
+            password = data[website]["password"]
+            messagebox.showinfo(title="Result", message=f"Search result: \n Website: {website} \n Password: {password} ")
+        else:
+            messagebox.showerror(f"Error, no such {website} saved")
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
