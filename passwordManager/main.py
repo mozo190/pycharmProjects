@@ -76,7 +76,7 @@ def save():
         }
     }
     if website == "" or password == "":
-        messagebox.showerror(title="Something wrong", message="Please don't any fields empty!")
+        messagebox.showerror(title="Something wrong", message="Please don't leave any fields empty!")
     else:
         try:
             with open("pass.json", "r") as data_file:
