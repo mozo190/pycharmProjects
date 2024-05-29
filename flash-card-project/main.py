@@ -12,6 +12,10 @@ card_img = PhotoImage(file="images/card_front.png")
 canvas.create_image(400, 263, image=card_img)
 canvas.grid(column=0, row=0, columnspan=2)
 
+up_title = canvas.create_text(400, 150, text="EN", font=("Ariel", 40, "italic"))
+down_title = canvas.create_text(400, 263, text="word", font=("Ariel", 60, "italic"))
+
+
 check_img = PhotoImage(file="images/right.png")
 check_button = Button(image=check_img, highlightthickness=0)
 check_button.grid(column=1, row=1)
