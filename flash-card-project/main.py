@@ -3,6 +3,8 @@ import pandas as pd
 import random
 
 BACKGROUND_COLOR = "#B1DDC6"
+current_card = {}
+to_learn = {}
 
 #---------------read text---------------------#
 try:
@@ -15,9 +17,19 @@ else:
 
 
 def next_card():
+    global current_card, flip_timer
+    windows.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(up_title, text="English")
-    canvas.itemconfig(down_title, text=current_card["English"])
+    canvas.itemconfig(up_title, text="English", fill="black")
+    canvas.itemconfig(down_title, text=current_card["English"], fill="black")
+    canvas.itemconfig(first_canvas_img, image=card_front_img)
+    flip_timer = windows.after(3000, flip_card)
+
+
+def flip_card():
+    canvas.itemconfig(up_title, text="Hungarian", fill="white")
+    canvas.itemconfig(down_title, text=current_card["Hungary"], fill="white")
+    canvas.itemconfig(first_canvas_img, image=card_back_img)
 
 
 #-------------------GUI-----------------------#
@@ -26,14 +38,14 @@ windows.title("EN-HU flash card")
 windows.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 canvas = Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
-card_img = PhotoImage(file="images/card_front.png")
-card_new_img = PhotoImage(file="images/card_back.png")
-first_canvas_img = canvas.create_image(400, 263, image=card_img)
-canvas.itemconfig(first_canvas_img, image=card_new_img)
+card_front_img = PhotoImage(file="images/card_front.png")
+card_back_img = PhotoImage(file="images/card_back.png")
+first_canvas_img = canvas.create_image(400, 263, image=card_front_img)
+canvas.itemconfig(first_canvas_img, image=card_front_img)
 canvas.grid(column=0, row=0, columnspan=2)
 
 up_title = canvas.create_text(400, 150, text="", font=("Ariel", 40, "italic"))
-down_title = canvas.create_text(400, 263, text="", font=("Ariel", 60, "italic"))
+down_title = canvas.create_text(400, 263, text="", font=("Ariel", 60, "bold"))
 
 check_img = PhotoImage(file="images/right.png")
 check_button = Button(image=check_img, highlightthickness=0, command=next_card)
@@ -43,6 +55,7 @@ x_img = PhotoImage(file="images/wrong.png")
 x_button = Button(image=x_img, highlightthickness=0, command=next_card)
 x_button.grid(column=0, row=1)
 
+flip_timer = windows.after(3000, flip_card)
 next_card()
 
 windows.mainloop()
