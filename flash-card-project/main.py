@@ -1,12 +1,13 @@
-from tkinter import *
-import pandas as pd
 import random
+from tkinter import *
+
+import pandas as pd
 
 BACKGROUND_COLOR = "#B1DDC6"
 current_card = {}
 to_learn = {}
 
-#---------------read text---------------------#
+# ---------------read text---------------------#
 try:
     data = pd.read_csv("data/words_to_learn.csv")
 except FileNotFoundError:
@@ -40,7 +41,7 @@ def is_known():
     next_card()
 
 
-#-------------------GUI-----------------------#
+# -------------------GUI-----------------------#
 windows = Tk()
 windows.title("EN-HU flash card")
 windows.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
