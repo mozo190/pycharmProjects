@@ -8,7 +8,7 @@ to_learn = {}
 
 #---------------read text---------------------#
 try:
-    data = pd.read_csv("data/english-hungary-dictionary.csv")
+    data = pd.read_csv("data/words_to_learn.csv")
 except FileNotFoundError:
     original_data = pd.read_csv("data/en-hu-dict.csv")
     to_learn = original_data.to_dict(orient="records")
@@ -32,6 +32,14 @@ def flip_card():
     canvas.itemconfig(first_canvas_img, image=card_back_img)
 
 
+def is_known():
+    to_learn.remove(current_card)
+    print(len(to_learn))
+    next_card()
+    data_ = pd.DataFrame(to_learn)
+    data_.to_csv("data/words_to_learn.csv")
+
+
 #-------------------GUI-----------------------#
 windows = Tk()
 windows.title("EN-HU flash card")
@@ -48,7 +56,7 @@ up_title = canvas.create_text(400, 150, text="", font=("Ariel", 40, "italic"))
 down_title = canvas.create_text(400, 263, text="", font=("Ariel", 60, "bold"))
 
 check_img = PhotoImage(file="images/right.png")
-check_button = Button(image=check_img, highlightthickness=0, command=next_card)
+check_button = Button(image=check_img, highlightthickness=0, command=is_known)
 check_button.grid(column=1, row=1)
 
 x_img = PhotoImage(file="images/wrong.png")
