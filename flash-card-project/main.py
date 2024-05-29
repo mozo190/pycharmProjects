@@ -35,9 +35,9 @@ def flip_card():
 def is_known():
     to_learn.remove(current_card)
     print(len(to_learn))
-    next_card()
     data_ = pd.DataFrame(to_learn)
-    data_.to_csv("data/words_to_learn.csv")
+    data_.to_csv("data/words_to_learn.csv", index=False)
+    next_card()
 
 
 #-------------------GUI-----------------------#
