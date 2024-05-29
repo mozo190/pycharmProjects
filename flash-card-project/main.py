@@ -1,6 +1,24 @@
 from tkinter import *
+import pandas as pd
+import random
 
 BACKGROUND_COLOR = "#B1DDC6"
+
+#---------------read text---------------------#
+try:
+    data = pd.read_csv("data/english-hungary-dictionary.csv")
+except FileNotFoundError:
+    original_data = pd.read_csv("data/en-hu-dict.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
+
+
+def next_card():
+    current_card = random.choice(to_learn)
+    canvas.itemconfig(up_title, text="ENGLISH")
+    canvas.itemconfig(down_title, text=current_card["English"])
+
 
 #-------------------GUI-----------------------#
 windows = Tk()
@@ -15,13 +33,12 @@ canvas.grid(column=0, row=0, columnspan=2)
 up_title = canvas.create_text(400, 150, text="EN", font=("Ariel", 40, "italic"))
 down_title = canvas.create_text(400, 263, text="word", font=("Ariel", 60, "italic"))
 
-
 check_img = PhotoImage(file="images/right.png")
-check_button = Button(image=check_img, highlightthickness=0)
+check_button = Button(image=check_img, highlightthickness=0, command=next_card)
 check_button.grid(column=1, row=1)
 
 x_img = PhotoImage(file="images/wrong.png")
-x_button = Button(image=x_img, highlightthickness=0)
+x_button = Button(image=x_img, highlightthickness=0, command=next_card)
 x_button.grid(column=0, row=1)
 
 windows.mainloop()
