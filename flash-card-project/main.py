@@ -16,7 +16,7 @@ else:
 
 def next_card():
     current_card = random.choice(to_learn)
-    canvas.itemconfig(up_title, text="ENGLISH")
+    canvas.itemconfig(up_title, text="English")
     canvas.itemconfig(down_title, text=current_card["English"])
 
 
@@ -27,11 +27,13 @@ windows.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 canvas = Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
 card_img = PhotoImage(file="images/card_front.png")
-canvas.create_image(400, 263, image=card_img)
+card_new_img = PhotoImage(file="images/card_back.png")
+first_canvas_img = canvas.create_image(400, 263, image=card_img)
+canvas.itemconfig(first_canvas_img, image=card_new_img)
 canvas.grid(column=0, row=0, columnspan=2)
 
-up_title = canvas.create_text(400, 150, text="EN", font=("Ariel", 40, "italic"))
-down_title = canvas.create_text(400, 263, text="word", font=("Ariel", 60, "italic"))
+up_title = canvas.create_text(400, 150, text="", font=("Ariel", 40, "italic"))
+down_title = canvas.create_text(400, 263, text="", font=("Ariel", 60, "italic"))
 
 check_img = PhotoImage(file="images/right.png")
 check_button = Button(image=check_img, highlightthickness=0, command=next_card)
@@ -40,5 +42,7 @@ check_button.grid(column=1, row=1)
 x_img = PhotoImage(file="images/wrong.png")
 x_button = Button(image=x_img, highlightthickness=0, command=next_card)
 x_button.grid(column=0, row=1)
+
+next_card()
 
 windows.mainloop()
