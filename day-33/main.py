@@ -1,5 +1,9 @@
 import requests
 
+MY_LONGITUDE = 19.040236
+
+MY_LATITUDE = 47.497913
+
 # response = requests.get(url="http://api.open-notify.org/iss-now.json")
 # print(response.status_code)
 #
@@ -10,8 +14,8 @@ import requests
 # print(lat)
 
 parameters = {
-    "lat": 47.497913,
-    "lng": 19.040236
+    "lat": MY_LATITUDE,
+    "lng": MY_LONGITUDE
 }
 
 response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
