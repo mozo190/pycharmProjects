@@ -1,11 +1,13 @@
 import datetime as dt
 import random
 import smtplib
+from dotenv import load_dotenv
+import os
 
 import pandas
 
-my_email = "zoltan@yahoo.com"
-password = "123456789"
+my_email = os.getenv("DB_USER")
+password = os.getenv("DB_PASSWORD")
 
 ##################### Hard Starting Project ######################
 
