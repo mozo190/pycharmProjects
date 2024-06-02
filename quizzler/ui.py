@@ -34,11 +34,11 @@ class UI:
         self.window.mainloop()
 
     def next_card(self):
-        self.canvas.config(bg="white")
         if self.quiz.still_has_questions():
-            self.score_label.config(text=f"Score: {self.quiz.score}")
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.card_title, text=q_text)
+            self.canvas.config(bg="white")
+            self.score_label.config(text=f"Score: {self.quiz.score}/{self.quiz.question_number}")
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.card_title, text=q_text)
 
     def true_pressed(self):
         self.give_feedback(self.quiz.check_answer("True"))
