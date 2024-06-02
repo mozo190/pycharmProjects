@@ -16,7 +16,9 @@ class UI:
         self.score_label.grid(row=0, column=1, pady=20)
 
         self.canvas = Canvas(width=300, height=250, bg="white", highlightthickness=0)
-        self.card_title = self.canvas.create_text(150, 125, text="Title", font=("Ariel", 20, "italic"), fill=THEME_COLOR)
+        self.card_title = self.canvas.create_text(150, 125, text="Title", font=("Ariel", 20, "italic"),
+                                                  fill=THEME_COLOR,
+                                                  width=280)
         self.canvas.grid(row=1, column=0, columnspan=2, pady=20)
 
         self.wrong_image = PhotoImage(file="images/false.png")
