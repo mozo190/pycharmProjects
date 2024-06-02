@@ -22,11 +22,11 @@ class UI:
         self.canvas.grid(row=1, column=0, columnspan=2, pady=20)
 
         self.wrong_image = PhotoImage(file="images/false.png")
-        self.wrong_button = Button(image=self.wrong_image, highlightthickness=0, command=self.next_card)
+        self.wrong_button = Button(image=self.wrong_image, highlightthickness=0, command=self.false_pressed)
         self.wrong_button.grid(row=2, column=0, pady=20)
 
         self.right_image = PhotoImage(file="images/true.png")
-        self.right_button = Button(image=self.right_image, highlightthickness=0, command=self.next_card)
+        self.right_button = Button(image=self.right_image, highlightthickness=0, command=self.true_pressed)
         self.right_button.grid(row=2, column=1, pady=20)
 
         self.next_card()
@@ -36,3 +36,18 @@ class UI:
     def next_card(self):
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.card_title, text=q_text)
+
+    def true_pressed(self):
+        self.give_feedback(self.quiz.check_answer("True"))
+
+    def false_pressed(self):
+        self.give_feedback(self.quiz.check_answer("False"))
+
+    def give_feedback(self, is_right):
+        if is_right:
+            self.canvas.config(bg="green")
+        else:
+            self.canvas.config(bg="red")
+        self.window.after(1000, self.next_card)
+        self.canvas.config(bg="white")
+
