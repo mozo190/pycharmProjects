@@ -39,6 +39,10 @@ class UI:
             self.score_label.config(text=f"Score: {self.quiz.score}/{self.quiz.question_number}")
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.card_title, text=q_text)
+        else:
+            self.canvas.itemconfig(self.card_title, text="You've reached the end of the quiz")
+            self.right_button.config(state="disabled")
+            self.wrong_button.config(state="disabled")
 
     def true_pressed(self):
         self.give_feedback(self.quiz.check_answer("True"))
