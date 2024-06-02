@@ -34,6 +34,9 @@ class UI:
         self.window.mainloop()
 
     def next_card(self):
+        self.canvas.config(bg="white")
+        if self.quiz.still_has_questions():
+            self.score_label.config(text=f"Score: {self.quiz.score}")
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.card_title, text=q_text)
 
@@ -49,5 +52,5 @@ class UI:
         else:
             self.canvas.config(bg="red")
         self.window.after(1000, self.next_card)
-        self.canvas.config(bg="white")
+
 
