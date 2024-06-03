@@ -1,14 +1,17 @@
+import os
+
 import requests
 from dotenv import load_dotenv
-import os
+from twilio.rest import Client
 
 load_dotenv()
 
 forecast_url = os.getenv('FORECAST_URL')
 api_key = os.getenv('API_KEY')
 
-# print(f"forecast_url: {forecast_url}")
-# print(f"api_key: {api_key}")
+account_sid = os.getenv('ACCOUNT_SID')
+auth_token = os.getenv('AUTH_TOKEN')
+
 parameters = {
     "lat": 44.34,
     "lon": 10.99,
@@ -28,8 +31,13 @@ weather_slice = weather_data["list"][:12]
 for hour_data in weather_slice:
     weather_code = hour_data["weather"][0]["id"]
     if int(weather_code) < 700:
-        print("Bring an umbrella")
-        break
+        client = Client(account_sid, auth_token)
+        message = client.messages.create(
+            body="Bring an umbrella",
+            from_=os.getenv('FROM_PHONE_NUMBER'),
+            to=os.getenv('TO_PHONE_NUMBER')
+        )
+        print(message.status)
     else:
         print("No need for an umbrella")
         break
