@@ -7,7 +7,7 @@ parameters = {
     "appid": "cb39ed815882577596774c580048f8a3"
 }
 
-response = requests.get("https://api.openweathermap.org/data/2.5/weather?", params=parameters)
+response = requests.get("https://api.openweathermap.org/data/2.5/forecast?", params=parameters)
 response.raise_for_status()
 weather_data = response.json()
 #print status code
