@@ -15,14 +15,20 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 parameters = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
-    "apikey": alpha_vantage_api_key
+    "apikey": "alpha_vantage_api_key"
 }
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
 # When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 response = requests.get(url=STOCK_ENDPOINT, params=parameters, headers={"Accept": "application/json"})
 response.raise_for_status()
 data = response.json()
-print(data)
+# print(data)
+
+data_list = [value for (key, value) in data["Time Series (Daily)"].items()]
+yesterday_data = data_list[0]
+yesterday_closing_price = yesterday_data["4. close"]
+print(yesterday_closing_price)
+
 #TODO 1. - Get yesterday's closing stock price. Hint: You can perform list comprehensions on Python dictionaries. e.g. [new_value for (key, value) in dictionary.items()]
 
 #TODO 2. - Get the day before yesterday's closing stock price
