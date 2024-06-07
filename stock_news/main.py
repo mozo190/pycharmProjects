@@ -41,10 +41,16 @@ day_before_closing_price = day_before["4. close"]
 print(day_before_closing_price)
 print(yesterday_closing_price)
 
-difference = abs(float(yesterday_closing_price) - float(day_before_closing_price))
-percentage = (difference / float(yesterday_closing_price)) * 100
+difference = float(yesterday_closing_price) - float(day_before_closing_price)
+percentage = (abs(difference) / float(yesterday_closing_price)) * 100
 print(f"{difference:.2f} a difference")
 print(f"{percentage:.2f}% a percentage")
+
+down_emoji = None
+if difference < 0:
+    down_emoji = "🔻"
+else:
+    down_emoji = "🔺"
 
 if percentage > 5:
     print("Get News")
@@ -56,7 +62,7 @@ if percentage > 5:
         auth_token = os.getenv("TWILIO_AUTH_TOKEN")
         client = Client(account_sid, auth_token)
         message = client.messages.create(
-            body=f"{STOCK_NAME}: 🔺{percentage}%\nHeadline: {news['title']}\nBrief: {news['description']}",
+            body=f"{STOCK_NAME}: {down_emoji} {percentage}%\nHeadline: {news['title']}\nBrief: {news['description']}",
             from_=os.getenv("TWILIO_PHONE_NUMBER"),
             to=os.getenv("MY_PHONE_NUMBER")
         )
