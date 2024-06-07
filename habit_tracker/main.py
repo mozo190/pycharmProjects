@@ -27,7 +27,7 @@ graph_config = {
 }
 # response = requests.post(url=graph_endpoint, json=graph_config, headers={"X-USER-TOKEN": TOKEN})
 # print(response.text)
-#https://pixe.la/v1/users/mozo190/graphs/graph1.html
+# https://pixe.la/v1/users/mozo190/graphs/graph1.html
 
 today = datetime.now()
 date = today.strftime("%Y%m%d")
