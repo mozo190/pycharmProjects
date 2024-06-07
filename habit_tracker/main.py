@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests
 
 pixela_endpoint = "https://pixe.la/v1/users"
@@ -23,14 +25,18 @@ graph_config = {
     "type": "float",
     "color": "ajisai"
 }
-response = requests.post(url=graph_endpoint, json=graph_config, headers={"X-USER-TOKEN": TOKEN})
-print(response.text)
+# response = requests.post(url=graph_endpoint, json=graph_config, headers={"X-USER-TOKEN": TOKEN})
+# print(response.text)
 #https://pixe.la/v1/users/mozo190/graphs/graph1.html
+
+today = datetime.now()
+date = today.strftime("%Y%m%d")
 
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 pixel_data = {
-    "date": "20210701",
+    "date": date,
     "quantity": "10.5"
 }
 
 response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers={"X-USER-TOKEN": TOKEN})
+print(response.text)
