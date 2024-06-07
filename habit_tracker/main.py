@@ -38,5 +38,13 @@ pixel_data = {
     "quantity": "10.5"
 }
 
-response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers={"X-USER-TOKEN": TOKEN})
+# response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers={"X-USER-TOKEN": TOKEN})
+# print(response.text)
+
+update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{date}"
+update_data = {
+    "quantity": "5.5"
+}
+
+response = requests.put(url=update_endpoint, json=update_data, headers={"X-USER-TOKEN": TOKEN})
 print(response.text)
