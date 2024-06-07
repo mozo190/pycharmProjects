@@ -46,5 +46,9 @@ update_data = {
     "quantity": "5.5"
 }
 
-response = requests.put(url=update_endpoint, json=update_data, headers={"X-USER-TOKEN": TOKEN})
+# response = requests.put(url=update_endpoint, json=update_data, headers={"X-USER-TOKEN": TOKEN})
+# print(response.text)
+
+delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{date}"
+response = requests.delete(url=delete_endpoint, headers={"X-USER-TOKEN": TOKEN})
 print(response.text)
