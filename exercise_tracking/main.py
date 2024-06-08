@@ -2,21 +2,23 @@ import requests
 from datetime import datetime
 import os
 
-app_id = os.getenv("APP_ID")
-api_key = os.getenv("API_KEY")
-auth_token = os.getenv("AUTH_TOKEN")
+app_id = os.environ.get("APP_ID", "Message not found")
+print(app_id)
+api_key = os.environ.get("API_KEY", "Message not found")
+auth_token = os.environ.get("AUTH_TOKEN", "Message not found")
 gender = os.getenv("GENDER")
 weight = os.getenv("WEIGHT_KG")
 height = os.getenv("HEIGHT_CM")
 age = os.getenv("AGE")
+
 
 NUTRI_ENDPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
 SHEETY_ENDPOINT = "https://api.sheety.co/039bda9c2fa0b62234cf5f34368a04c8/myWorkout/munkalap1"
 
 exercise_text = input("Tell me which exercises you did: ")
 headers = {
-    "x-app-id": "2ccdc115",
-    "x-app-key": "7efbc10b7e8c364aa5794061936b7088",
+    "x-app-id": app_id,
+    "x-app-key": api_key,
 
 }
 
@@ -32,7 +34,7 @@ result = response.json()
 print(result)
 
 headers = {
-    "Authorization": "Basic bW96bzE5MDozUkFuZGk3MzMvLy8="
+    "Authorization": auth_token
 }
 today = datetime.now()
 date = today.strftime("%d/%m/%Y")
