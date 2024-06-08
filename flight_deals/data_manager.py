@@ -1,5 +1,5 @@
 import os
-from pprint import pprint
+# from pprint import pprint
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -41,9 +41,9 @@ class DataManager:
             sheety_response = requests.put(
                 url=f"{os.environ.get('SHEETY_ENDPOINT')}/{city['id']}",
                 json=sheety_params,
-                # headers={
-                #     "Authorization": f"Bearer {os.environ.get('SHEET_AUTH_TOKEN')}"
-                # },
-                # auth=self.authorization
+                headers={
+                    "Authorization": f"Bearer {os.environ.get('SHEET_AUTH_TOKEN')}"
+                },
+                auth=self.authorization
             )
             print(sheety_response.text)
