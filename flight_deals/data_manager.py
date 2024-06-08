@@ -1,9 +1,20 @@
+import os
+import requests
+from requests.auth import HTTPBasicAuth
+
 class DataManager:
     def __init__(self):
-        self.data = []
+        self._user = os.environ.get("SHEETY_USER")
+        self._password = os.environ.get("SHEETY_PASSWORD")
+        self.authorization = HTTPBasicAuth(self._user, self._password)
+        self.destination_data = {}
 
     def get_data(self):
-        return self.data
+        # 2. Use the Sheety API to GET all the data in that sheet and print it out.
+        response = requests.get(url=os.environ.get("SHEETY_ENDPOINT"), auth=self.authorization)
+        response.raise_for_status()
+        self.destination_data = response.json()["prices"]
+        return self.destination_data
 
     def add_data(self, new_data):
         self.data.append(new_data)
@@ -32,4 +43,3 @@ class DataManager:
 
     def __repr__(self):
         return str(self.data)
-
