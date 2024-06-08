@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 import requests
 
+import notification_manager
 from data_manager import DataManager
 from flight_search import FlightSearch
 from flight_data import FlightData, find_cheapest_flight
@@ -15,18 +16,6 @@ sheet_data = data_manager.get_data()
 print(sheet_data)
 
 ORIGIN_CITY_IATA = "LON"
-
-# if sheet_data[0]["iataCode"] == "":
-#     for city in sheet_data:
-#         city["iataCode"] = flight_search.get_destination_code(city["city"])
-#         data_manager.destination_data = sheet_data
-#         data_manager.update_data(sheet_data.index(city), city)
-#         data_manager.save_data()
-#         print(city)
-# else:
-#     print("IATA Codes already exist in the data.")
-#     print(sheet_data)
-#     print("No changes made.")
 
 for row in sheet_data:
     if row["iataCode"] == "":
@@ -53,3 +42,19 @@ for destination in sheet_data:
     cheapest_flight = find_cheapest_flight(flight)
     print(f"{destination['city']}: {cheapest_flight.price} HUF")
     time.sleep(2)
+
+#=======send message=================#
+
+    if cheapest_flight.price != "N/A" and cheapest_flight.price < destination["lowestPrice"]:
+        print(f"Lower price flight found to {destination['city']}!")
+        # notification_manager.send_sms(
+        #     message=f"Low price alert! Only {cheapest_flight.price} HUF to fly from {cheapest_flight.origin_airport}"
+        #             f" to {cheapest_flight.destination_airport}, from {cheapest_flight.out_date}"
+        #             f" to {cheapest_flight.return_date}"
+        # )
+        notification_manager.send_whatsapp(
+            message_body=f"Low price alert! Only {cheapest_flight.price} HUF to fly "
+                         f" from {cheapest_flight.origin_airport},"
+                         f" on {cheapest_flight.out_date} until {cheapest_flight.return_date}."
+        )
+
