@@ -36,7 +36,6 @@ class FlightSearch:
             return "Not found"
         return code
 
-
     def _get_new_token(self):
         header = {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -62,7 +61,7 @@ class FlightSearch:
             "returnDate": to_time.strftime("%Y-%m-%d"),
             "adults": 1,
             "nonStop": "true",
-            "currentCode": "GBR",
+            "currentCode": "GBP",
             "max": 10
         }
         response = requests.get(url=FLIGHT_ENDPOINT, headers=headers, params=query)
