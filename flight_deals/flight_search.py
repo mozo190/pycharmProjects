@@ -62,7 +62,7 @@ class FlightSearch:
             "returnDate": to_time.strftime("%Y-%m-%d"),
             "adults": 1,
             "nonStop": "true",
-            "currentCode": "USD",
+            "currentCode": "GBR",
             "max": 10
         }
         response = requests.get(url=FLIGHT_ENDPOINT, headers=headers, params=query)
