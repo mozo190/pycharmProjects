@@ -30,6 +30,23 @@ class DataManager:
         pprint(data)
         return self.destination_data
 
+    def update_destination_codes(self):
+        # 4. Update the IATA Codes in the Sheety data.
+        for city in self.destination_data:
+            sheety_params = {
+                "price": {
+                    "iataCode": city["iataCode"]
+                }
+            }
+            sheety_response = requests.put(
+                url=f"{os.environ.get('SHEETY_ENDPOINT')}/{city['id']}",
+                json=sheety_params,
+                headers={
+                    "Authorization": f"Bearer {os.environ.get('SHEET_AUTH_TOKEN')}"
+                },
+                auth=self.authorization
+            )
+            print(sheety_response.text)
     def add_data(self, new_data):
         self.data.append(new_data)
 
