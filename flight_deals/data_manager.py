@@ -26,8 +26,8 @@ class DataManager:
         print(f"Response text: {sheety_response.text}")
         sheety_response.raise_for_status()
         data = sheety_response.json()
-        self.destination_data = sheety_response.json()["prices"]
-        pprint(data)
+        self.destination_data = data["prices"]
+        # pprint(data)
         return self.destination_data
 
     def update_destination_codes(self):
@@ -41,9 +41,9 @@ class DataManager:
             sheety_response = requests.put(
                 url=f"{os.environ.get('SHEETY_ENDPOINT')}/{city['id']}",
                 json=sheety_params,
-                headers={
-                    "Authorization": f"Bearer {os.environ.get('SHEET_AUTH_TOKEN')}"
-                },
-                auth=self.authorization
+                # headers={
+                #     "Authorization": f"Bearer {os.environ.get('SHEET_AUTH_TOKEN')}"
+                # },
+                # auth=self.authorization
             )
             print(sheety_response.text)
