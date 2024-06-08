@@ -36,12 +36,12 @@ class FlightSearch:
             return "Not found"
         return code
 
-    def search(self):
-        response = requests.get(url=self.endpoint, headers=self.headers, params=self.params)
-        response.raise_for_status()
-        data = response.json()
-        print(data)
-        return data
+    # def search(self):
+    #     response = requests.get(url=self.endpoint, headers=self.headers, params=self.params)
+    #     response.raise_for_status()
+    #     data = response.json()
+    #     print(data)
+    #     return data
 
     def _get_new_token(self):
         header = {
