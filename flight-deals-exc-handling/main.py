@@ -40,10 +40,14 @@ if sheet_data[0]["iataCode"] == "":
 
         if flight.price < destinations[destination_code]["price"]:
 
+            users = data_manager.get_customer_emails()
+            emails = [row["email"] for row in users]
+            names = [row["firstName"] for row in users]
+
             message = (f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport}"
                        f" to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date}"
                        f" to {flight.return_date}.")
             if flight.stop_overs > 0:
                 message += f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city}"
-                print(message)
-            notification_manager.send_sms(message)
+
+            notification_manager.send_emails(emails, message)
