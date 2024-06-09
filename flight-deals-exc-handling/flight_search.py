@@ -13,21 +13,24 @@ api_secret = os.environ.get("FLIGHT_API_SECRET")
 
 
 class FlightSearch:
+
+    def __init__(self):
+        self.city_codes = {}
+
     def get_destination_code(self, city_name):
+        print("Getting destination code...")
         location_endpoint = f"{IATA_ENDPOINT}/query"
-        headers = {
-            "api_key": api_key,
-        }
-        query = {
-            "term": city_name,
-            "location_types": "city",
-        }
-        response = requests.get(url=location_endpoint, headers=headers, params=query)
-        results = response.json()["locations"]
-        code = results[0]["code"]
-        return code
+        headers = {"api_key": api_key}
+        for city in city_name:
+            query = {"term": city, "location_types": "city"}
+            response = requests.get(url=location_endpoint, headers=headers, params=query)
+            results = response.json()["locations"]
+            code = results[0]["code"]
+            self.city_codes.append(code)
+        return self.city_codes
 
     def check_flights(self, origin_city_code, destination_city_code, from_time, to_time):
+        print(f"Checking flights for {destination_city_code}...")
         headers = {"api_key": api_key}
         query = {
             "fly_from": origin_city_code,
