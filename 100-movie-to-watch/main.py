@@ -23,6 +23,6 @@ for title in find_all_title:
 sorted_result = sorted(result, key=lambda x: x[0])
 print(sorted_result)
 
-with open("movies.txt", "a", encoding="utf-8") as file:
+with open("movies.txt", "w", encoding="utf-8") as file:
     for num, text in sorted_result:
         file.write(f"{num} {text}\n")
