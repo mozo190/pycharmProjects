@@ -11,12 +11,10 @@ result = []
 soup = BeautifulSoup(emp_web_page, "html.parser")
 find_all_title = soup.find_all(name="h3", class_="title")
 
-# title_pop = find_all_title.pop(0)
-#
-# print(title_pop)
-# print(pop)
 for title in find_all_title:
-    text = title.getText().replace(")", "").replace(":", "").replace("â", "").replace("'\'", "").replace("x80", "").replace("x93", "")
+    text = title.getText().replace(")", "").replace(":", "").replace("â", "").replace("'\'", "").replace("x80",
+                                                                                                         "").replace(
+        "x93", "")
     int_text = int(text.split()[0])
     title_text = ' '.join(text.split()[1:])
     result.append((int_text, title_text))
