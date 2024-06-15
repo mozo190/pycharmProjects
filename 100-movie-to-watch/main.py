@@ -21,4 +21,6 @@ for title in find_all_title:
     title_text = ' '.join(text.split()[1:])
     result.append((int_text, title_text))
 
-print(result)
+# print(result)
+sorted_result = sorted(result, key=lambda x: x[0])
+# print(sorted_result)
