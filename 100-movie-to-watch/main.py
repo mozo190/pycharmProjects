@@ -23,4 +23,6 @@ for title in find_all_title:
 
 # print(result)
 sorted_result = sorted(result, key=lambda x: x[0])
-# print(sorted_result)
+
+for i in sorted_result:
+    # print(i[0], i[1])
