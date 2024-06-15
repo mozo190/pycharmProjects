@@ -21,6 +21,7 @@ img {
 h1 {
     display: flex;
     justify-content: center;
+    text-align: center;
     text-transform: uppercase;
     margin-top: 5%;
 }
