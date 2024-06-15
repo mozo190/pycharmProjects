@@ -7,10 +7,13 @@ response = requests.get(URL + time_travel)
 billboard_web_page = response.text
 # print(response.text)
 
-
 soup = BeautifulSoup(billboard_web_page, "html.parser")
 song_name_spans = soup.select("li ul li h3")
-for song in song_name_spans:
-    song_name_list = song.getText().replace("\n", "").replace("\n", "").replace("\t", "")
 
-    print(song_name_list)
+song_name_list = [song.getText().strip() for song in song_name_spans]
+
+
+    # print(song_name_list)
+with open("songs.txt", "a", encoding="utf-8") as file:
+    for song_list in song_name_list:
+        file.write(f"{song_list}\n")
