@@ -7,10 +7,18 @@ response = requests.get(URL)
 emp_web_page = response.text
 # print(emp_web_page)
 
+result = []
 soup = BeautifulSoup(emp_web_page, "html.parser")
-find_all_title = [soup.find_all(name="h3", class_="title")]
-findall_title = soup.findAll(name="h3", class_="title")
-pop = findall_title.pop(0).getText()
-print(find_all_title)
-print(findall_title)
-print(pop)
+find_all_title = soup.find_all(name="h3", class_="title")
+
+# title_pop = find_all_title.pop(0)
+#
+# print(title_pop)
+# print(pop)
+for title in find_all_title:
+    text = title.getText().replace(")", "").replace(":", "")
+    int_text = int(text.split()[0])
+    title_text = ' '.join(text.split()[1:])
+    result.append((int_text, title_text))
+
+print(result)
