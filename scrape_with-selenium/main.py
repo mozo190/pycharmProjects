@@ -15,9 +15,17 @@ driver = webdriver.Chrome(options=chrome_options)
 # print(f"the price is {price_dollar.text}{price_amount.text}.{price_cents.text}")
 
 driver.get("https://www.python.org/")
-bug_link = driver.find_element(By.XPATH, '//*[@id="site-map"]/div[2]/div/ul/li[3]/a')
-print(bug_link.text)
+# bug_link = driver.find_element(By.XPATH, '//*[@id="site-map"]/div[2]/div/ul/li[3]/a')
+# print(bug_link.text)
 # bug_link.click()
 
+dict_list = {}
+for i in range(1, 6):
+    date_ = driver.find_element(By.XPATH, f'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li[{i}]/time')
+    print(date_.text)
+    text_ = driver.find_element(By.XPATH, f'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li[{i}]/a')
+    print(text_.text)
+    dict_list[date_.text] = text_.text
+print(dict_list)
 # driver.close()  # Close the one tab browser
 driver.quit()  # Close the whole browser
