@@ -4,12 +4,12 @@ import smtplib
 my_email = os.environ.get("MY_EMAIL")
 password = os.environ.get("MY_PASSWORD")
 recipient_email = os.environ.get("RECIPIENT_EMAIL")
-sign = "Regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
+sign = "Best regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
 
 subject = "Hello dear Zoltan\n\n"
 customer_name = "Dear Zoltan,"
 message = "This is the body message of the email."
-body = f"{customer_name}\n{message}\n\n{sign}"
+body = f"{customer_name}\n\n{message}\n\n{sign}"
 
 
 def send_email():
