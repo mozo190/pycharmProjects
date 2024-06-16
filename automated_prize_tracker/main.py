@@ -12,9 +12,17 @@ response = requests.get(url, headers=headers)
 web_page = response.text
 
 soup = BeautifulSoup(web_page, "lxml")
-print(soup.prettify())
-price = soup.find(name="span", class_="a-price-whole")
-product_name = soup.find(name="span", id="productTitle")
+# print(soup.prettify())
+# price = soup.find(name="span", class_="a-price-whole")
+product_name = soup.find(name="span", id="productTitle").get_text().strip()
+price = soup.find(class_="a-offscreen").getText()
 print(product_name)
 print(price)
-# mail_manager.send_email()
+
+subject = "This is the new price!\n\n"
+customer_name = "Dear Zoltan,"
+message = f"The price of {product_name} is {price} now."
+sign = "Best regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
+body = f"{customer_name}\n\n{message}\n\n{sign}"
+
+mail_manager.send_email(subject, body)
