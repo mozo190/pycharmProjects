@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -27,3 +26,16 @@ store_items = {}
 for item in range(len(item_prices)):
     store_items[item_ids[item]] = item_prices[item]
 
+# Buy the most expensive item
+while True:
+    for item in store_items:
+        if cookie_count_value >= store_items[item]:
+            driver.find_element(By.ID, item).click()
+            break
+
+    # Get the cookie count again
+    cookie_count = driver.find_element(By.ID, "money")
+    cookie_count_text = cookie_count.text
+    cookie_count_value = int(cookie_count_text.split(" ")[0])
+
+# driver.quit()
