@@ -1,7 +1,7 @@
-import mail_manager
 import requests
-import lxml
 from bs4 import BeautifulSoup
+
+import mail_manager
 
 url = "https://www.amazon.com/dp/B075CYMYK6?psc=1&ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6"
 
@@ -20,13 +20,13 @@ try:
     if product_name:
         product_name = product_name.getText().strip()
     else:
-        product_name = "Product name not found."
+        product_name = "Product name not found"
 
     price = soup.find(class_="a-offscreen")
     if price:
         price = price.getText()
     else:
-        price = "Price not found."
+        price = "Price not found"
 
     print(product_name)
     print(price)
@@ -38,8 +38,9 @@ try:
     body = f"{customer_name}\n\n{message}\n\n{sign}"
 
     mail_manager.send_email(subject, body)
+except requests.exceptions.RequestException as e:
+    print(f"Request error occurred: {e}")
 except AttributeError:
     print("The product is not available now.")
 except Exception as e:
     print(f"An error occurred: {e}")
-
