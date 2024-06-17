@@ -31,16 +31,21 @@ login_button.click()
 
 time.sleep(10)
 
-jobs = driver.find_elements(By.CLASS_NAME, "job-card-container")
+jobs = driver.find_elements(By.CLASS_NAME, "jobs-search-results-list")
 for job in jobs:
     job.click()
     time.sleep(5)
     try:
-        apply = driver.find_element(By.XPATH, '//*[@id="main-content"]/section/div[2]/section[1]/div[2]/div[2]/button')
+        apply = driver.find_element(By.ID, "ember367")
         apply.click()
         time.sleep(5)
-        submit = driver.find_element(By.XPATH, '//*[@id="main-content"]/section/div[2]/section[1]/div[2]/div[2]/button')
+        submit = driver.find_element(By.XPATH, '//*[@id="ember873"]')
         submit.click()
+        time.sleep(5)
+        review = driver.find_element(By.XPATH, '//*[@id="ember895"]')
+        review.click()
+        time.sleep(5)
+        submit_application = driver.find_element(By.XPATH, '//*[@id="ember889"]')
     except Exception as e:
         print(e)
         continue
