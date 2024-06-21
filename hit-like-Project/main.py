@@ -17,3 +17,8 @@ login_button = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/
 login_button.click()
 
 sleep(2)
+base_window = driver.window_handles[0]  # Base window
+fb_login_window = driver.window_handles[1]  # Login window
+driver.switch_to.window(fb_login_window)
+print(driver.title)
+
