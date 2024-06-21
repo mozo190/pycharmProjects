@@ -32,3 +32,13 @@ driver.switch_to.window(base_window)
 print(driver.title)
 
 sleep(5)
+
+allow_location = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/div/div/div/div')
+allow_location.click()
+
+notifications_button = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/div/div/div/div')
+notifications_button.click()
+
+cookies = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/div/div/div/div')
+cookies.click()
+
