@@ -42,3 +42,17 @@ notifications_button.click()
 cookies = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/div/div/div/div')
 cookies.click()
 
+for n in range(100):
+    sleep(1)
+
+    try:
+        like_button = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[2]/div/div/div/div')
+        like_button.click()
+    except ElementClickInterceptedException:
+        try:
+            match_popup = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div/main/div/div/div/div/div/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div')
+            match_popup.click()
+        except ElementClickInterceptedException:
+            sleep(2)
+
+driver.quit()
