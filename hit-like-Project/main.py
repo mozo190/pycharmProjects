@@ -22,3 +22,13 @@ fb_login_window = driver.window_handles[1]  # Login window
 driver.switch_to.window(fb_login_window)
 print(driver.title)
 
+email = driver.find_element(By.XPATH, '//*[@id="email"]')
+password = driver.find_element(By.XPATH, '//*[@id="pass"]')
+email.send_keys(fb_email)
+password.send_keys(fb_password)
+password.send_keys(Keys.ENTER)
+
+driver.switch_to.window(base_window)
+print(driver.title)
+
+sleep(5)
