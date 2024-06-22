@@ -59,6 +59,7 @@ driver.get(sheet_research_link)
 
 # fill in the form
 for i in range(len(addresses)):
+    driver.get(sheet_research_link)
     address_input = driver.find_element(By.XPATH,
                                         '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
     address_input.clear()
