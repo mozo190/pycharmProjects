@@ -13,10 +13,28 @@ yc_web_page = response.text
 soup = BeautifulSoup(yc_web_page, "html.parser")
 
 # print(soup.prettify())
-address = soup.find_all("div", class_="address")
-price = soup.find_all("div", class_="property-card-price")
-props_link = soup.find_all("a", class_="property-card-link")
+address = soup.find_all("address", {"data-test": "property-card-addr"})
+addresses = [a.getText() for a in address]
+for a in addresses:
+    print(a)
 
-# print(address)
-# print(price)
-print(props_link)
+
+
+
+
+
+
+
+
+
+# price = soup.find_all("div", class_="property-card-price")
+# prices = [p.getText() for p in price]
+# print(prices)
+# for p in prices:
+#     print(p)
+
+# props_link = soup.find_all("a", class_="property-card-link")
+# paths = [link['href'] for link in props_link]
+# for link in paths:
+#     print(link)
+
