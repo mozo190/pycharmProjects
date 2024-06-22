@@ -16,8 +16,8 @@ soup = BeautifulSoup(yc_web_page, "html.parser")
 # print(soup.prettify())
 address = soup.find_all("address", {"data-test": "property-card-addr"})
 
-#strip=True removes the white spaces
-# addresses = [a.getText(strip=True) for a in address]
+# strip=True removes the white spaces
+addresses = [a.getText(strip=True) for a in address]
 # for a in addresses:
 #     print(a)
 
@@ -32,10 +32,17 @@ def trim_prices(price):
 
 
 prices = [trim_prices(p.getText(strip=True)) for p in price_elements]
-for p in prices:
-    print(p)
+# for p in prices:
+#     print(p)
 
-# props_link = soup.find_all("a", class_="property-card-link")
-# paths = [link['href'] for link in props_link]
+props_link = soup.find_all("a", class_="property-card-link")
+paths = [link['href'] for link in props_link]
 # for link in paths:
 #     print(link)
+
+print(len(addresses), len(prices), len(paths))
+for i in range(len(addresses)):
+    print(f"Address: {addresses[i]}")
+    print(f"Price: {prices[i]}")
+    print(f"Link: {paths[i]}")
+    print("\n")
