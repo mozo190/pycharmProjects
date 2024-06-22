@@ -20,7 +20,7 @@ address = soup.find_all("address", {"data-test": "property-card-addr"})
 #     print(a)
 
 price = soup.find_all("span", {"data-test": "property-card-price"})
-prices = [p.getText() for p in price]
+prices = [p.getText(strip=True).rstrip('+').rstrip('/mo').strip() for p in price]
 print(prices)
 for p in prices:
     print(p)
