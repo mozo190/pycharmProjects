@@ -20,8 +20,6 @@ address = soup.find_all("address", {"data-test": "property-card-addr"})
 
 # strip=True removes the white spaces
 addresses = [a.getText(strip=True) for a in address]
-# for a in addresses:
-#     print(a)
 
 price_elements = soup.find_all("span", {"data-test": "property-card-price"})
 
@@ -34,22 +32,9 @@ def trim_prices(price):
 
 
 prices = [trim_prices(p.getText(strip=True)) for p in price_elements]
-# for p in prices:
-#     print(p)
 
 props_link = soup.find_all("a", class_="property-card-link")
 paths = [link['href'] for link in props_link]
-# for link in paths:
-#     print(link)
-
-# print(len(addresses), len(prices), len(paths))
-# for i in range(len(addresses)):
-#     print(f"Address: {addresses[i]}")
-#     print(f"Price: {prices[i]}")
-#     print(f"Link: {paths[i]}")
-#     print("\n")
-
-# open sheet form
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -78,6 +63,4 @@ for i in range(len(addresses)):
     submit_button = driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div/span/span')
     submit_button.click()
 
-    # another_response = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a')
-    # another_response.click()
     driver.implicitly_wait(5)
