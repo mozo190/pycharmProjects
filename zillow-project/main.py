@@ -3,6 +3,9 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 sheet_research_link = os.environ.get('RESEARCH_LINK')
 zillow_link = os.environ.get('ZILLOW_ClONE')
@@ -46,3 +49,31 @@ for i in range(len(addresses)):
     print(f"Price: {prices[i]}")
     print(f"Link: {paths[i]}")
     print("\n")
+
+# open sheet form
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option("detach", True)
+
+driver = webdriver.Chrome(options=chrome_options)
+driver.get(sheet_research_link)
+
+# fill in the form
+for i in range(len(addresses)):
+    address_input = driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div['
+                                                  '2]/div/div[1]/div/div[1]/input')
+    address_input.send_keys(addresses[i])
+
+    price_input = driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div['
+                                                '2]/div/div[2]/div/div[1]/input')
+    price_input.send_keys(prices[i])
+
+    link_input = driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div['
+                                              '2]/div/div[3]/div/div[1]/input')
+    link_input.send_keys(paths[i])
+
+    submit_button = driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div/div/span')
+    submit_button.click()
+
+    another_response = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a')
+    another_response.click()
