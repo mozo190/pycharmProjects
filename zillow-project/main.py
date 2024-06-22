@@ -1,4 +1,5 @@
 import os
+import re
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,14 +15,23 @@ soup = BeautifulSoup(yc_web_page, "html.parser")
 
 # print(soup.prettify())
 address = soup.find_all("address", {"data-test": "property-card-addr"})
+
 #strip=True removes the white spaces
 # addresses = [a.getText(strip=True) for a in address]
 # for a in addresses:
 #     print(a)
 
-price = soup.find_all("span", {"data-test": "property-card-price"})
-prices = [p.getText(strip=True).rstrip('+').rstrip('/mo').strip() for p in price]
-print(prices)
+price_elements = soup.find_all("span", {"data-test": "property-card-price"})
+
+
+def trim_prices(price):
+    match = re.search(r'(\d+(?:,\d{3})*)', price)
+    if match:
+        return price[:match.end()].strip()
+    return price
+
+
+prices = [trim_prices(p.getText(strip=True)) for p in price_elements]
 for p in prices:
     print(p)
 
