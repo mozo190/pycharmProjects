@@ -14,18 +14,10 @@ soup = BeautifulSoup(yc_web_page, "html.parser")
 
 # print(soup.prettify())
 address = soup.find_all("address", {"data-test": "property-card-addr"})
-addresses = [a.getText() for a in address]
+#strip=True removes the white spaces
+addresses = [a.getText(strip=True) for a in address]
 for a in addresses:
     print(a)
-
-
-
-
-
-
-
-
-
 
 # price = soup.find_all("div", class_="property-card-price")
 # prices = [p.getText() for p in price]
@@ -37,4 +29,3 @@ for a in addresses:
 # paths = [link['href'] for link in props_link]
 # for link in paths:
 #     print(link)
-
