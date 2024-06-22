@@ -2,6 +2,7 @@ import os
 from time import sleep
 
 from selenium import webdriver
+from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.common.by import By
 
 
@@ -42,8 +43,20 @@ class InstaFollower:
         sleep(2)
         followers = self.driver.find_element(By.XPATH,
                                              '//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
-        followers.click()
-        sleep(2)
+        for i in range(10):
+            self.driver.execute_script("arguments[0].click();", followers)  # Click on followers
+            sleep(2)
 
     def follow(self):
-        pass
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, 'li button')
+        for button in all_buttons:
+            try:
+                button.click()
+                sleep(1)
+            except ElementClickInterceptedException:
+                cancel_button = self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div/div/div[3]/button[2]')
+                cancel_button.click()
+                sleep(1)
+                self.driver.execute_script("arguments[0].click();", button)
+                sleep(1)
+
