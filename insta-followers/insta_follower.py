@@ -22,7 +22,6 @@ class InstaFollower:
         sleep(2)
 
     def login(self):
-
         sleep(2)
         email_input = self.driver.find_element(By.NAME, 'username')
         password_input = self.driver.find_element(By.NAME, 'password')
@@ -32,11 +31,17 @@ class InstaFollower:
         submit_button.click()
         sleep(5)
 
+        not_now = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/div/div/div/button')
+        if not_now:
+            not_now.click()
+        sleep(2)
+
     def find_followers(self):
         sleep(2)
         self.driver.get(f'https://www.instagram.com/{self.insta}')
         sleep(2)
-        followers = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
+        followers = self.driver.find_element(By.XPATH,
+                                             '//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
         followers.click()
         sleep(2)
 
