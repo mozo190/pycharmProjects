@@ -31,10 +31,10 @@ class InstaFollower:
         submit_button.click()
         sleep(5)
 
-        not_now = self.driver.find_element(By.CSS_SELECTOR, '#react-root > section > main > div > div > div > div > button')
+        not_now = self.driver.find_element(By.XPATH, '/html/body/div[4]/div/div/div/div[3]/button[2]')
         if not_now:
             not_now.click()
-        sleep(2)
+        sleep(5)
 
     def find_followers(self):
         sleep(2)
