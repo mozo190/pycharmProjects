@@ -7,10 +7,13 @@ from selenium.webdriver.common.by import By
 
 class InstaFollower:
     def __init__(self):
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--incognito')
+        chrome_options.add_experimental_option("detach", True)
         self.insta = os.environ.get('INSTA')
         self.insta_password = os.environ.get('INSTA_PASS')
         self.insta_name = os.environ.get('INSTA_NAME')
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get('https://www.instagram.com/')
         sleep(2)
         cookies = self.driver.find_element(By.XPATH,
@@ -36,3 +39,6 @@ class InstaFollower:
         followers = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
         followers.click()
         sleep(2)
+
+    def follow(self):
+        pass
