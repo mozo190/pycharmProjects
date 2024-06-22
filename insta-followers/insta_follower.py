@@ -19,9 +19,6 @@ class InstaFollower:
         sleep(2)
 
     def login(self):
-        # login_button = self.driver.find_element(By.XPATH,
-        #                                        '//*[@id="loginForm"]/div/div[3]/button/div')
-        # login_button.click()
 
         sleep(2)
         email_input = self.driver.find_element(By.NAME, 'username')
@@ -31,3 +28,11 @@ class InstaFollower:
         submit_button = self.driver.find_element(By.XPATH, '//*[@id="loginForm"]/div/div[3]/button')
         submit_button.click()
         sleep(5)
+
+    def find_followers(self):
+        sleep(2)
+        self.driver.get(f'https://www.instagram.com/{self.insta}')
+        sleep(2)
+        followers = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
+        followers.click()
+        sleep(2)
