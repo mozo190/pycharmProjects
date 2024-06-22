@@ -31,7 +31,7 @@ class InstaFollower:
         submit_button.click()
         sleep(5)
 
-        not_now = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/div/div/div/button')
+        not_now = self.driver.find_element(By.XPATH, '//*[@id="mount_0_0_g4"]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/div/div')
         if not_now:
             not_now.click()
         sleep(2)
