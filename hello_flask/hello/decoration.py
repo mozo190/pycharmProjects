@@ -9,5 +9,13 @@ def speed_calc_decoration(func):
         func()
         end = time.time()
         print(f"Time taken: {end - start}s")
-        return wrapper()
+    return wrapper()
 
+@speed_calc_decoration
+def fast_function():
+    print("I'm a fast function")
+
+@speed_calc_decoration
+def slow_function():
+    time.sleep(2)
+    print("I'm a slow function")
