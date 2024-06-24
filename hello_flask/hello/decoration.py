@@ -12,7 +12,7 @@ def speed_calc_decoration(func):
         end = time.time()
         print(f"{func.__name__} Time taken: {end - start}s")
 
-    return wrapper()
+    return wrapper  #a dekorátoroknak magát a belső függvényt kell visszaadniuk, nem annak eredményét.
 
 
 @speed_calc_decoration
@@ -24,3 +24,7 @@ def fast_function():
 def slow_function():
     time.sleep(2)
     print("I'm a slow function")
+
+
+fast_function()
+slow_function()
