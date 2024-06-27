@@ -8,15 +8,28 @@ def hello():
     return "Hello, World!"
 
 
-def outer_function():
-    print("I'm outer f")
+@app.route("/bye")
+def bye():
+    return "Bye!"
 
-    def nested_function():
-        print("I'm inner f")
+@app.route("/<name>")
+def greet(name):
+    return f"Hello! {name}"
 
-    return nested_function
+if __name__ == "__main__":
+    app.run(debug=True)
 
+greet("Krisztián")
 
-inner_f = outer_function()
-
-inner_f()
+# def outer_function():
+#     print("I'm outer f")
+#
+#     def nested_function():
+#         print("I'm inner f")
+#
+#     return nested_function
+#
+#
+# inner_f = outer_function()
+#
+# inner_f()
