@@ -8,7 +8,6 @@ def is_authenticated_decorator(func):
     def wrapper(*args, **kwargs):
         if args[0].is_logged_in:
             func(args[0])
-
     return wrapper
 
 
