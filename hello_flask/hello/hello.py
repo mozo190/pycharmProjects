@@ -14,7 +14,9 @@ def bye():
 
 @app.route("/<name>/<int:number>")
 def greet(name, number):
-    return f'<h2 style="text-align: center; background: black; color: white" >Hello you little {name} you are {number} years old!</h2> <p style="text-align: center">This is a paragraph.</p>'
+    return (f'<h2 style="text-align: center; background: black; color: white" >Hello you little {name} you are {number} years old!</h2>'\
+            '<p style="text-align: center">This is a paragraph.</p>'
+            '<div style="text-align:center"><img src="https://cdn.britannica.com/34/235834-050-C5843610/two-different-breeds-of-cats-side-by-side-outdoors-in-the-garden.jpg" width=1200></div>' )
 
 if __name__ == "__main__":
     app.run(debug=True)
