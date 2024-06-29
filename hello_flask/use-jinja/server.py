@@ -15,7 +15,8 @@ def hello():
 
 @app.route("/guess/<name>")
 def guess(name):
-    return render_template("guess.html", name=name)
+    capitalized_name = name.capitalize()
+    return render_template("guess.html", name=capitalized_name)
 
 
 if __name__ == "__main__":
