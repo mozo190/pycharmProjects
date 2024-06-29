@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(static/font-awesome.min.css);
+@import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 
 
@@ -82,47 +82,40 @@
 	}
 
 	body {
-		height: 100%;
-		background-color: #ffffff;
-		background-image: url("overlay.png"), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.png");
-		background-image: url("overlay.png"), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.png");
-		background-image: url("overlay.png"), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.png");
-		background-image: url("overlay.png"), linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.png");
-		background-repeat: repeat,			no-repeat,			no-repeat;
-		background-size: 100px 100px, cover,				cover;
-		background-position: top left,		center center,		bottom center;
-		background-attachment: fixed,			fixed,				fixed;
-	}
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url("bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
 
-		body:after {
-			content: '';
-			display: block;
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: inherit;
-			opacity: 0;
-			z-index: 1;
-			background-color: #ffffff;
-			background-image: url("overlay.png"), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35));
-			background-image: url("overlay.png"), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35));
-			background-image: url("overlay.png"), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35));
-			background-image: url("overlay.png"), linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35));
-			background-repeat: 			no-repeat;
-			background-size: 100px 100px, cover;
-			background-position: top left,		center center;
-			-moz-transition: opacity 1.75s ease-out;
-			-webkit-transition: opacity 1.75s ease-out;
-			-ms-transition: opacity 1.75s ease-out;
-			transition: opacity 1.75s ease-out;
-		}
+body:after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    opacity: 0;
+    z-index: 1;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -moz-transition: opacity 1.75s ease-out;
+    -webkit-transition: opacity 1.75s ease-out;
+    -ms-transition: opacity 1.75s ease-out;
+    transition: opacity 1.75s ease-out;
+}
 
-		body.is-loading:after {
-			opacity: 1;
-		}
+body.is-loading:after {
+    opacity: 1;
+}
 
-/* Type *//*
+/* Type */
 
 
 	body, input, select, textarea {
@@ -247,8 +240,7 @@
 		margin: 3em 0;
 	}
 
-*/
-/* Form *//*
+/* Form */
 
 
 	form {
@@ -448,8 +440,7 @@
 		opacity: 1.0;
 	}
 
-*/
-/* Icon *//*
+/* Icon */
 
 
 	.icon {
@@ -471,8 +462,7 @@
 			display: none;
 		}
 
-*/
-/* List *//*
+/* List */
 
 
 	ol {
@@ -608,8 +598,7 @@
 			margin-left: 1.5em;
 		}
 
-*/
-/* Button *//*
+/* Button */
 
 
 	input[type="submit"],
@@ -706,8 +695,7 @@
 			opacity: 0.5;
 		}
 
-*/
-/* Main *//*
+/* Main */
 
 
 	#main {
@@ -782,8 +770,7 @@
 			transform: rotateX(15deg);
 		}
 
-*/
-/* Footer *//*
+/* Footer */
 
 
 	#footer {
@@ -817,8 +804,7 @@
 					border-left: 0;
 				}
 
-*/
-/* Wrapper *//*
+/* Wrapper */
 
 
 	#wrapper {
@@ -867,4 +853,4 @@
 
 		body.is-ie #wrapper {
 			height: 100%;
-		}*/
+		}
