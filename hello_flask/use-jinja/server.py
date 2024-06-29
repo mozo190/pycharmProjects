@@ -1,6 +1,7 @@
 import datetime
 import random
 
+import requests
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -15,8 +16,12 @@ def hello():
 
 @app.route("/guess/<name>")
 def guess(name):
+    response = requests.get(f"https://api.agify.io?name={name}")
     capitalized_name = name.capitalize()
-    return render_template("guess.html", name=capitalized_name)
+    data = response.json()
+    get_gender = data["age"]
+    get_age = "Unknown"
+    return render_template("guess.html", name=capitalized_name, gender=get_gender, age=get_age)
 
 
 if __name__ == "__main__":
