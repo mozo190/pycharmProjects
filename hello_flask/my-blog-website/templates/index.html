@@ -13,9 +13,11 @@
     </div>
     <div class="content">
         <div class="card">
-            <h2>Just a blog post</h2>
-            <p class="text">Lorem ipsum dolor sit </p>
-            <a href="#">Read</a>
+            {% for post in posts: %}
+                <h2>{{ post["title"] }}</h2>
+                <p class="text">{{ post["subtitle"] }}</p>
+                <a href="#">Read</a>
+            {% endfor %}
         </div>
     </div>
     <div class="content">
