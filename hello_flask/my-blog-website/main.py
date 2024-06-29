@@ -17,8 +17,12 @@ def get_all_posts():
 
 
 @app.route("/post/<int:index>")
-def blog():
-    return render_template("post.html")
+def show_post(index):
+    requested_post = None
+    for blog_post in post_objects:
+        if blog_post.id == index:
+            requested_post = blog_post
+    return render_template("post.html", post=requested_post)
 
 
 if __name__ == "__main__":
