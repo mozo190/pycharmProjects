@@ -2,9 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Zoltan Molnar's card</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" href="static/favicon.ico">
 </head>
-<body>
+<body class="is-loading">
+<div id="wrapper">
+    <section id="main">
+        <header>
+            <span class="avatar"><img src="static/mozo.png" alt="mozo"></span>
+            <h1>Zoltan Molnar</h1>
+            <p>Web Developer</p>
+        </header>
+        <hr>
+        <h2>Objective</h2>
+        <form method="post" action="#">
+            <div class="field">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="field">
+                <div class="select-wrapper">
+                    <select name="department" id="department">
+                        <option value="">- Department -</option>
+                        <option value="sales">Sales</option>
+                        <option value="tech">Tech support</option>
+                        <option value="null">Human Resources</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+            </div>
+            <div class="field">
+                <label>But are you a robot?</label>
+                <input type="radio" name="robot" id="robot_yes"> <label for="robot_yes">Yes</label>
+                <input type="radio" name="robot" id="robot_no"> <label for="robot_no">No</label>
+            </div>
+            <ul class="actions">
+                <li><a href="#" class="button">Get Started</a></li>
+            </ul>
+        </form>
+        <hr>
 
+    </section>
+</div>
 </body>
 </html>
