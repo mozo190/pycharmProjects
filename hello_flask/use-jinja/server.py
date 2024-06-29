@@ -1,6 +1,7 @@
-from flask import Flask, render_template
-import random
 import datetime
+import random
+
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -10,6 +11,11 @@ def hello():
     current_year = datetime.datetime.now().year
     random_number = random.randint(0, 9)
     return render_template("index.html", number=random_number, year=current_year)
+
+
+@app.route("/guess/<name>")
+def guess(name):
+    return render_template("guess.html", name=name)
 
 
 if __name__ == "__main__":
