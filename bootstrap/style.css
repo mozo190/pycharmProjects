@@ -1,0 +1,10 @@
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    height: 100vh;
+}
