@@ -43,3 +43,17 @@
 .d-block {
     margin-bottom: 0;
 }
+
+.signs {
+    margin: none;
+    padding: 0;
+    text-align: center;
+}
+
+.bg-body-secondary {
+    background-color: grey;
+}
+
+#features {
+    background-color: #f8f9fa;
+}
