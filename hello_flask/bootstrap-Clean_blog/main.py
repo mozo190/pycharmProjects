@@ -1,6 +1,11 @@
+import requests
 from flask import Flask, render_template
 
 app = Flask(__name__)
+
+blog_api = "https://api.npoint.io/c790b4d5cab58020d391"
+response = requests.get(blog_api)
+all_posts = response.json()
 
 
 @app.route('/')
