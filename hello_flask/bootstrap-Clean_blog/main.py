@@ -5,12 +5,20 @@ app = Flask(__name__)
 
 blog_api = "https://api.npoint.io/c790b4d5cab58020d391"
 response = requests.get(blog_api)
-all_posts = response.json()
+post_objects = []
+for post in response.json():
+    post_obj = {
+        "id": post["id"],
+        "title": post["title"],
+        "subtitle": post["subtitle"],
+        "body": post["body"]
+    }
+    post_objects.append(post_obj)
 
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.html", posts=post_objects)
 
 
 @app.route('/about')
