@@ -1,15 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 app = Flask(__name__)
 app.secret_key = "mysecret"
 
 
 class MyForm(FlaskForm):
-    name = StringField('Email', validators=[DataRequired()])  # StringField('Name
-    password = PasswordField('Password', validators=[DataRequired()])
+    name = StringField('Email', validators=[DataRequired(), Email()])  # StringField('Name
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=19)])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(),
+                                                 EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Log In')
 
 
@@ -22,9 +25,9 @@ def home():
 def login():
     form = MyForm()
     if request.method == "POST" and form.validate_on_submit():
-        username = form.name.data
+        email = form.name.data
         password = form.password.data
-        return render_template("success.html", name=username, password=password)
+        return render_template("success.html", name=email, password=password)
     return render_template("login.html", form=form)
 
 
