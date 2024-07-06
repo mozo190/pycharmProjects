@@ -11,7 +11,7 @@
     <form action="{{ url_for('login') }}" method="post">
         {{ form.hidden_tag() }}
         {{form.name.label}} <br> {{form.name(size=30)}} <br>
-        {{form.password.label}} <br> {{form.password(size=30)}}
+        {{form.password.label}} <br> {{form.password(size=30)}} <br>
         <input type="submit" value="Go">
     </form>
 </div>
