@@ -13,6 +13,6 @@ def send_email(subject, body):
         connection.sendmail(
             from_addr=my_email,
             to_addrs=recipient_email,
-            msg=f"Suject:{subject}\n\n{body}"
+            msg=f"Subject:{subject}\n\n{body}"
         )
     print("Email sent successfully.")
