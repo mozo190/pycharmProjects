@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
 
@@ -28,6 +28,9 @@ def login():
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
     form = MyForm()
+    if form.validate_on_submit():
+        return redirect(url_for('login'))
+    return render_template('submit.html', form=form)
 
 
 if __name__ == "__main__":
