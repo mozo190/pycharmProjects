@@ -7,7 +7,7 @@
 <body>
 <h1>It works</h1>
 
-<form method="post" action="/login">
+<form method="post" action="{{ url_for('login') }}">
     <label for="name">Name:</label>
     <input type="text" name="name" id="name">
     <label for="password">Password:</label>
