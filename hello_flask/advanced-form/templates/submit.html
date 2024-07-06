@@ -11,6 +11,12 @@
         {{ form.hidden_tag() }}
         {{form.name.label}} {{form.name(size=30)}}
         {{form.secret.label}} {{form.secret(size=30)}}
+        <p>
+            {{form.confirm_password.label}} <br> {{form.confirm_password(size=30}}
+            {% for error in form.confirm_password.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
         <input type="submit" value="Go">
     </form>
 </div>
