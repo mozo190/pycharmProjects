@@ -31,6 +31,11 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/form-entry", methods=["POST"])
+def receive_data():
+    return "<h1>Successfully sent your data to the database.</h1>"
+
+
 @app.route('/post/<int:index>')
 def show_post(index):
     requested_post = None
