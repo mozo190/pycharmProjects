@@ -36,14 +36,20 @@ def contact():
         print(data["email"])
         print(data["phone"])
         print(data["message"])
-        subject = f"Message from {data['name']}"
-        sign = "Best regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
-        costumer_name = f"Dear Zozi,"
-        message = f"{data['message']}\n\nYou can contact the sender here: {data['email']}\nPhone: {data['phone']}"
-        body = f"{costumer_name}\n\n{message} \n\n{sign}"
-        mail_manager.send_email(subject, body)
+
+        email_sender(data)
+
         return render_template("contact.html", msg_sent=True)
     return render_template("contact.html")
+
+
+def email_sender(data):
+    subject = f"Message from {data['name']}"
+    sign = "Best regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
+    costumer_name = f"Dear Zozi,"
+    message = f"{data['message']}\n\nYou can contact the sender here: {data['email']}\nPhone: {data['phone']}"
+    body = f"{costumer_name}\n\n{message} \n\n{sign}"
+    mail_manager.send_email(subject, body)
 
 
 @app.route("/form-entry", methods=["POST"])
