@@ -19,12 +19,12 @@ def home():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    # return "💪 Success! Form submitted"
-    if request.method == "POST":
-        username = request.form["name"]
-        password = request.form["password"]
+    form = MyForm()
+    if request.method == "POST" and form.validate_on_submit():
+        username = form.name.data
+        password = form.password.data
         return f"💪 Success! Form submitted by {username} with password {password}"
-    render_template("login.html" )
+    render_template("login.html", form=form)
 
 
 @app.route('/submit', methods=["GET", "POST"])
