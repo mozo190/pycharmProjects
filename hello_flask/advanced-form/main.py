@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
 
 app = Flask(__name__)
+app.secret_key = "mysecret"
 
 
 class MyForm(FlaskForm):
@@ -16,13 +17,14 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/login', methods=["POST"])
+@app.route('/login', methods=["GET", "POST"])
 def login():
     # return "💪 Success! Form submitted"
-    username = request.form["name"]
-    password = request.form["password"]
-    return f"💪 Success! Form submitted by {username} with password {password}"
-    # render_template("login.html", name=username, password=password))
+    if request.method == "POST":
+        username = request.form["name"]
+        password = request.form["password"]
+        return f"💪 Success! Form submitted by {username} with password {password}"
+    render_template("login.html" )
 
 
 @app.route('/submit', methods=["GET", "POST"])
