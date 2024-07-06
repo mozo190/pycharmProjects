@@ -23,7 +23,7 @@ def login():
     if request.method == "POST" and form.validate_on_submit():
         username = form.name.data
         password = form.password.data
-        return f"💪 Success! Form submitted by {username} with password {password}"
+        return render_template("success.html", name=username, password=password)
     return render_template("login.html", form=form)
 
 
