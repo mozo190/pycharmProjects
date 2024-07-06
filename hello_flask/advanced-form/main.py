@@ -7,8 +7,8 @@ app.secret_key = "mysecret"
 
 
 class MyForm(FlaskForm):
-    name = StringField('name')
-    password = PasswordField('password')
+    name = StringField('Name')
+    password = PasswordField('Password')
     submit = SubmitField('submit')
 
 
