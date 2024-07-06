@@ -8,6 +8,11 @@
 <div class="container">
 		<h1>Login</h1>
         <!-- This is where our form will go. -->
+    <form action="/" method="post">
+        {{ form.csrf_token }}
+        {{form.name.label}} {{form.name(size=30)}}
+        <input type="submit" value="Go">
+    </form>
         </div>
 </body>
 </html>
