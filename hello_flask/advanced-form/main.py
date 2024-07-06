@@ -24,7 +24,7 @@ def login():
         username = form.name.data
         password = form.password.data
         return f"💪 Success! Form submitted by {username} with password {password}"
-    render_template("login.html", form=form)
+    return render_template("login.html", form=form)
 
 
 @app.route('/submit', methods=["GET", "POST"])
