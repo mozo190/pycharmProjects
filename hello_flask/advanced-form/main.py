@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.secret_key = "mysecret"
 
 
 class MyForm(FlaskForm):
-    name = StringField('Name')
-    password = PasswordField('Password')
+    name = StringField('email', validators=[DataRequired()])  # StringField('Name
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 
 
