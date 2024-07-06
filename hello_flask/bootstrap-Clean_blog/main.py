@@ -1,6 +1,8 @@
 import requests
 from flask import Flask, render_template, request
 
+import mail_manager
+
 app = Flask(__name__)
 
 blog_api = "https://api.npoint.io/c790b4d5cab58020d391"
@@ -34,6 +36,12 @@ def contact():
         print(data["email"])
         print(data["phone"])
         print(data["message"])
+        subject = f"Message from {data['name']}"
+        sign = "Best regards,\n\nMolnar Zoltan\nPhone: +36 309 776 039"
+        costumer_name = f"Dear Zozi,"
+        message = f"{data['message']}\n\nYou can contact the sender here: {data['email']}\nPhone: {data['phone']}"
+        body = f"{costumer_name}\n\n{message} \n\n{sign}"
+        mail_manager.send_email(subject, body)
         return render_template("contact.html", msg_sent=True)
     return render_template("contact.html")
 
