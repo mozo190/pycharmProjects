@@ -8,7 +8,7 @@ app.secret_key = "mysecret"
 
 
 class MyForm(FlaskForm):
-    name = StringField('email', validators=[DataRequired()])  # StringField('Name
+    name = StringField('Email', validators=[DataRequired()])  # StringField('Name
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 

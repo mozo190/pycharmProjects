@@ -12,8 +12,14 @@
         {{ form.hidden_tag() }}
         <p>
             {{form.name.label}} <br> {{form.name(size=30)}}
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>{{form.password.label}} <br> {{form.password(size=30)}}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         {{ form.submit }}
     </form>
