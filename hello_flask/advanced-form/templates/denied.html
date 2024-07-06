@@ -7,16 +7,16 @@
 <body>
 <div class="container">
     <h1>Access Denied </h1>
-    <iframe src="https://giphy.com/embed/1xeVd1vr43nHO" width="480" height="271" frameBorder="0" class="giphy-embed"
-            allowFullScreen></iframe>
+    <iframe allowFullScreen class="giphy-embed" frameBorder="0" height="271" src="https://giphy.com/embed/1xeVd1vr43nHO"
+            width="480"></iframe>
     <p><a href="https://giphy.com/gifs/cheezburger-funny-dog-fails-1xeVd1vr43nHO">via GIPHY</a></p>
 </div>
 {% if form.name.errors %}
-    <ul class="errors">
-        {% for error in form.name.errors %}
-        <li> {{ error }}</li>
-        {% endfor %}
-    </ul>
+<ul class="errors">
+    {% for error in form.name.errors %}
+    <li> {{ error }}</li>
+    {% endfor %}
+</ul>
 {% endif %}
 </body>
 </html>
