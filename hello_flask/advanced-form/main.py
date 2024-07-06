@@ -9,7 +9,7 @@ app.secret_key = "mysecret"
 class MyForm(FlaskForm):
     name = StringField('Name')
     password = PasswordField('Password')
-    submit = SubmitField('submit')
+    submit = SubmitField('Log In')
 
 
 @app.route('/')
