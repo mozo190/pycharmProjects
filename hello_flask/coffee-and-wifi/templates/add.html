@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add A New Cafe
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <h1>Add A New Cafe into the database</h1>
+            <form method="POST">
+                {{ render_form(form) }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <p class="space-above"><a href="#">See all cafes</a> </p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ bootstrap.load_js() }}
+{% endblock %}
