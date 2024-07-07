@@ -26,12 +26,12 @@
                 {% with open('cafe-data.csv', 'r') as file %}
                     {% for line in file %}
                         <tr>
-                            {% set cafe, location_url, opening, closing, coffee_rating, wifi_rating, power = line.split(',') %}
+                            {% set cafe, location_url, opening, closing, coffee_rating, wifi_rating, power = line.strip().split(',') %}
                             <td>{{ cafe }}</td>
-                            <td>{{ location_url }}</td>
+                            <td><a href="{{ location_url }}"> {{ location_url }}</a></td>
                             <td>{{ opening }}</td>
                             <td>{{ closing }}</td>
-                            <td>{{ coffe_rating }}</td>
+                            <td>{{ coffee_rating }}</td>
                             <td>{{ wifi_rating }}</td>
                             <td>{{ power }}</td>
 
@@ -41,11 +41,11 @@
             </table>
             <p><a href="#"> Return to index page</a> </p>
         </div>
-    <ul>
-        {% for cafe in cafes %}
-            <li>{{ cafe.name }}</li>
-        {% endfor %}
-    </ul>
+<!--    <ul>-->
+<!--        {% for cafe in cafes %}-->
+<!--            <li>{{ cafe.name }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
     </div>
 </div>
 {% endblock %}
