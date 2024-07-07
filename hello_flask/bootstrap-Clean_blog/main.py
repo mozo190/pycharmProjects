@@ -38,8 +38,8 @@ def contact():
         print(data["message"])
 
         email_sender(data)
-
         return render_template("contact.html", msg_sent=True)
+
     return render_template("contact.html")
 
 
