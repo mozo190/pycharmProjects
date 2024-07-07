@@ -23,17 +23,17 @@
                     <th>WiFi Rating</th>
                     <th>Power Outlet Av.</th>
                 </tr>
-                {% with open('cafe-data.csv', 'r') as file %}
-                    {% for line in file %}
+<!--                {% with open('cafe-data.csv', 'r') as file %}-->
+                    {% for cafe in cafes %}
                         <tr>
-                            {% set cafe, location_url, opening, closing, coffee_rating, wifi_rating, power = line.strip().split(',') %}
-                            <td>{{ cafe }}</td>
-                            <td><a href="{{ location_url }}"> {{ location_url }}</a></td>
-                            <td>{{ opening }}</td>
-                            <td>{{ closing }}</td>
-                            <td>{{ coffee_rating }}</td>
-                            <td>{{ wifi_rating }}</td>
-                            <td>{{ power }}</td>
+<!--                            {% set cafe, location_url, opening, closing, coffee_rating, wifi_rating, power = line.strip().split(',') %}-->
+                            <td>{{ cafe.cafe }}</td>
+                            <td><a href="{{ cafe.location_url }}"> {{ cafe.location_url }}</a></td>
+                            <td>{{ cafe.opening }}</td>
+                            <td>{{ cafe.closing }}</td>
+                            <td>{{ cafe.coffee_rating }}</td>
+                            <td>{{ cafe.wifi_rating }}</td>
+                            <td>{{ cafe.power }}</td>
 
                         </tr>
                     {% endfor %}
