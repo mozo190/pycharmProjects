@@ -15,8 +15,29 @@
           Table that contains all the information from the
           cafe-data.csv file. -->
                 <tr>
-                    <td></td>
+                    <th>Cafe</th>
+                    <th>Location URL</th>
+                    <th>Opening Time</th>
+                    <th>Closing Time</th>
+                    <th>Coffee Rating</th>
+                    <th>WiFi Rating</th>
+                    <th>Power Outlet Av.</th>
                 </tr>
+                {% with open('cafe-data.csv', 'r') as file %}
+                    {% for line in file %}
+                        <tr>
+                            {% set cafe, location_url, opening, closing, coffee_rating, wifi_rating, power = line.split(',') %}
+                            <td>{{ cafe }}</td>
+                            <td>{{ location_url }}</td>
+                            <td>{{ opening }}</td>
+                            <td>{{ closing }}</td>
+                            <td>{{ coffe_rating }}</td>
+                            <td>{{ wifi_rating }}</td>
+                            <td>{{ power }}</td>
+
+                        </tr>
+                    {% endfor %}
+                {% endwith %}
             </table>
             <p><a href="#"> Return to index page</a> </p>
         </div>
