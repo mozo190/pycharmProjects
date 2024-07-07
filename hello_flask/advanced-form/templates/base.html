@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %} {% endblock %} </title>
-    {% block style %} {% endblock %}
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block style %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+        {% endblock %}
 
+        <title>{% block title %} {% endblock %} </title>
+    {% endblock %}
 </head>
 <body>
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+        <!-- Bootstrap JS -->
+        {{ bootstrap.load_js() }}
+    {% endblock %}
 </body>
 </html>
