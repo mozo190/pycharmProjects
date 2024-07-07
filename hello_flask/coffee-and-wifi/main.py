@@ -39,7 +39,7 @@ def add_cafe():
             file.write(f"{form.cafe.data}, {form.location_url.data}, {form.opening.data}, {form.closing.data},"
                        f" {form.coffee_rating.data}, {form.wifi_rating.data}, {form.power.data}\n")
         return redirect(url_for('cafes'))
-    return render_template('add.html', form=form)
+    return render_template('cafes.html', form=form)
 
 
 @app.route('/cafes')
