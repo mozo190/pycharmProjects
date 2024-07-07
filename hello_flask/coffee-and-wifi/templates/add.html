@@ -14,23 +14,24 @@ Add A New Cafe
                 {{ form.hidden_tag() }}
 
                 <div class="mb-3">
-                    {{ form.cafe_name.label(class="form-label")}}
-                    {{ form.cafe_name(class="form-control"}}
+                    {{ form.cafe.label(class="form-label")}}
+                    {{ form.cafe(class="form-control") }}
                 </div>
                 <div class="mb-3">
                     {{ form.location.label(class="form-label")}}
-                    {{ form.location(class="form-control"}}
+                    {{ form.location(class="form-control")}}
                 </div>
                 <div class="mb-3">
                     {{ form.opening.label(class="form-label")}}
-                    {{ form.opening(class="form-control"}}/div>
+                    {{ form.opening(class="form-control")}}
+                </div>
                 <div class="mb-3">
                     {{ form.coffe.label(class="form-label")}}
-                    {{ form.coffe(class="form-control"}}
+                    {{ form.coffe(class="form-control")}}
                 </div>
                 <div class="mb-3">
                     {{ form.wifi.label(class="form-label")}}
-                    {{ form.wifi(class="form-control"}}
+                    {{ form.wifi(class="form-control")}}
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
