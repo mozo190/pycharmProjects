@@ -1,6 +1,6 @@
 import csv
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms.fields.choices import SelectField
@@ -34,7 +34,7 @@ def home():
 @app.route('/add', methods=["GET", "POST"])
 def add_cafe():
     form = CafeForm()
-    if form.validate_on_submit():
+    if request.method == "POST" and form.validate_on_submit():
         with open('cafe-data.csv', 'a') as file:
             file.write(f"{form.cafe.data}, {form.location_url.data}, {form.opening.data}, {form.closing.data},"
                        f" {form.coffee_rating.data}, {form.wifi_rating.data}, {form.power.data}\n")
