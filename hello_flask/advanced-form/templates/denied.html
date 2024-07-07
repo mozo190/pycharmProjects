@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Access denied</title>
+    {% extends 'base.html' %}
+    {% block title %}
+        Access denied
+    {% endblock %}
 </head>
 <body>
+{% block content %}
 <div class="container">
     <h1>Access Denied </h1>
     <iframe allowFullScreen class="giphy-embed" frameBorder="0" height="271" src="https://giphy.com/embed/1xeVd1vr43nHO"
@@ -18,5 +22,6 @@
     {% endfor %}
 </ul>
 {% endif %}
+{% endblock %}
 </body>
 </html>
