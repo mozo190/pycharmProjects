@@ -27,7 +27,10 @@ def login():
     if request.method == "POST" and form.validate_on_submit():
         email = form.name.data
         password = form.password.data
-        return render_template("success.html", name=email, password=password)
+        if email == "admin@email.com" and password == "12345678":
+            return render_template("success.html", name=email, password=password)
+        else:
+            return render_template("denied.html", form=form)
     return render_template("login.html", form=form)
 
 
