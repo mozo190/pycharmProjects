@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
-from flask_bootstrap import Bootstrap5
 
 app = Flask(__name__)
 app.secret_key = "mysecret"

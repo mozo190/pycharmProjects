@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block style %}
-            <!-- Bootstrap CSS -->
-            {{ bootstrap.load_css() }}
-        {% endblock %}
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    {% block style %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    {% endblock %}
 
-        <title>{% block title %} {% endblock %} </title>
+    <title>{% block title %} {% endblock %} </title>
 
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
-    {% block scripts %}
-        <!-- Bootstrap JS -->
-        {{ bootstrap.load_js() }}
-    {% endblock %}
+{% block scripts %}
+<!-- Bootstrap JS -->
+{{ bootstrap.load_js() }}
+{% endblock %}
 </body>
 </html>
