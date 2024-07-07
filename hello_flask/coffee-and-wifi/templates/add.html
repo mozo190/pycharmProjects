@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}
 Add A New Cafe
@@ -18,25 +18,33 @@ Add A New Cafe
                     {{ form.cafe(class="form-control") }}
                 </div>
                 <div class="mb-3">
-                    {{ form.location.label(class="form-label")}}
-                    {{ form.location(class="form-control")}}
+                    {{ form.location_url.label(class="form-label")}}
+                    {{ form.location_url(class="form-control")}}
                 </div>
                 <div class="mb-3">
                     {{ form.opening.label(class="form-label")}}
                     {{ form.opening(class="form-control")}}
                 </div>
                 <div class="mb-3">
-                    {{ form.coffe.label(class="form-label")}}
-                    {{ form.coffe(class="form-control")}}
+                    {{ form.closing.label(class="form-label")}}
+                    {{ form.closing(class="form-control")}}
                 </div>
                 <div class="mb-3">
-                    {{ form.wifi.label(class="form-label")}}
-                    {{ form.wifi(class="form-control")}}
+                    {{ form.coffee_rating.label(class="form-label")}}
+                    {{ form.coffee_rating(class="form-control")}}
+                </div>
+                <div class="mb-3">
+                    {{ form.wifi_rating.label(class="form-label")}}
+                    {{ form.wifi_rating(class="form-control")}}
+                </div>
+                <div class="mb-3">
+                    {{ form.power.label(class="form-label")}}
+                    {{ form.power(class="form-control")}}
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <p class="space-above"><a href="#">See all cafes</a> </p>
+        <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a> </p>
     </div>
 </div>
 
