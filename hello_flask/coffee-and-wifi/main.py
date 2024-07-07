@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms.fields.choices import SelectField
@@ -22,3 +22,8 @@ class CafeForm(FlaskForm):
     power = SelectField('Power Socket Availability', validators=[DataRequired()],
                         choices=[(1, '🔌'), (2, '🔌🔌'), (3, '🔌🔌🔌'), (4, '🔌🔌🔌🔌'), (5, '🔌🔌🔌🔌🔌')])
     submit = SubmitField('Submit')
+
+
+@app.route('/')
+def home():
+    return render_template("index.html")
