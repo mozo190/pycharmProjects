@@ -1,0 +1,31 @@
+{% extend "base.html" %}
+
+{% block title %}
+    Restaurants
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12>">
+            <h1>All Cafes</h1>
+
+            <table class="table table-dark table-striped table-hover">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <p><a href="#"> Return to index page</a> </p>
+        </div>
+    <ul>
+        {% for cafe in cafes %}
+            <li>{{ cafe.name }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ bootstrap.load_js() }}
+{% endblock %}
