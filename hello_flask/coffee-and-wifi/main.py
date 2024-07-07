@@ -29,5 +29,13 @@ def home():
     return render_template("index.html")
 
 
+@app.route('/add', method=["GET", "POST"])
+def add_cafe():
+    form = CafeForm()
+    if form.validate_on_submit():
+        return render_template('add.html', form=form)
+    return render_template('add.html', form=form)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
