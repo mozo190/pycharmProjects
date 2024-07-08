@@ -11,6 +11,8 @@ db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 bootstrap = Bootstrap5(app)
 
+all_books = []
+
 
 @app.route('/')
 def home():
