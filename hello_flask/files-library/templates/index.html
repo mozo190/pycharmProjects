@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% block style %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css()| safe }}
+    {% endblock%}
     <title>Library</title>
 </head>
 <body>
