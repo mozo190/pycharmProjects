@@ -6,11 +6,18 @@
 </head>
 <body>
 <h1>Library</h1>
-{% for book in books %}
-<ul>
-    <li>{{ book.title }} - {{ book.author }} - {{ book.rating }}/10</li>
-</ul>
-{% endfor %}
+{% if book: %}
+
+    <ul>
+    {% for book in books %}
+        <li>{{ book.title }} - {{ book.author }} - {{ book.rating }}/10</li>
+    {% endfor %}
+    </ul>
+
+{% else: %}
+    <p>No books in the library</p>
+
+{% endif %}
 <ul>
     <li><a href="index.php?controller=book&action=index">Books</a></li>
     <li><a href="index.php?controller=author&action=index">Authors</a></li>
