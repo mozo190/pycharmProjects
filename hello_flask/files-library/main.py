@@ -31,7 +31,8 @@ def add_book():
             "rating": rating
         }
         all_books.append(new_book)
-    return redirect("/")
+        return redirect("/")
+    return render_template("add.html")
 
 
 if __name__ == "__main__":
