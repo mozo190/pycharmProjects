@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Book</title>
+    {% block style %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css()| safe }}
+    {% endblock%}
 </head>
 <body>
-<form action="" method="POST">
-    <label >Book Name</label>
-    <input type="text" name="title">
-
-    <label >Book Author</label>
-    <input type="text" name="author">
-
-    <label >Rating</label>
-    <input type="text" name="rating"><br>
+<form action="" method="post">
+    <div class="form_group">
+        <label >Book Name</label>
+        <input type="text" name="title" class="form-control">
+    </div>
+    <div class="form_group">
+        <label >Book Author</label>
+        <input type="text" name="author" class="form-control">
+    </div>
+    <div class="form_group">
+        <label >Rating</label>
+        <input type="text" name="rating" class="form-control">
+    </div>
 
     <button type="submit">Add Book</button>
 </form>
