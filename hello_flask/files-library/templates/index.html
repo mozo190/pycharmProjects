@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Library</h1>
-{% if book: %}
+{% if books: %}
 
     <ul>
     {% for book in books %}
@@ -18,11 +18,7 @@
     <p>No books in the library</p>
 
 {% endif %}
-<ul>
-    <li><a href="index.php?controller=book&action=index">Books</a></li>
-    <li><a href="index.php?controller=author&action=index">Authors</a></li>
-    <li><a href="index.php?controller=genre&action=index">Genres</a></li>
-</ul>
+
 <a href="{{url_for('add_book')}}">Add book</a>
 </body>
 </html>
