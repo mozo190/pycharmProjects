@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap5
 # from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
@@ -19,10 +19,19 @@ def home():
     return render_template("index.html", books=all_books)
 
 
-@app.route('/add')
+@app.route('/add', methods=["GET", "POST"])
 def add_book():
-
-    return render_template("add.html")
+    if request.method == "POST":
+        title = request.form.get("title")
+        author = request.form.get("author")
+        rating = request.form.get("rating")
+        new_book = {
+            "title": title,
+            "author": author,
+            "rating": rating
+        }
+        all_books.append(new_book)
+    return redirect("/")
 
 
 if __name__ == "__main__":
