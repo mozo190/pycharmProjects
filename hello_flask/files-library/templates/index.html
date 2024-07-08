@@ -6,23 +6,40 @@
     <!-- Bootstrap CSS -->
     {{ bootstrap.load_css()| safe }}
     {% endblock%}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
     <title>Library</title>
 </head>
 <body>
-<h1>Library</h1>
-{% if books: %}
+<div class="container">
+    <h1>Library</h1>
+    {% if books: %}
 
     <ul>
-    {% for book in books %}
+        {% for book in books %}
         <li>{{ book.title }} - {{ book.author }} - {{ book.rating }}/10</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 
-{% else: %}
+    {% else: %}
     <p>No books in the library</p>
 
-{% endif %}
+    {% endif %}
 
-<a href="{{url_for('add_book')}}">Add book</a>
+    <a href="{{url_for('add_book')}}">Add book</a>
+</div>
 </body>
 </html>
