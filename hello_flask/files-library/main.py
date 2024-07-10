@@ -32,6 +32,17 @@ class Book(db.Model):
     def __repr__(self):
         return f'<Book {self.title}>'
 
+
+# create table schema in the database. Required application context
+with app.app_context():
+    db.create_all()
+
+# Create a new record in the database
+with app.app_context():
+    new_book = Book(title="Harry Potter", author="J.K. Rowling", rating=9.3)
+    db.session.add(new_book)
+    db.session.commit()
+
 all_books = []
 
 
