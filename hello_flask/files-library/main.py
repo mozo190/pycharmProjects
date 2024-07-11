@@ -89,7 +89,7 @@ def edit_rating():
 @app.route('/delete')
 def delete_book():
     book_id = request.args.get("id")
-    book_id_to_delete = Book.query.get(book_id)
+    book_id_to_delete = Book.query.get_or_404(Book, book_id)
     db.session.delete(book_id_to_delete)
     db.session.commit()
     return redirect(url_for("home"))
