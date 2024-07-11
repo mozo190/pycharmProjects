@@ -82,7 +82,7 @@ def edit_rating():
         db.session.commit()
         return redirect(url_for("home"))
     book_id = request.args.get("id")
-    book_selected = Book.query.get(book_id)
+    book_selected = Book.query.get_or_404(Book, book_id)
     return render_template("edit.html", book=book_selected)
 
 
