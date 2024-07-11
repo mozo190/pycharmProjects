@@ -48,11 +48,10 @@ with app.app_context():
         db.session.rollback()
         print(f"Book already exists in the database: {e}")
 
-all_books = []
-
 
 @app.route('/')
 def home():
+    all_books = Book.query.all()
     return render_template("index.html", books=all_books)
 
 
