@@ -30,8 +30,8 @@ class Book(db.Model):
     rating: Mapped[float] = mapped_column(Float, nullable=False)
 
     # this will allow each book to be identified by its title when printed
-    # def __repr__(self):
-    #     return f'<Book {self.title}>'
+    def __repr__(self):
+        return f'<Book {self.title}>'
 
     # create table schema in the database. Required application context
 
@@ -62,13 +62,17 @@ def add_book():
         title = request.form["title"]
         author = request.form["author"]
         rating = request.form["rating"]
-        new_book_sample = {
+        new_book = {
             "title": title,
             "author": author,
             "rating": rating
         }
-        db.session.add(new_book_sample)
-        db.session.commit()
+        try:
+            db.session.add(new_book)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print(f"Book already exists in the database.", 400)
         return redirect(url_for("home"))
     return render_template("add.html")
 
