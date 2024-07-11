@@ -8,7 +8,7 @@
     {% endblock%}
 
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/book_icon.png') }}" type="image/png">
+    <link href="{{ url_for('static', filename='img/book_icon.png') }}" rel="shortcut icon" type="image/png">
     <title>Library</title>
 </head>
 <body>
@@ -20,10 +20,10 @@
         {% for book in books %}
         <li>{{ book.title }} - {{ book.author }} - {{ book.rating }}/10
             <a href="{{ url_for('edit_rating', id=book.id) }}">
-                <img src="{{ url_for('static', filename='img/edit.png') }}" alt="edit rating">
+                <img alt="edit rating" src="{{ url_for('static', filename='img/edit.png') }}">
             </a> -
             <a href="{{ url_for('delete_book', id=book.id) }}">
-                <img src="{{ url_for('static', filename='img/delete.png') }}" alt="delete book">
+                <img alt="delete book" src="{{ url_for('static', filename='img/delete.png') }}">
         </li>
         {% endfor %}
     </ul>

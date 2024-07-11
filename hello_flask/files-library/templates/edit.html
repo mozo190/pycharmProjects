@@ -8,7 +8,7 @@
     {% endblock%}
 
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/book_icon.png') }}" type="image/png">
+    <link href="{{ url_for('static', filename='img/book_icon.png') }}" rel="shortcut icon" type="image/png">
     <title>Edit Rating</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
     </div>
     <p></p>
     <button class="btn btn-primary" type="submit">Edit Rating</button>
-    <input type="hidden" name="id" value="{{ book.id }}">
+    <input name="id" type="hidden" value="{{ book.id }}">
 </form>
 
 </body>
