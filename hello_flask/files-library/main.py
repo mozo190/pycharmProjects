@@ -62,17 +62,13 @@ def add_book():
         title = request.form["title"]
         author = request.form["author"]
         rating = request.form["rating"]
-        new_book = {
-            "title": title,
-            "author": author,
-            "rating": rating
-        }
+        new_book_ = Book(title=title, author=author, rating=rating)
         try:
-            db.session.add(new_book)
+            db.session.add(new_book_)
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            print(f"Book already exists in the database.", 400)
+            return "Book already exists in the database.", 400
         return redirect(url_for("home"))
     return render_template("add.html")
 
