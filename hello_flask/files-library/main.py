@@ -57,12 +57,12 @@ def add_book():
         title = request.form.get("title")
         author = request.form.get("author")
         rating = request.form.get("rating")
-        new_book = {
+        new_book_sample = {
             "title": title,
             "author": author,
             "rating": rating
         }
-        all_books.append(new_book)
+        all_books.append(new_book_sample)
         return redirect("/")
     return render_template("add.html")
 
