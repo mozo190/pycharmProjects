@@ -6,7 +6,9 @@
     <!-- Bootstrap CSS -->
     {{ bootstrap.load_css()| safe }}
     {% endblock%}
-    link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/book_icon.png') }}" type="image/png">
     <title>Library</title>
 </head>
 <body>
@@ -20,8 +22,7 @@
             <a href="{{ url_for('edit_rating', book_id=book.id) }}">
                 <img src="{{ url_for('static', filename='img/edit.png') }}" alt="edit rating">
             </a> -
-            <a href="{{ url_for('delete_book', book_id=book.id) }}">
-                <img src="{{ url_for('static', filename='img/delete.png') }}" alt="delete book">
+
         </li>
         {% endfor %}
     </ul>
