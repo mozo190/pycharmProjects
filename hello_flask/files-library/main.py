@@ -34,9 +34,10 @@ class Book(db.Model):
     #     return f'<Book {self.title}>'
 
     # create table schema in the database. Required application context
-    with app.app_context():
-        db.create_all()
 
+
+with app.app_context():
+    db.create_all()
 
 # Create a new record in the database
 with app.app_context():
