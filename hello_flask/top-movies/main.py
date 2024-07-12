@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Float
@@ -59,6 +59,14 @@ with app.app_context():
     except IntegrityError:
         db.session.rollback()
         print("Movie already exists in the database")
+
+
+# Home route
+@app.route('/')
+def home():
+    all_movies = Movie.query.all()
+    return render_template("index.html", movies=all_movies)
+
 
 # Run the app
 if __name__ == '__main__':
