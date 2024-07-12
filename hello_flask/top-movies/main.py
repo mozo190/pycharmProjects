@@ -59,3 +59,7 @@ with app.app_context():
     except IntegrityError:
         db.session.rollback()
         print("Movie already exists in the database")
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
