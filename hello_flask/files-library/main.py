@@ -14,6 +14,7 @@ class Base(DeclarativeBase):
     pass
 
 
+# Configure the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///new-books-collection.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(model_class=Base)
