@@ -8,7 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv("mysecret")
+app.config['SECRET_KEY'] = os.getenv("MY_SECRET")
 Bootstrap5(app)
 
 
