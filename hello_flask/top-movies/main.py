@@ -4,6 +4,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Float
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 app = Flask(__name__)
@@ -41,5 +42,20 @@ class Movie(db.Model):
     with app.app_context():
         db.create_all()
 
+
 # Create a new record in the database
-with
+with app.app_context():
+    new_movie = Movie(title="Harry Potter",
+                      year=2001,
+                      description="Harry Potter and the Philosopher's Stone",
+                      rating=7.6,
+                      ranking=1,
+                      review="Harry Potter is a great movie",
+                      img_url="https://www.imdb.com/title/tt0241527/"
+                      )
+    try:
+        db.session.add(new_movie)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        print("Movie already exists in the database")
