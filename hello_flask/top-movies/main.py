@@ -39,12 +39,11 @@ class Movie(db.Model):
         return f'<Movie {self.title}>'
 
     # create table schema in the database. Required application context
-    with app.app_context():
-        db.create_all()
 
 
 # Create a new record in the database
 with app.app_context():
+    db.create_all()
     new_movie = Movie(title="Harry Potter",
                       year=2001,
                       description="Harry Potter and the Philosopher's Stone",
