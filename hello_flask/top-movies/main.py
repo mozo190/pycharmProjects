@@ -67,6 +67,11 @@ def home():
     return render_template("index.html", movies=all_movies)
 
 
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    return render_template("add.html")
+
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
