@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Float
@@ -69,6 +69,23 @@ def home():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
+    if request.method == 'POST':
+        new_movie_ = Movie(
+            title=request.form['title'],
+            year=request.form['year'],
+            description=request.form['description'],
+            rating=request.form['rating'],
+            ranking=request.form['ranking'],
+            review=request.form['review'],
+            img_url=request.form['img_url']
+        )
+        try:
+            db.session.add(new_movie_)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("Movie already exists in the database")
+        return render_template("add.html")
     return render_template("add.html")
 
 
