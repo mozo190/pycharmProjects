@@ -10,7 +10,7 @@
     <p class="description">Edit the movie details below.</p>
 
     <div class="card">
-        <form action="{{ url_for('edit', id=movie.id}}" method="post">
+        <form action="{{ url_for('edit', id=movie.id) }}" method="post">
             <label for="title">Title</label><br>
             <input type="text" name="title" id="title" value="{{movie.title}}" required><br>
             <label for="year">Year</label><br>
