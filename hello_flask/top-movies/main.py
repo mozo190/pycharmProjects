@@ -91,6 +91,18 @@ def add():
 
 @app.route('/edit', methods=['GET', 'POST'])
 def edit():
+    movie_id = request.args.get("id")
+    movie_to_update = Movie.query.get_or_404(movie_id)
+    if request.method == 'POST':
+        movie_to_update.title = request.form['title']
+        movie_to_update.year = request.form['year']
+        movie_to_update.description = request.form['description']
+        movie_to_update.rating = request.form['rating']
+        movie_to_update.ranking = request.form['ranking']
+        movie_to_update.review = request.form['review']
+        movie_to_update.img_url = request.form['image']
+        db.session.commit()
+        return redirect(url_for('home'))
     return render_template("edit.html")
 
 
