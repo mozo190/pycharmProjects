@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Float
@@ -84,8 +84,8 @@ def add():
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            print("Movie already exists in the database")
-        return render_template("add.html")
+            print("Movie already exists in the database", 400)
+        return redirect(url_for('home'))
     return render_template("add.html")
 
 
