@@ -77,7 +77,7 @@ def add():
             rating=request.form['rating'],
             ranking=request.form['ranking'],
             review=request.form['review'],
-            img_url=request.form['img_url']
+            img_url=request.form['image']
         )
         try:
             db.session.add(new_movie_)
