@@ -72,6 +72,11 @@ def add():
     return render_template("add.html")
 
 
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    return render_template("edit.html")
+
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
