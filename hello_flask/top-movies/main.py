@@ -103,7 +103,7 @@ def edit():
         movie_to_update.img_url = request.form['image']
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template("edit.html")
+    return render_template("edit.html", movie=movie_to_update)
 
 
 @app.route('/delete', methods=['GET', 'POST'])
