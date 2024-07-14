@@ -94,6 +94,14 @@ def edit():
     return render_template("edit.html")
 
 
-# Run the app
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    movie_id = request.args.get("id")
+    movie_to_delete = Movie.query.get_or_404(Movie, movie_id)
+    db.session.delete(movie_to_delete)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+    # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
