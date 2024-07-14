@@ -26,11 +26,11 @@
             <label for="image">Image</label><br>
             <input type="url" name="image" id="image" value="{{movie.img_url}}" required><br>
             <p></p>
-            <button class="btn btn-primary" type="submit">Edit</button>
+            <button class="btn btn-primary edit-button" type="submit">Edit</button>
         </form>
     </div>
 </div> 
 <div class="container text-center">
-    <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+    <a href="{{ url_for('home') }}" class="button ">Back to Home</a>
 </div>
 {% endblock %}
