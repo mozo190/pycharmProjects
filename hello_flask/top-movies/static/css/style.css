@@ -239,7 +239,7 @@ textarea {
     resize: vertical;
 }
 
-.content {
+.edit-content {
     display: flex;
     margin: 0 auto;
     justify-content: center;
@@ -249,7 +249,7 @@ textarea {
     padding: 20px;
 }
 
-.card {
+.edit-card {
     width: 100%;
     max-width: 800px;
     min-width: 300px;
@@ -263,8 +263,7 @@ textarea {
 }
 
 .edit-button {
-    display: flex;
-    justify-content: center;
+    display: block;
     margin: 20 auto;
     padding: 10px 40px;
     background: linear-gradient(135deg, #1a9be6, #1a57e6);

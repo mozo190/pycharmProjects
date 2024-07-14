@@ -5,11 +5,11 @@
 {% block content %}
 
 
-<div class="content">
+<div class="edit-content">
     <h1 class="heading">{{ movie.title }}</h1>
     <p class="description">Edit the movie details below.</p>
 
-    <div class="card">
+    <div class="edit-card">
         <form action="{{ url_for('edit', id=movie.id) }}" method="post">
             <label for="title">Title</label><br>
             <input type="text" name="title" id="title" value="{{movie.title}}" required><br>
