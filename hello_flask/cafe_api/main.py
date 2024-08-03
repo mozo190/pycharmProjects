@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Boolean
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -33,6 +33,12 @@ class Cafe(db.Model):
 
 
 # HTTP GET - Read Record
+@app.route('/all')
+def get_all_cafes():
+    result = db.session.execute(db.select(Cafe).order_by(Cafe.name))
+    all_cafes = result.scalar().all()
+    return jsonify(cafe=[cafe.to_dict() for cafe in all_cafes])
+
 # HTTP POST - Create Record
 # HTTP PUT/PATCH - Update Record
 # HTTP DELETE - Delete Record
