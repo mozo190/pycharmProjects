@@ -31,13 +31,15 @@ class Cafe(db.Model):
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     coffee_price: Mapped[str] = mapped_column(String(250), nullable=False)
 
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
 # HTTP GET - Read Record
 @app.route('/all')
 def get_all_cafes():
     result = db.session.execute(db.select(Cafe).order_by(Cafe.name))
-    all_cafes = result.scalar().all()
-    return jsonify(cafe=[cafe.to_dict() for cafe in all_cafes])
+    all_cafes = result.scalars().all()
+    return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
 
 
 @app.route('/search')
