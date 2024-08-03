@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Boolean
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -38,6 +38,14 @@ def get_all_cafes():
     result = db.session.execute(db.select(Cafe).order_by(Cafe.name))
     all_cafes = result.scalar().all()
     return jsonify(cafe=[cafe.to_dict() for cafe in all_cafes])
+
+
+@app.route('/search')
+def search():
+    location = request.args.get('loc')
+    result = db.session.execute(db.select(Cafe).where(Cafe.location == location))
+    return jsonify(cafe=[cafe.to_dict() for cafe in result.scalar().all()])
+
 
 # HTTP POST - Create Record
 # HTTP PUT/PATCH - Update Record
