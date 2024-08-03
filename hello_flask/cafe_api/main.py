@@ -34,6 +34,7 @@ class Cafe(db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
+
 # HTTP GET - Read Record
 @app.route('/all')
 def get_all_cafes():
@@ -46,7 +47,11 @@ def get_all_cafes():
 def search():
     location = request.args.get('loc')
     result = db.session.execute(db.select(Cafe).where(Cafe.location == location))
-    return jsonify(cafe=[cafe.to_dict() for cafe in result.scalar().all()])
+    all_cafes = result.scalars().all()
+    if all_cafes:
+        return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
+    else:
+        return jsonify(error={"Not Found": "Sorry, we don't have a cafe at that location."})
 
 
 # HTTP POST - Create Record
