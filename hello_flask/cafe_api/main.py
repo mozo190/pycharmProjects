@@ -54,6 +54,13 @@ def search():
         return jsonify(error={"Not Found": "Sorry, we don't have a cafe at that location."})
 
 
+@app.route('/random')
+def random():
+    result = db.session.execute(db.select(Cafe).order_by(db.func.random()).limit(1))
+    random_cafe = result.scalars().first()
+    return jsonify(cafe=random_cafe.to_dict())
+
+
 # HTTP POST - Create Record
 # HTTP PUT/PATCH - Update Record
 # HTTP DELETE - Delete Record
