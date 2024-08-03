@@ -31,10 +31,11 @@ class Cafe(db.Model):
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     coffee_price: Mapped[str] = mapped_column(String(250), nullable=False)
 
-#HTTP GET - Read Record
-#HTTP POST - Create Record
-#HTTP PUT/PATCH - Update Record
-#HTTP DELETE - Delete Record
+
+# HTTP GET - Read Record
+# HTTP POST - Create Record
+# HTTP PUT/PATCH - Update Record
+# HTTP DELETE - Delete Record
 
 with app.app_context():
     db.create_all()
