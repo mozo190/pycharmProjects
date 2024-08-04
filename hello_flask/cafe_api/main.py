@@ -110,7 +110,6 @@ def delete_cafe(cafe_id):
         return jsonify(error={"Forbidden": "Sorry, that's not allowed. Make sure you have the correct api_key."})
 
 
-
 with app.app_context():
     db.create_all()
 
