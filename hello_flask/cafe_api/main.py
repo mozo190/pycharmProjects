@@ -69,7 +69,7 @@ def add_cafe():
         map_url=request.form.get('map_url'),
         img_url=request.form.get('img_url'),
         location=request.form.get('loc'),
-        has_sochets=bool(request.form.get('sockets')),
+        has_sockets=bool(request.form.get('sockets')),
         has_toilet=bool(request.form.get('toilet')),
         has_wifi=bool(request.form.get('wifi')),
         can_take_calls=bool(request.form.get('calls')),
