@@ -43,6 +43,10 @@ def show_post(post_id):
     requested_post = BlogPost.query.get(post_id)
     return render_template('post.html', post=requested_post)
 
+#add_new_post to create a new post
+@app.route('/new_post')
+def add_new_post():
+    return render_template('make-post.html')
 
 @app.route('/about')
 def about():
