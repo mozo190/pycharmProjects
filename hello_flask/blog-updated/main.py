@@ -37,16 +37,26 @@ def get_all_posts():
     all_post = BlogPost.query.all()
     return render_template('index.html', posts=all_post)
 
+
 # a route so that you can click in individual post
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
     requested_post = BlogPost.query.get(post_id)
     return render_template('post.html', post=requested_post)
 
-#add_new_post to create a new post
+
+# add_new_post to create a new post
 @app.route('/new_post')
 def add_new_post():
     return render_template('make-post.html')
+
+
+# edit_post to edit a post
+@app.route('/edit_post/<int:post_id>')
+def edit_post(post_id):
+    requested_post = BlogPost.query.get(post_id)
+    return render_template('edit-post.html', post=requested_post)
+
 
 @app.route('/about')
 def about():
