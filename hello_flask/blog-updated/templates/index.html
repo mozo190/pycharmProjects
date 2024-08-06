@@ -26,19 +26,20 @@
 
             {% for post in posts %}
             <div class="post-preview">
-                <a href="{{ url_for('post', post_id=post.id) }}">
+                <a href="{{ url_for('show_post', post_id=post.id) }}">
                     <h2 class="post-title">{{ post.title }}</h2>
                     <h3 class="post-subtitle">{{ post.subtitle }}</h3>
                 </a>
 
                 <! DOTO: add code to delete post -->
-                <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+                <form action="{{ url_for('delete_post' }}" method="post">
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
                 <p class="post-meta">
                     Posted by
                     <a href="#!">{{ post.author }}</a>
-                    on {{ post.date_posted }}
+                    on {{ date_posted }}
                 </p>
             </div>
 

@@ -42,12 +42,12 @@ def get_all_posts():
 # a route so that you can click in individual post
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
-    requested_post = BlogPost.query.get(post_id)
+    requested_post = BlogPost.query.get_or_404(post_id)
     return render_template('post.html', post=requested_post)
 
 
 # add_new_post to create a new post
-@app.route('/new_post', method=['GET', 'POST'])
+@app.route('/new_post', methods=['GET', 'POST'])
 def add_new_post():
     if request.method == 'POST':
         new_post = BlogPost(
