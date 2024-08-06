@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
@@ -56,6 +56,15 @@ def add_new_post():
 def edit_post(post_id):
     requested_post = BlogPost.query.get(post_id)
     return render_template('edit-post.html', post=requested_post)
+
+# delete_post to delete a post from database
+@app.route('/delete_post', methods=['POST'])
+def delete_post():
+    post_id = request.form['post_id']
+    post_to_delete = BlogPost.query.get_or_404(post_id)
+    db.session.delete(post_to_delete)
+    db.commit()
+    return redirect(url_for('get_all_posts'))
 
 
 @app.route('/about')
