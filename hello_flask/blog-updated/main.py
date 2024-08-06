@@ -37,6 +37,12 @@ def get_all_posts():
     all_post = BlogPost.query.all()
     return render_template('index.html', posts=all_post)
 
+# a route so that you can click in individual post
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    requested_post = BlogPost.query.get(post_id)
+    return render_template('post.html', post=requested_post)
+
 
 @app.route('/about')
 def about():
