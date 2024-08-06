@@ -33,7 +33,7 @@ with app.app_context():
 
 
 @app.route('/')
-def get_all_post():
+def get_all_posts():
     all_post = BlogPost.query.all()
     return render_template('index.html', posts=all_post)
 
