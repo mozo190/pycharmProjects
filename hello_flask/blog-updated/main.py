@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 app = Flask(__name__)
@@ -46,8 +47,24 @@ def show_post(post_id):
 
 
 # add_new_post to create a new post
-@app.route('/new_post')
+@app.route('/new_post', method=['GET', 'POST'])
 def add_new_post():
+    if request.method == 'POST':
+        new_post = BlogPost(
+            title=request.form['title'],
+            subtitle=request.form['subtitle'],
+            date=request.form['date'],
+            body=request.form['body'],
+            author=request.form['author'],
+            img_url=request.form['img_url']
+        )
+        try:
+            db.session.add(new_post)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("Post already exists in the database", 400)
+        return redirect(url_for('get_all_posts'))
     return render_template('make-post.html')
 
 
