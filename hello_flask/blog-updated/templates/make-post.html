@@ -1,4 +1,6 @@
-{% block content %} {% include "header.html" %}
+{% from "bootstrap/form.html" import render_field %}
+{% block content %}
+{% include "header.html" %}
 
 <!-- Page Header -->
 <header
@@ -99,4 +101,5 @@
         </div>
     </div>
 </main>
-{% include "footer.html" %} {% endblock %}
+{% include "footer.html" %}
+{% endblock %}
