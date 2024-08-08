@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a2c5efa-e85a-49d0-8729-81a6b2a47e0f" name="Changes" comment="in edit.html/style some line fixed">
-      <change beforePath="$PROJECT_DIR$/../blog-updated/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-updated/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-updated/templates/make-post.html" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-updated/templates/make-post.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
