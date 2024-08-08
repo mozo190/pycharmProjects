@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
@@ -23,7 +25,7 @@ class BlogPost(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
-    date: Mapped[str] = mapped_column(String(250), nullable=False)
+    date_posted: Mapped[str] = mapped_column(String(250), nullable=False, default=datetime.now().strftime('%B %d, %Y'))
     body: Mapped[str] = mapped_column(Text, nullable=False)
     author: Mapped[str] = mapped_column(String(250), nullable=False)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
@@ -53,7 +55,7 @@ def add_new_post():
         new_post = BlogPost(
             title=request.form['title'],
             subtitle=request.form['subtitle'],
-            date=request.form['date'],
+            date_posted=request.form['date'],
             body=request.form['body'],
             author=request.form['author'],
             img_url=request.form['img_url']
