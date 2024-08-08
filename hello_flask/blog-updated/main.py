@@ -55,7 +55,7 @@ def add_new_post():
         new_post = BlogPost(
             title=request.form['title'],
             subtitle=request.form['subtitle'],
-            date_posted=request.form['date'],
+            date_posted=datetime.now().strftime('%B %d, %Y'),
             body=request.form['body'],
             author=request.form['author'],
             img_url=request.form['img_url']
