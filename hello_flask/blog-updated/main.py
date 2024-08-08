@@ -84,7 +84,7 @@ def edit_post(post_id):
         requested_post.img_url = request.form['img_url']
         db.session.commit()
         return redirect(url_for('show_post', post_id=post_id))
-    return render_template('post.html', post=requested_post, editing=True)
+    return render_template('make-post.html', post=requested_post, editing=True)
 
 
 # delete_post to delete a post from database
