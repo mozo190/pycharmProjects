@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a2c5efa-e85a-49d0-8729-81a6b2a47e0f" name="Changes" comment="in edit.html/style some line fixed">
-      <change beforePath="$PROJECT_DIR$/../blog-updated/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-updated/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-updated/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-updated/templates/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
