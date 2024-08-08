@@ -57,7 +57,7 @@ def add_new_post():
             subtitle=request.form['subtitle'],
             date=datetime.now().strftime('%B %d, %Y'),
             body=request.form['body'],
-            author=request.form['author'],
+            author=request.form.get('author', 'Anonymous'),
             img_url=request.form['img_url']
         )
         try:
