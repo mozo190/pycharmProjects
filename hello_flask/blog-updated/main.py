@@ -89,18 +89,23 @@ def add_new_post():
 # edit_post to edit a post
 @app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
-    # post_id = request.args.get('post_id')
-    requested_post = BlogPost.query.get_or_404(post_id)
-    if request.method == 'POST':
-        requested_post.title = request.form['title']
-        requested_post.subtitle = request.form['subtitle']
-        requested_post.date = request.form['date']
-        requested_post.body = request.form['body']
-        requested_post.author = request.form['author']
-        requested_post.img_url = request.form['img_url']
+    post = db.get_or_404(BlogPost, post_id)
+    edit_form = CreatePostForm(
+        title=post.title,
+        subtitle=post.subtitle,
+        author=post.author,
+        img_url=post.img_url,
+        body=post.body
+    )
+    if edit_form.validate_on_submit():
+        post.title = edit_form.title.data
+        post.subtitle = edit_form.subtitle.data
+        post.author = edit_form.author.data
+        post.img_url = edit_form.img_url.data
+        post.body = edit_form.body.data
         db.session.commit()
         return redirect(url_for('show_post', post_id=post_id))
-    return render_template('make-post.html', post=requested_post, editing=True)
+    return render_template('make-post.html', form=edit_form, is_edit=True)
 
 
 # delete_post to delete a post from database
