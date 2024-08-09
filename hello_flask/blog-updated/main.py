@@ -2,14 +2,14 @@ from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
+from flask_ckeditor import CKEditorField
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
-from flask_ckeditor import CKEditor, CKEditorField
 
 app = Flask(__name__)
 Bootstrap5(app)
@@ -38,7 +38,8 @@ class BlogPost(db.Model):
 with app.app_context():
     db.create_all()
 
-#WTForm
+
+# WTForm
 class CreatePostForm(FlaskForm):
     title = StringField("Blog Post Title", validators=[DataRequired()])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
@@ -46,9 +47,11 @@ class CreatePostForm(FlaskForm):
     body = CKEditorField("Blog Post Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
 
+
 @app.route('/')
 def get_all_posts():
-    all_post = BlogPost.query.all()
+    result = db.session.execute(db.select(BlogPost))
+    all_post = result.scalar().all()
     return render_template('index.html', posts=all_post)
 
 
