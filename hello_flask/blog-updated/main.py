@@ -52,7 +52,7 @@ class CreatePostForm(FlaskForm):
 @app.route('/')
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost))
-    all_post = result.scalar().all()
+    all_post = result.scalars().all()
     return render_template('index.html', posts=all_post)
 
 
