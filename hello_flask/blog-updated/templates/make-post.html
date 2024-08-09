@@ -1,4 +1,4 @@
-{% from "bootstrap/form.html" import render_field %}
+{% from "bootstrap/form.html" import render_form %}
 {% block content %}
 {% include "header.html" %}
 
@@ -13,13 +13,14 @@
                 <div class="page-heading">
                     <!-- Show a different h1 if editing existing post -->
 
-                    {% if post_id %}
+                    {% if is_edit: %}
                     <h1>Edit Post</h1>
                     <span class="subheading">You're going to make a great blog post!</span>
                     {% else %}
                     <h1>New Post</h1>
-                    <span class="subheading">You're going to make a great blog post!</span>
                     {% endif %}
+                    <span class="subheading">You're going to make a great blog post!</span>
+
                 </div>
             </div>
         </div>
