@@ -58,7 +58,7 @@ def get_all_posts():
 # a route so that you can click in individual post
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
-    requested_post = BlogPost.query.get_or_404(post_id)
+    requested_post = db.get_or_404(BlogPost, post_id)
     return render_template('post.html', post=requested_post)
 
 
