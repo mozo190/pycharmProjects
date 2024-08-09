@@ -109,12 +109,9 @@ def edit_post(post_id):
 
 
 # delete_post to delete a post from database
-@app.route('/delete_post', methods=['POST'])
-def delete_post():
-    post_id = request.form['post_id']
-    if not post_id:
-        return "Post not exist in the database"
-    post_to_delete = BlogPost.query.get_or_404(post_id)
+@app.route('/delete_post/<int:post_id>')
+def delete_post(post_id):
+    post_to_delete = db.get_or_404(BlogPost, post_id)
     db.session.delete(post_to_delete)
     db.session.commit()
     return redirect(url_for('get_all_posts'))
