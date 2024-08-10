@@ -2,7 +2,7 @@ from datetime import datetime, date
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
-from flask_ckeditor import CKEditorField
+from flask_ckeditor import CKEditorField, CKEditor
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from sqlalchemy import Integer, String, Text
@@ -12,6 +12,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 
