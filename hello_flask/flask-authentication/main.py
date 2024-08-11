@@ -34,6 +34,11 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/secrets')
+def secrets():
+    return render_template('secrets.html')
+
+
 @app.route('/logout')
 def logout():
     pass
