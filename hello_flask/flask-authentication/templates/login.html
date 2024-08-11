@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-</body>
-</html>
+<div class="box">
+    <h1>Login</h1>
+
+    <!-- TODO: use message flashing to display feedback to the user with a <p> -->
+
+    <p>Enter your email and password to log in</p>
+
+    <form action="{{ url_for('login') }}" method="post">
+        <input
+                type="text"
+                name="email"
+                placeholder="Email"
+                required="required"
+        >
+        <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required="required"
+        >
+        <button type="button"
+                class="btn btn-primary btn-block btn-large"
+        >Let me in
+        </button>
+
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a> </p>
+
+        <p>Forgot your password? <a href="{{ url_for('forgot-pass') }}">Forgot pass</a></p>
+    </form>
+</div>
+
+    {% endblock %}
