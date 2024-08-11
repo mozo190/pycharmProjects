@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <
+<
 <div class="box">
     <h1>Flask Authentication</h1>
     <! hide the login/registration buttons for logged-in users -->
     {% if not_logged_in %}
-    <a href="{{ url_for('login') }}" class="btn btn-primary btn-block btn-large">Login</a>
-    <a href="{{ url_for('register') }}" class="btn btn-secondary btn-block btn-large">Register</a>
+    <a class="btn btn-primary btn-block btn-large" href="{{ url_for('login') }}">Login</a>
+    <a class="btn btn-secondary btn-block btn-large" href="{{ url_for('register') }}">Register</a>
     {% endif %}
 
 </div>

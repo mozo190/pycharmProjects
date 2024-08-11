@@ -10,26 +10,26 @@
 
     <form action="{{ url_for('login') }}" method="post">
         <input
-                type="text"
                 name="email"
                 placeholder="Email"
                 required="required"
+                type="text"
         >
         <input
-                type="password"
                 name="password"
                 placeholder="Password"
                 required="required"
+                type="password"
         >
-        <button type="button"
-                class="btn btn-primary btn-block btn-large"
+        <button class="btn btn-primary btn-block btn-large"
+                type="button"
         >Let me in
         </button>
 
-        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a> </p>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
 
         <p>Forgot your password? <a href="{{ url_for('forgot_pass') }}">Forgot pass</a></p>
     </form>
 </div>
 
-    {% endblock %}
+{% endblock %}
