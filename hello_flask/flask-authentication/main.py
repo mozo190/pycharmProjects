@@ -41,9 +41,14 @@ def register():
             password=request.form.get('password'),
             name=request.form.get('name')
         )
+        # does email exists?
+        user = User.query.filter_by(email=new_user.email).first()
+        if user:
+            return 'User with that email already exists!', 400
+
         db.session.add(new_user)
         db.session.commit()
-        return render_template('secrets')
+        return render_template('secrets.html')
     return render_template('register.html')
 
 
