@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -76,7 +76,7 @@ def logout():
 
 @app.route('/download')
 def download():
-    pass
+    return send_from_directory('static', 'files/cheat_sheet.pdf')
 
 
 if __name__ == '__main__':
