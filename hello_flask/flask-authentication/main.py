@@ -4,7 +4,7 @@ from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['SECRET_KEY'] = 'mysecretkey' 
 
 
 # CREATE DATABASE
