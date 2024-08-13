@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey' 
@@ -36,9 +37,16 @@ def home():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
+        #hashing and salting the password
+        hash_and_salted_password = generate_password_hash(
+            request.form.get('password'),
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+        # sorting the hashed password in the database
         new_user = User(
             email=request.form.get('email'),
-            password=request.form.get('password'),
+            password=hash_and_salted_password,
             name=request.form.get('name')
         )
         # does email exists?
