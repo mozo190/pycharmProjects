@@ -73,7 +73,7 @@ def register():
         # login and authenticate the user after adding details to the database
         login_user(new_user)
 
-        #can redirect() and get name from the current_user
+        # can redirect() and get name from the current_user
         return redirect(url_for('secrets'))
     return render_template('register.html')
 
