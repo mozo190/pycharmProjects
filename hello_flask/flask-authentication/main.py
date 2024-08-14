@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
-from flask_login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -104,11 +104,9 @@ def forgot_pass():
 
 
 @app.route('/secrets')
+@login_required
 def secrets():
-    if login():
-        return render_template('secrets.html')
-    else:
-        return render_template('login.html')
+    return render_template('secrets.html', name=current_user.name)
 
 
 @app.route('/logout')
