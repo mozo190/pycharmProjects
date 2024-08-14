@@ -93,14 +93,16 @@ def login():
         user = result.scalar()
 
         if not user:
-            return 'User does not exist!', 400
-
-        # check if password is correct
-        if check_password_hash(user.password, password):
+            flash('That email does not exist, please try again!')
+            return redirect(url_for('login'))
+        elif not check_password_hash(user.password, password):
+            flash('Password incorrect, please try again!')
+            return redirect(url_for('login'))
+        else:
             login_user(user)
             return redirect(url_for('secrets'))
-        else:
-            return 'Password is incorrect!', 400
+        # check if password is correct
+
     return render_template('login.html')
 
 
