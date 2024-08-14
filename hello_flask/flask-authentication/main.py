@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, send_from_directory
-from flask_login import LoginManager, UserMixin
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for
+from flask_login import LoginManager, UserMixin, login_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -28,6 +28,7 @@ class Base(DeclarativeBase):
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
+
 
 # fixing table in database with the UserMixin
 class User(UserMixin, db.Model):
@@ -69,8 +70,9 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        # passing over the user's name to the secrets.html
-        return render_template('secrets.html', name=request.form.get('name'))
+        # login and authenticate the user after adding details to the database
+        login_user(new_user)
+        return redirect(url_for('secrets'))
     return render_template('register.html')
 
 
