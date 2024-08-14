@@ -3,7 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
@@ -78,8 +78,23 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # check if email exists
+        result = db.session.execute(db.select(User).where(User.email == email))
+        user = result.scalar()
+
+        if not user:
+            return 'User does not exist!', 400
+
+        # check if password is correct
+        if check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('secrets'))
     return render_template('login.html')
 
 
