@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
-from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -111,7 +111,8 @@ def secrets():
 
 @app.route('/logout')
 def logout():
-    pass
+    logout_user()
+    return redirect(url_for('home'))
 
 
 @app.route('/download')
