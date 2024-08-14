@@ -1,11 +1,23 @@
 from flask import Flask, render_template, request, send_from_directory
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecretkey' 
+app.config['SECRET_KEY'] = 'mysecretkey'
+
+# configure Flask-Login
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
+
+# create a user_loader callback function
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
 
 
 # CREATE DATABASE
@@ -37,7 +49,7 @@ def home():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        #hashing and salting the password
+        # hashing and salting the password
         hash_and_salted_password = generate_password_hash(
             request.form.get('password'),
             method='pbkdf2:sha256',
@@ -74,7 +86,10 @@ def forgot_pass():
 
 @app.route('/secrets')
 def secrets():
-    return render_template('secrets.html')
+    if login():
+        return render_template('secrets.html')
+    else:
+        return render_template('login.html')
 
 
 @app.route('/logout')
