@@ -104,8 +104,8 @@ def login():
             login_user(user)
             return redirect(url_for('secrets'))
         # check if password is correct
-
-    return render_template('login.html')
+    # passing True or False if the user is logged in
+    return render_template('login.html', logged_in=current_user.is_authenticated)
 
 
 @app.route('/forgot')
