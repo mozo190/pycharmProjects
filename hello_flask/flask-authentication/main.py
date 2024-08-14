@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory, redirect, url_for
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
@@ -50,6 +50,13 @@ def home():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
+        email = request.form.get('email')
+        result = db.session.execute(db.select(User).where(User.email == email))
+        user = result.scalar()
+
+        if user:
+            flash("You've already signed up with that email, log in instead!")
+            return redirect(url_for('login'))
         # hashing and salting the password
         hash_and_salted_password = generate_password_hash(
             request.form.get('password'),
@@ -63,9 +70,6 @@ def register():
             name=request.form.get('name')
         )
         # does email exists?
-        user = User.query.filter_by(email=new_user.email).first()
-        if user:
-            return 'User with that email already exists!', 400
 
         db.session.add(new_user)
         db.session.commit()
