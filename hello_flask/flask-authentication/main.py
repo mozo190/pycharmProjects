@@ -8,6 +8,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
+
+# CREATE DATABASE
+class Base(DeclarativeBase):
+    pass
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
+
 # configure Flask-Login
 login_manager = LoginManager()
 login_manager.login_view = 'login'
@@ -18,16 +28,6 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
     return db.get_or_404(User, user_id)
-
-
-# CREATE DATABASE
-class Base(DeclarativeBase):
-    pass
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-db = SQLAlchemy(model_class=Base)
-db.init_app(app)
 
 
 # fixing table in database with the UserMixin
@@ -95,6 +95,8 @@ def login():
         if check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('secrets'))
+        else:
+            return 'Password is incorrect!', 400
     return render_template('login.html')
 
 
