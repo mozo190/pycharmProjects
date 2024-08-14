@@ -21,8 +21,8 @@
                 <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
 
-            <!-- Hide the Login/registration navigation for logged in users -->
-            {% if not_logged_in %}
+            <!-- Hide the Login/registration navigation for logged_in users -->
+            {% if not login %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('login') }}">Login</a>
             </li>
@@ -31,7 +31,7 @@
             </li>
             {% endif %}
 
-            {% if logged_in %}
+            {% if login %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
             </li>
