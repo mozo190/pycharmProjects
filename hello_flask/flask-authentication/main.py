@@ -80,7 +80,8 @@ def register():
 
         # can redirect() and get name from the current_user
         return redirect(url_for('secrets'))
-    return render_template('register.html')
+    # passing True or False if the user is logged in
+    return render_template('register.html', logged_in=current_user.is_authenticated)
 
 
 @app.route('/login', methods=['POST', 'GET'])
