@@ -1,0 +1,68 @@
+{% include "header.html" %}
+<!-- Page Header-->
+<header class="masthead"
+        style="background-image: url('{{ url_for('static', filename='assets/img/contact-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 px-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Contact Me</h1>
+                    <span class="subheading">Have questions? I have answers.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <p>Want to get in touch with me? Fill out the form below to send me a message, and I'll get back to you as
+                soon as possible.</p>
+            <div class="my-5">
+                <form action="{{ url_for('contact') }}" method="post">
+                    <div class="form-group
+                    {% if form.name.errors %} has-error {% endif %}">
+                        <label for="{{ form.name.id }}">Name</label>
+                        {{ form.name(class="form-control") }}
+                        {% if form.name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group
+                    {% if form.email.errors %} has-error {% endif %}">
+                        <label for="email">Email</label>
+                        {{ form.email(name="email", id="email", class="form-control") }}
+                        {% if form.email.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group
+                    {% if form.message.errors %} has-error {% endif %}">
+                        <label for="message">Message</label>
+                        {{ form.message(name="message", id="message", class="form-control") }}
+                        {% if form.message.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.message.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include "footer.html" %}
