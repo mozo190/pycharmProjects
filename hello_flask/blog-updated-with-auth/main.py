@@ -21,7 +21,7 @@ class Base(DeclarativeBase):
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
-db = SQLAlchemy(model_class=Base)
+db = SQLAlchemy(app, model_class=Base)
 db.init_app(app)
 
 # configure Flask-Login
@@ -96,8 +96,13 @@ def register():
 
 
 # retrieve a user from the database based on their email address
+class LoginForm:
+    pass
+
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    form = LoginForm()
     if request.method == 'POST':
         email = request.form.get('email')
         result = db.session.execute(db.select(User).where(User.email == email))
@@ -112,7 +117,7 @@ def login():
         else:
             login_user(user)
             return redirect(url_for('get_all_posts'))
-    return render_template('login.html', logged_in=current_user.is_authenticated)
+    return render_template('login.html', form=form, logged_in=current_user.is_authenticated)
 
 
 @app.route('/logout')
@@ -121,7 +126,6 @@ def logout():
 
 
 @app.route('/')
-@login_required
 def get_all_posts():
     result = db.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
     posts = result.scalars().all()
