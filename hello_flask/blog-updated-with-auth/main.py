@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
+from flask_login import login_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -40,6 +42,41 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all()
+
+#TODO: use werkzeug.security to hash and salt the password when a user registers
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        result = db.session.execute(db.select(User).where(User.email == email))
+        user = result.scalar()
+
+        if user:
+            flash("You've already signed up with that email, log in instead!")
+            return redirect(url_for('login'))
+
+        #hash and salt the password
+        hash_and_salted_password = generate_password_hash(
+            request.form.get('password'),
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+        new_user = User(
+            email=request.form.get('email'),
+            password=hash_and_salted_password,
+            name=request.form.get('name')
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        #TODO: login the user after successful registration
+        login_user(new_user)
+
+        return redirect(url_for('get_all_posts'))
+
+    return render_template('register.html')
+
+
 
 @app.route('/')
 def get_all_posts():
