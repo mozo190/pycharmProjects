@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap, Bootstrap5
 from flask_ckeditor import CKEditor
-from flask_login import login_user, current_user, login_required
+from flask_login import login_user, current_user, login_required, logout_user, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -24,6 +24,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
+# configure Flask-Login
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
 
 # Create a table in database
 class BlogPost(db.Model):
