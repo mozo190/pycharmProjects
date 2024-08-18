@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
-from flask_login import login_user
+from flask_login import login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -74,7 +74,7 @@ def register():
 
         return redirect(url_for('get_all_posts'))
 
-    return render_template('register.html')
+    return render_template('register.html', logged_in=current_user.is_authenticated)
 
 
 
