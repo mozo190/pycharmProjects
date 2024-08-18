@@ -128,5 +128,10 @@ def get_all_posts():
     return render_template('index.html', all_posts=posts, logged_in=True)
 
 
+@app.route('/about')
+def about():
+    return render_template('about.html', logged_in=current_user.is_authenticated)
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
