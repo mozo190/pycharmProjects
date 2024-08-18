@@ -31,7 +31,7 @@ login_manager.init_app(app)
 
 
 # create a user_loader callback function
-@login_manager.user_loader()
+@login_manager.user_loader
 def load_user(user_id):
     return db.get_or_404(User, user_id)
 
