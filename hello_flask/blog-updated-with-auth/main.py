@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_login import login_user, current_user, LoginManager, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -96,7 +97,7 @@ def register():
 
 
 # retrieve a user from the database based on their email address
-class LoginForm:
+class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = StringField("Password", validators=[DataRequired()])
     submit = StringField("Log In")
