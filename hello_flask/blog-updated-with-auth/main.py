@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_bootstrap import Bootstrap, Bootstrap5
+from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
-from flask_login import login_user, current_user, login_required, logout_user, LoginManager
+from flask_login import login_user, current_user, login_required, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -28,6 +28,13 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
+
+
+# create a user_loader callback function
+@login_manager.user_loader()
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 
 # Create a table in database
 class BlogPost(db.Model):
