@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
-from flask_login import login_user, current_user, login_required, LoginManager
+from flask_login import login_user, current_user, LoginManager, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -102,7 +102,6 @@ class LoginForm:
     password = StringField("Password")
 
 
-
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
@@ -125,6 +124,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    logout_user()
     return redirect(url_for('get_all_posts'))
 
 
