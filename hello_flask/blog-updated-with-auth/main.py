@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
-from flask_login import login_user, current_user, LoginManager, logout_user
+from flask_login import login_user, current_user, LoginManager, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -129,6 +129,7 @@ def logout():
 
 
 @app.route('/')
+@login_required
 def get_all_posts():
     result = db.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
     posts = result.scalars().all()
