@@ -10,6 +10,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.fields.simple import StringField
 from wtforms.validators import DataRequired, Email
 
+from forms import LoginForm
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
@@ -97,10 +99,10 @@ def register():
 
 
 # retrieve a user from the database based on their email address
-class LoginForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = StringField("Password", validators=[DataRequired()])
-    submit = StringField("Log In")
+# class LoginForm(FlaskForm):
+#     email = StringField("Email", validators=[DataRequired(), Email()])
+#     password = StringField("Password", validators=[DataRequired()])
+#     submit = StringField("Log In")
 
 
 @app.route('/login', methods=['POST', 'GET'])
