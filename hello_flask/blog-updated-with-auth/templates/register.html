@@ -24,10 +24,22 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <form method="post">
                     {{ form.hidden_tag() }}
-                    {{ form.email.label }} {{ form.email(size=31) }}<br>
-                    {{ form.password.label }} {{ form.password(size=32) }}<br>
-                    {{ form.name.label }} {{ form.name(size=32) }}<br>
-                    {{ form.submit }}
+                    <div class="form-group">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(class="form-control", size=31) }}<br>
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-label") }}
+
+                        {{ form.password(class="form-control", size=32) }}<br>
+                        </div>
+                    <div class="form-group">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control", size=32) }}<br>
+                    </div>
+                    <div class="d-grid gap-2">
+                    {{ form.submit(class="btn btn-primary) }}
+                    </div>
                 </form>
             </div>
         </div>
