@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.fields.simple import StringField
 from wtforms.validators import DataRequired, Email
 
-from forms import LoginForm
+from forms import LoginForm, RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -67,8 +67,9 @@ with app.app_context():
 # use werkzeug.security to hash and salt the password when a user registers
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    if request.method == 'POST':
-        email = request.form.get('email')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        email = form.email.data
         result = db.session.execute(db.select(User).where(User.email == email))
         user = result.scalar()
 
@@ -78,14 +79,14 @@ def register():
 
         # hash and salt the password
         hash_and_salted_password = generate_password_hash(
-            request.form.get('password'),
+            form.password.data,
             method='pbkdf2:sha256',
             salt_length=8
         )
         new_user = User(
-            email=request.form.get('email'),
+            email=form.email.data,
             password=hash_and_salted_password,
-            name=request.form.get('name')
+            name=form.name.data
         )
         db.session.add(new_user)
         db.session.commit()
@@ -95,7 +96,7 @@ def register():
 
         return redirect(url_for('get_all_posts'))
 
-    return render_template('register.html', logged_in=current_user.is_authenticated)
+    return render_template('register.html', form=form, logged_in=current_user.is_authenticated)
 
 
 # retrieve a user from the database based on their email address
