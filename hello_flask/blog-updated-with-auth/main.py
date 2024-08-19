@@ -25,7 +25,7 @@ class Base(DeclarativeBase):
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy(app, model_class=Base)
-db.init_app(app)
+
 
 # configure Flask-Login
 login_manager = LoginManager()
