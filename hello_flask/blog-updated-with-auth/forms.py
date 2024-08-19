@@ -1,6 +1,6 @@
 # WTForm for creating a blog post
 from flask_wtf import FlaskForm
-from wtforms.fields.simple import StringField
+from wtforms.fields.simple import StringField, SubmitField
 from wtforms.validators import DataRequired, URL, Email
 
 
@@ -16,3 +16,10 @@ class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = StringField("Password", validators=[DataRequired()])
     submit = StringField("Log In")
+
+
+class RegisterForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = StringField("Password", validators=[DataRequired()])
+    name = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Sing me up!")
