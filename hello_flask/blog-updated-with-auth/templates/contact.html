@@ -24,7 +24,7 @@
                 <form action="{{ url_for('contact') }}" method="post">
                     <div class="form-group
                     {% if form.name.errors %} has-error {% endif %}">
-                        <label for="{{ form.name.id }}">Name</label>
+                        <label for="name">Name</label>
                         {{ form.name(class="form-control") }}
                         {% if form.name.errors %}
                         <div class="invalid-feedback">
