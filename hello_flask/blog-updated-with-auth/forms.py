@@ -9,13 +9,13 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
     body = StringField("Blog Content", validators=[DataRequired()])
-    submit = StringField("Submit")
+    submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = StringField("Password", validators=[DataRequired()])
-    submit = StringField("Log In")
+    submit = SubmitField("Log In")
 
 
 class RegisterForm(FlaskForm):
