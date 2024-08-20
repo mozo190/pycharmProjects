@@ -168,11 +168,10 @@ def logout():
 
 
 @app.route('/')
-@login_required
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
     posts = result.scalars().all()
-    return render_template('index.html', all_posts=posts, logged_in=True)
+    return render_template('index.html', all_posts=posts, current_user=current_user)
 
 
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
