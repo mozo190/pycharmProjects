@@ -141,17 +141,10 @@ def register():
     return render_template('register.html', form=form, current_user=current_user)
 
 
-# retrieve a user from the database based on their email address
-# class LoginForm(FlaskForm):
-#     email = StringField("Email", validators=[DataRequired(), Email()])
-#     password = StringField("Password", validators=[DataRequired()])
-#     submit = StringField("Log In")
-
-
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
-    if request.method == 'POST':
+    if form.validate_on_submit():
         email = request.form.get('email')
         result = db.session.execute(db.select(User).where(User.email == email))
         user = result.scalar()
