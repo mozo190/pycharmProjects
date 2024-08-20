@@ -140,6 +140,12 @@ def get_all_posts():
     return render_template('index.html', all_posts=posts, logged_in=True)
 
 
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
+    return render_template('post.html', post=requested_post)
+
+
 @app.route('/new_post', methods=['GET', 'POST'])
 def add_new_post():
     form = CreatePostForm()
