@@ -162,6 +162,7 @@ def show_post(post_id):
             db.session.add(new_comment)
             db.session.commit()
             flash("Comment added successfully!", 'success')
+            return redirect(url_for('show_post', post_id=post_id))
         except SQLAlchemyError as e:
             db.session.rollback()
             flash(f"There was an issue adding your comment. Please try again. {str(e)}", 'danger')
