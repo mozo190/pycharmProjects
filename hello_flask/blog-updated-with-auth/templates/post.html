@@ -1,3 +1,5 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% block content %}
 
 {% include "header.html" %}
 
@@ -29,23 +31,51 @@
                 {{ post.body | safe }}
                 <!-- TODO: only show edit post button if user is is 1 (admin user) -->
                 <div class="d-flex justify-content-end mb-4">
-                    <a class="btn btn-primary float-right" href="{{ url_for('edit_post', post_id=post.id) }}">Edit Post</a>
+                    <a class="btn btn-primary float-right" href="{{ url_for('edit_post', post_id=post.id) }}">Edit
+                        Post</a>
                 </div>
 
                 <!-- Comments area -->
                 <!-- TODO: add a CKEditor for commenting below -->
                 <div class="comment">
+                    <h3>Leave a Comment:</h3>
+                    <form method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-control") }}<br>
+                        </div>
+                        <div class="form-group">
+                            {{ form.comment.label(class="form-label") }}
+                            {{ form.comment(class="form-control", rows="5") }}
+                        </div>
+                        <div class="d-grid gap-2">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+
+                    </form>
                     <!-- TODO: show all comments for this post -->
                     <ul class="commentList">
                         <li>
                             <div class="commenterImage">
-                                <img src="../static/assets/img/default-profile.jpg" />
+                                <img src="../static/assets/img/default-profile.jpg"/>
                             </div>
                             <div class="commentText">
                                 <p class="">Hello, this is a test comment.</p>
                                 <span class="date sub-text">on March 5th, 2014</span>
                             </div>
                         </li>
+                        {% for comment in post.comments %}
+                        <li>
+                            <div class="commenterImage">
+                                <img src="{{ url_for('static', filename='assets/img/default-profile.jpg') }}" alt="Profile picture" />
+                            </div>
+                            <div class="commentText">
+                                <p class="">{{ comment.text }}</p>
+                                <span class="date sub-text">on {{ comment.date.strftime('%B %d, %Y') }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -54,3 +84,4 @@
 </article>
 
 {% include "footer.html" %}
+{% endblock %}
