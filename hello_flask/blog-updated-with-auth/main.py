@@ -111,7 +111,7 @@ def admin_only(f):
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        email = form.email.data
+
         result = db.session.execute(db.select(User).where(User.email == email))
         user = result.scalar()
 
