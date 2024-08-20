@@ -85,7 +85,7 @@ class Comment(db.Model):
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     text: Mapped[str] = mapped_column(Text, nullable=False)
     date: Mapped[str] = mapped_column(String(250), nullable=False, default=date.today().strftime('%B %d, %Y'))
-    post_id: Mapped[int] = mapped_column(Integer, ForeignKey('blog_posts.id'), nullable=False)
+    post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('blog_posts.id'))
 
 
 with app.app_context():
