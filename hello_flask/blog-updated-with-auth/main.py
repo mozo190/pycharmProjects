@@ -6,7 +6,9 @@ from flask_ckeditor import CKEditor
 from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.testing.plugin.plugin_base import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from forms import LoginForm, RegisterForm, ContactForm, CreatePostForm
@@ -153,10 +155,11 @@ def add_new_post():
         try:
             db.session.add(new_post)
             db.session.commit()
-        except:
-            print("There was an issue adding your post")
+        except SQLAlchemyError as e:
+            logging.error(f"There was an issue adding the post: {e}")
             db.session.rollback()
-            return redirect(url_for('new_post'))
+            flash("There was an issue adding your post. Please try again.")
+            return redirect(url_for('add_new_post'))
         return redirect(url_for('get_all_posts'))
     return render_template('make-post.html', form=form, is_edit=False)
 
