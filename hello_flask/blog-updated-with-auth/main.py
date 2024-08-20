@@ -142,12 +142,12 @@ def get_all_posts():
 
 @app.route('/about')
 def about():
-    return render_template('about.html', logged_in=current_user.is_authenticated)
+    return render_template('about.html')
 
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html', logged_in=current_user.is_authenticated)
+    return render_template('contact.html')
 
 
 if __name__ == "__main__":
