@@ -37,54 +37,58 @@
 
                 <!-- Comments area -->
                 <!-- add a CKEditor for commenting below -->
+                {{ ckeditor.load() }}
+                {{ ckeditor.config(name="comment_text") }}
+                {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
                 <div class="comment">
-                    <h3>Leave a Comment:</h3>
-                    <form method="post">
-                        {{ form.hidden_tag() }}
-                        <div class="form-group">
-                            {{ form.name.label(class="form-label", for="form-name") }}
-                            {{ form.name(id="form-name", class="form-control", autocomplete="comment") }}<br>
-                        </div>
-                        <div class="form-group">
-                            {{ form.comment.label(class="form-label", for="form-comment") }}
-                            {{ form.comment(id="form-comment", class="form-control", rows="5", autocomplete="comment")
-                            }}
-                        </div>
-                        <br>
-                        <div class="d-grid gap-2">
-                            {{ form.submit(class="btn btn-primary") }}
-                        </div>
+
+<!--                    <h3>Leave a Comment:</h3>-->
+<!--                    <form method="post">-->
+<!--                        {{ form.hidden_tag() }}-->
+<!--                        <div class="form-group">-->
+<!--                            {{ form.name.label(class="form-label", for="form-name") }}-->
+<!--                            {{ form.name(id="form-name", class="form-control", autocomplete="comment") }}<br>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            {{ form.comment.label(class="form-label", for="form-comment") }}-->
+<!--                            {{ form.comment(id="form-comment", class="form-control", rows="5", autocomplete="comment")-->
+<!--                            }}-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <div class="d-grid gap-2">-->
+<!--                            {{ form.submit(class="btn btn-primary") }}-->
+<!--                        </div>-->
 
 
-                    </form>
-                    <!-- show all comments for this post -->
-                    <ul class="commentList">
-                        <li>
-                            <div class="commenterImage">
-                                <img src="../static/assets/img/default-profile.jpg"/>
-                            </div>
-                            <div class="commentText">
-                                <p class="">Hello, this is a test comment.</p>
-                                <span class="date sub-text">on March 5th, 2014</span>
-                            </div>
-                        </li>
+<!--                    </form>-->
+<!--                    &lt;!&ndash; show all comments for this post &ndash;&gt;-->
+<!--                    <ul class="commentList">-->
+<!--                        <li>-->
+<!--                            <div class="commenterImage">-->
+<!--                                <img src="../static/assets/img/default-profile.jpg"/>-->
+<!--                            </div>-->
+<!--                            <div class="commentText">-->
+<!--                                <p class="">Hello, this is a test comment.</p>-->
+<!--                                <span class="date sub-text">on March 5th, 2014</span>-->
+<!--                            </div>-->
+<!--                        </li>-->
 
-                        {% for comment in comments %}
-                        <li>
-                            <div class="commenterImage">
-                                <img src="{{ url_for('static', filename='assets/img/default-profile.jpg') }}"
-                                     alt="Profile picture"/>
-                            </div>
-                            <div class="commentName">
-                                <p class=""><strong>{{ comment.name }}</strong></p>
-                            </div>
-                            <div class="commentText">
-                                <p class="">{{ comment.text }}</p>
-                                <span class="date sub-text">on {{ comment.date.strftime('%B %d, %Y') }}</span>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
+<!--                        {% for comment in post.comments: %}-->
+<!--                        <li>-->
+<!--                            <div class="commenterImage">-->
+<!--                                <img src="{{ url_for('static', filename='assets/img/default-profile.jpg') }}"-->
+<!--                                     alt="Profile picture"/>-->
+<!--                            </div>-->
+<!--                            <div class="commentName">-->
+<!--                                <p class=""><strong>{{ comment.name }}</strong></p>-->
+<!--                            </div>-->
+<!--                            <div class="commentText">-->
+<!--                                <p class="">{{ comment.text }}</p>-->
+<!--                                <span class="date sub-text">on {{ comment.date.strftime('%B %d, %Y') }}</span>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        {% endfor %}-->
+<!--                    </ul>-->
                 </div>
             </div>
         </div>
