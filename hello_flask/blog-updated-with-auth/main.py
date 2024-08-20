@@ -11,7 +11,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.testing.plugin.plugin_base import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from forms import LoginForm, RegisterForm, ContactForm, CreatePostForm
+from forms import LoginForm, RegisterForm, ContactForm, CreatePostForm, CommentForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -58,6 +58,13 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(100), nullable=False)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    text: Mapped[str] = mapped_column(Text, nullable=False)
+    post_id: Mapped[int] = mapped_column(Integer, nullable=False)
 
 
 with app.app_context():
@@ -142,8 +149,15 @@ def get_all_posts():
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
+    form = CommentForm()
     requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
-    return render_template('post.html', post=requested_post)
+    if form.validate_on_submit():
+        new_comment = Comment(
+            text=form.comment.data,
+            post_id=post_id,
+
+        )
+    return render_template('post.html', post=requested_post, form=form)
 
 
 @app.route('/new_post', methods=['GET', 'POST'])
