@@ -76,6 +76,7 @@ class User(UserMixin, db.Model):
     name: Mapped[str] = mapped_column(String(100), nullable=False)
 
     posts = relationship('BlogPost', back_populates='author')  # create a relationship with the BlogPost table
+    comments = relationship('Comment', back_populates='comment_author')  # create a relationship with the Comment table
 
 
 class Comment(db.Model):
