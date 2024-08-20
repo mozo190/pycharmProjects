@@ -195,7 +195,8 @@ def show_post(post_id):
     return render_template('post.html', post=requested_post, form=form, current_user=current_user)
 
 
-@app.route('/new_post', methods=['GET', 'POST'])
+@app.route('/new-post', methods=['GET', 'POST'])
+@admin_only
 def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
