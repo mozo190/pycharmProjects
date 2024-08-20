@@ -183,11 +183,11 @@ def show_post(post_id):
         if not current_user.is_authenticated:
             flash("You need to log in or register to comment.")
             return redirect(url_for('login'))
+
         new_comment = Comment(
-            name=form.name.data,
-            text=form.comment.data,
-            date=datetime.now().strftime('%B %d, %Y'),
-            post_id=post_id
+            text=form.comment_text.data,
+            comment_author=current_user,
+            parent_post=requested_post
         )
         try:
             db.session.add(new_comment)
