@@ -22,8 +22,7 @@
                 soon as possible.</p>
             <div class="my-5">
                 <form action="{{ url_for('contact') }}" method="post">
-                    <div class="form-group
-                    {% if form.name.errors %} has-error {% endif %}">
+                    <div class="form-group {% if form.name.errors %} has-error {% endif %}">
                         <label for="name">Name</label>
                         {{ form.name(class="form-control") }}
                         {% if form.name.errors %}
@@ -34,10 +33,9 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div class="form-group
-                    {% if form.email.errors %} has-error {% endif %}">
+                    <div class="form-group {% if form.email.errors %} has-error {% endif %}">
                         <label for="email">Email</label>
-                        {{ form.email(class="form-control") }}
+                        {{ form.email(name="email", id="email", class="form-control") }}
                         {% if form.email.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.email.errors %}
@@ -49,7 +47,7 @@
                     <div class="form-group
                     {% if form.message.errors %} has-error {% endif %}">
                         <label for="message">Message</label>
-                        {{ form.message(class="form-control") }}
+                        {{ form.message(name="message", id="message", class="form-control") }}
                         {% if form.message.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.message.errors %}
