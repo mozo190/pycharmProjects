@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
-from flask_login import login_user, current_user, LoginManager, logout_user, login_required
+from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from sqlalchemy import Integer, String, Text
@@ -52,7 +52,7 @@ class BlogPost(db.Model):
 
 
 # create a User table for all your registered users
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
