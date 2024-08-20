@@ -75,6 +75,8 @@ class User(UserMixin, db.Model):
     password: Mapped[str] = mapped_column(String(100), nullable=False)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
 
+    posts = relationship('BlogPost', back_populates='author')  # create a relationship with the BlogPost table
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'
