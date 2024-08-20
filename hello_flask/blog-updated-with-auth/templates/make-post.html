@@ -24,3 +24,18 @@
         </div>
     </div>
 </header>
+
+<main class="mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <!-- CKEditor and render the form here -->
+                {{ ckeditor.load() }} <!-- load CKEditor -->
+                {{ ckeditor.config(name="body") }} <!-- config the form -->
+                {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }} <!-- render the form -->
+            </div>
+        </div>
+    </div>
+</main>
+{% include "footer.html"%}
+{% endblock %}
