@@ -46,8 +46,8 @@
                         {% for comment in post.comments: %}
                         <li>
                             <div class="commenterImage">
-                                <img src="{{ comment.comment_author.email|gravatar(size=50) }}"
-                                     alt="Profile picture"/>
+                                <img alt="Profile picture"
+                                     src="{{ comment.comment_author.email|gravatar(size=50) }}"/>
                             </div>
                             <div class="commentText">
                                 {{ comment.text|safe }}

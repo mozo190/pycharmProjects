@@ -1,7 +1,7 @@
 # WTForm for creating a blog post
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
-from wtforms.fields.simple import StringField, SubmitField, TextAreaField
+from wtforms.fields.simple import StringField, SubmitField
 from wtforms.validators import DataRequired, URL, Email, Length
 
 

@@ -3,7 +3,6 @@ from functools import wraps
 
 from flask import Flask, render_template, flash, redirect, url_for, abort
 from flask_bootstrap import Bootstrap
-
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import login_user, current_user, LoginManager, logout_user, UserMixin
@@ -100,9 +99,9 @@ with app.app_context():
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if current_user.id != 1:     # check if the current user is the admin
+        if current_user.id != 1:  # check if the current user is the admin
             return abort(403)
-        return f(*args, **kwargs)    # if the user is the admin, return the original function
+        return f(*args, **kwargs)  # if the user is the admin, return the original function
 
     return decorated_function
 
