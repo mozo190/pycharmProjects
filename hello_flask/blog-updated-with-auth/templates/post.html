@@ -44,7 +44,7 @@
                 {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
                 <div class="comment">
                     <ul class="commentList">
-                        {% for comment in comments: %}
+                        {% for comment in post.comments: %}
                         <li>
                             <div class="commenterImage">
                                 <img src="{{ url_for('static', filename='assets/img/default-profile.jpg') }}"
