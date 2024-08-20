@@ -63,6 +63,7 @@ class User(UserMixin, db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(100), nullable=False)
     text: Mapped[str] = mapped_column(Text, nullable=False)
     post_id: Mapped[int] = mapped_column(Integer, ForeignKey('blog_posts.id'), nullable=False)
 
@@ -153,6 +154,7 @@ def show_post(post_id):
     requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
     if form.validate_on_submit():
         new_comment = Comment(
+            name=form.name.data,
             text=form.comment.data,
             post_id=post_id
         )
