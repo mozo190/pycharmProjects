@@ -138,7 +138,7 @@ def register():
 
         return redirect(url_for('get_all_posts'))
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, current_user=current_user)
 
 
 # retrieve a user from the database based on their email address
