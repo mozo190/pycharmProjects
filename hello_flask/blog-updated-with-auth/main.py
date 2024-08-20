@@ -234,10 +234,10 @@ def edit_post(post_id):
         post.title = edit_form.title.data
         post.subtitle = edit_form.subtitle.data
         post.img_url = edit_form.img_url.data
-        post.author = current_user.name
+        post.author = current_user
         post.body = edit_form.body.data
         db.session.commit()
-        return redirect(url_for('show_post', post_id=post_id))
+        return redirect(url_for('show_post', post_id=post.id))
     return render_template('make-post.html', form=edit_form, is_edit=True)
 
 
