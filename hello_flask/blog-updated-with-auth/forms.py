@@ -26,13 +26,6 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Sign me up!")
 
 
-class ContactForm(FlaskForm):
-    name = StringField("Name", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    phone = StringField("Phone", validators=[DataRequired()])
-    message = TextAreaField("Message", validators=[DataRequired()])
-
-
 class CommentForm(FlaskForm):
     comment_text = CKEditorField("Comment", validators=[DataRequired()])
     submit = SubmitField("Submit Comment")
