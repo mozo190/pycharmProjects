@@ -176,6 +176,7 @@ def get_all_posts():
 
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def show_post(post_id):
+    requested_post = db.get_or_404(BlogPost, post_id)
     form = CommentForm()
     requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
     if form.validate_on_submit():
