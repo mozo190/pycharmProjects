@@ -82,9 +82,9 @@ class User(UserMixin, db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(100), nullable=False)
     text: Mapped[str] = mapped_column(Text, nullable=False)
-    date: Mapped[str] = mapped_column(String(250), nullable=False, default=date.today().strftime('%B %d, %Y'))
+    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('users.id'))
+    comment_author = relationship('User', back_populates='comments')
     post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('blog_posts.id'))
 
 
