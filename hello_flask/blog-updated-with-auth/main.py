@@ -112,7 +112,7 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
 
-        result = db.session.execute(db.select(User).where(User.email == email))
+        result = db.session.execute(db.select(User).where(User.email == form.email.data))
         user = result.scalar()
 
         if user:
@@ -189,17 +189,9 @@ def show_post(post_id):
             comment_author=current_user,
             parent_post=requested_post
         )
-        try:
-            db.session.add(new_comment)
-            db.session.commit()
-            flash("Comment added successfully!", 'success')
-            return redirect(url_for('show_post', post_id=post_id))
-        except SQLAlchemyError as e:
-            db.session.rollback()
-            flash(f"There was an issue adding your comment. Please try again. {str(e)}", 'danger')
-    else:
-        print(form.errors)
-    comments = Comment.query.filter_by(post_id=post_id).all()
+
+        db.session.add(new_comment)
+        db.session.commit()
     return render_template('post.html', post=requested_post, form=form, current_user=current_user)
 
 
