@@ -36,7 +36,7 @@
                 </div>
 
                 <!-- Comments area -->
-                <!-- TODO: add a CKEditor for commenting below -->
+                <!-- add a CKEditor for commenting below -->
                 <div class="comment">
                     <h3>Leave a Comment:</h3>
                     <form method="post">
@@ -49,12 +49,13 @@
                             {{ form.comment.label(class="form-label") }}
                             {{ form.comment(class="form-control", rows="5") }}
                         </div>
+                        <br>
                         <div class="d-grid gap-2">
                             {{ form.submit(class="btn btn-primary") }}
                         </div>
 
                     </form>
-                    <!-- TODO: show all comments for this post -->
+                    <!-- show all comments for this post -->
                     <ul class="commentList">
                         <li>
                             <div class="commenterImage">
