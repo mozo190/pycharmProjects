@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap5
@@ -157,6 +157,7 @@ def show_post(post_id):
         new_comment = Comment(
             name=form.name.data,
             text=form.comment.data,
+            date=datetime.now().strftime('%B %d, %Y'),
             post_id=post_id
         )
         try:
