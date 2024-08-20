@@ -178,8 +178,11 @@ def get_all_posts():
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
     form = CommentForm()
-    requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
+
     if form.validate_on_submit():
+        if not current_user.is_authenticated:
+            flash("You need to log in or register to comment.")
+            return redirect(url_for('login'))
         new_comment = Comment(
             name=form.name.data,
             text=form.comment.data,
