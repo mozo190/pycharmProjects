@@ -191,6 +191,14 @@ def edit_post(post_id):
     return render_template('make-post.html', form=edit_form, is_edit=True)
 
 
+@app.route('/delete/<int:post_id>')
+def delete_post(post_id):
+    post_to_delete = db.session.execute((db.select(BlogPost).where(BlogPost.id == post_id))).scalar()
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('get_all_posts'))
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
