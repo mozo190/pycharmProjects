@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Text
+from sqlalchemy import Integer, String, Text, ForeignKey
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.testing.plugin.plugin_base import logging
@@ -64,7 +64,7 @@ class Comment(db.Model):
     __tablename__ = 'comments'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     text: Mapped[str] = mapped_column(Text, nullable=False)
-    post_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    post_id: Mapped[int] = mapped_column(Integer, ForeignKey('blog_posts.id'), nullable=False)
 
 
 with app.app_context():
@@ -158,7 +158,7 @@ def show_post(post_id):
         )
         db.session.add(new_comment)
         db.session.commit()
-        flash("Comment added successfully", 'success')
+        flash("Comment added successfully!", 'success')
     return render_template('post.html', post=requested_post, form=form)
 
 
