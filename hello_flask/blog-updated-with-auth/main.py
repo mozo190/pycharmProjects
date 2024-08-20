@@ -154,9 +154,11 @@ def show_post(post_id):
     if form.validate_on_submit():
         new_comment = Comment(
             text=form.comment.data,
-            post_id=post_id,
-
+            post_id=post_id
         )
+        db.session.add(new_comment)
+        db.session.commit()
+        flash("Comment added successfully", 'success')
     return render_template('post.html', post=requested_post, form=form)
 
 
