@@ -96,7 +96,7 @@ def register():
 
         return redirect(url_for('get_all_posts'))
 
-    return render_template('register.html', form=form, logged_in=current_user.is_authenticated)
+    return render_template('register.html', form=form)
 
 
 # retrieve a user from the database based on their email address
@@ -135,7 +135,7 @@ def logout():
 @app.route('/')
 @login_required
 def get_all_posts():
-    result = db.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
+    result = db.session.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
     posts = result.scalars().all()
     return render_template('index.html', all_posts=posts, logged_in=True)
 
