@@ -1,11 +1,10 @@
-from datetime import date, datetime
 from functools import wraps
 
-from flask import Flask, render_template, request, flash, redirect, url_for, abort
+from flask import Flask, render_template, flash, redirect, url_for, abort
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
-from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
+from flask_login import login_user, current_user, LoginManager, logout_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.exc import SQLAlchemyError
