@@ -200,7 +200,7 @@ def show_post(post_id):
     else:
         print(form.errors)
     comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=requested_post, form=form, comments=comments)
+    return render_template('post.html', post=requested_post, form=form, current_user=current_user)
 
 
 @app.route('/new_post', methods=['GET', 'POST'])
