@@ -1,3 +1,4 @@
+from crypt import methods
 from datetime import date
 
 from flask import Flask, render_template, request, flash, redirect, url_for
@@ -148,7 +149,7 @@ def get_all_posts():
     return render_template('index.html', all_posts=posts, logged_in=True)
 
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def show_post(post_id):
     form = CommentForm()
     requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
