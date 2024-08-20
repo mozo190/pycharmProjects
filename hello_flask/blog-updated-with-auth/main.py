@@ -217,7 +217,7 @@ def add_new_post():
             flash("There was an issue adding your post. Please try again.")
             return redirect(url_for('add_new_post'))
         return redirect(url_for('get_all_posts'))
-    return render_template('make-post.html', form=form, is_edit=False)
+    return render_template('make-post.html', form=form, current_user=current_user)
 
 
 @app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
