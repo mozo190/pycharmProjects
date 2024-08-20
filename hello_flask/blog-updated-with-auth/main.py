@@ -256,8 +256,7 @@ def about():
 
 @app.route('/contact')
 def contact():
-    form = ContactForm()
-    return render_template('contact.html', form=form)
+    return render_template('contact.html', current_user=current_user)
 
 
 if __name__ == "__main__":
