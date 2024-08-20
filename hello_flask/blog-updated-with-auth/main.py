@@ -1,4 +1,3 @@
-from crypt import methods
 from datetime import date
 
 from flask import Flask, render_template, request, flash, redirect, url_for
@@ -159,9 +158,13 @@ def show_post(post_id):
             text=form.comment.data,
             post_id=post_id
         )
-        db.session.add(new_comment)
-        db.session.commit()
-        flash("Comment added successfully!", 'success')
+        try:
+            db.session.add(new_comment)
+            db.session.commit()
+            flash("Comment added successfully!", 'success')
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            flash(f"There was an issue adding your comment. Please try again. {str(e)}", 'danger')
     return render_template('post.html', post=requested_post, form=form)
 
 
