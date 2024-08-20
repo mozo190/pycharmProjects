@@ -8,7 +8,7 @@ from flask_login import login_user, current_user, LoginManager, logout_user, log
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text, ForeignKey
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.testing.plugin.plugin_base import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -56,7 +56,9 @@ class BlogPost(db.Model):
     __tablename__ = 'blog_posts'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
 
-    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('users.id'))
+    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('users.id'))  # create a foreign key to the User table
+    author = relationship('User', back_populates='posts')
+
     title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
     date: Mapped[str] = mapped_column(String(250), nullable=False)
