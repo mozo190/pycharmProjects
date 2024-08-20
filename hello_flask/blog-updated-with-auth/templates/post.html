@@ -47,12 +47,13 @@
                         </div>
                         <div class="form-group">
                             {{ form.comment.label(class="form-label") }}
-                            {{ form.comment(class="form-control", rows="5") }}
+                            {{ form.comment(class="form-control", id="form-comment", rows="15") }}
                         </div>
                         <br>
                         <div class="d-grid gap-2">
                             {{ form.submit(class="btn btn-primary") }}
                         </div>
+
 
                     </form>
                     <!-- show all comments for this post -->
@@ -85,4 +86,14 @@
 </article>
 
 {% include "footer.html" %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#form-comment'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
 {% endblock %}
