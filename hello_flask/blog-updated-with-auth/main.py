@@ -166,6 +166,8 @@ def show_post(post_id):
         except SQLAlchemyError as e:
             db.session.rollback()
             flash(f"There was an issue adding your comment. Please try again. {str(e)}", 'danger')
+    else:
+        print(form.errors)
     return render_template('post.html', post=requested_post, form=form)
 
 
