@@ -238,7 +238,7 @@ def edit_post(post_id):
         post.body = edit_form.body.data
         db.session.commit()
         return redirect(url_for('show_post', post_id=post.id))
-    return render_template('make-post.html', form=edit_form, is_edit=True)
+    return render_template('make-post.html', form=edit_form, is_edit=True, current_user=current_user)
 
 
 @app.route('/delete/<int:post_id>')
