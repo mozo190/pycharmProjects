@@ -222,7 +222,7 @@ def add_new_post():
 
 @app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
-    post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
+    post = db.get_or_404(BlogPost, post_id)
     edit_form = CreatePostForm(
         title=post.title,
         subtitle=post.subtitle,
