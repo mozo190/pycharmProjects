@@ -170,7 +170,7 @@ def add_new_post():
     return render_template('make-post.html', form=form, is_edit=False)
 
 
-@app.route('/edit_post/<int_post_id>', methods=['GET', 'POST'])
+@app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
     post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
     edit_form = CreatePostForm(
