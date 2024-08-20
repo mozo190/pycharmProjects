@@ -42,12 +42,12 @@
                     <form method="post">
                         {{ form.hidden_tag() }}
                         <div class="form-group">
-                            {{ form.name.label(class="form-label") }}
-                            {{ form.name(class="form-control") }}<br>
+                            {{ form.name.label(class="form-label", for="form-name") }}
+                            {{ form.name(id="form-name", class="form-control") }}<br>
                         </div>
                         <div class="form-group">
-                            {{ form.comment.label(class="form-label") }}
-                            {{ form.comment(class="form-control", id="form-comment", rows="5") }}
+                            {{ form.comment.label(class="form-label", for="form-comment") }}
+                            {{ form.comment(id="form-comment", class="form-control", rows="5") }}
                         </div>
                         <br>
                         <div class="d-grid gap-2">
