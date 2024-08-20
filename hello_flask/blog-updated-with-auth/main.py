@@ -65,6 +65,7 @@ class Comment(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     text: Mapped[str] = mapped_column(Text, nullable=False)
+    date: Mapped[str] = mapped_column(String(250), nullable=False, default=date.today().strftime('%B %d, %Y'))
     post_id: Mapped[int] = mapped_column(Integer, ForeignKey('blog_posts.id'), nullable=False)
 
 
@@ -168,7 +169,8 @@ def show_post(post_id):
             flash(f"There was an issue adding your comment. Please try again. {str(e)}", 'danger')
     else:
         print(form.errors)
-    return render_template('post.html', post=requested_post, form=form)
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    return render_template('post.html', post=requested_post, form=form, comments=comments)
 
 
 @app.route('/new_post', methods=['GET', 'POST'])
