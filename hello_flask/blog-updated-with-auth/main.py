@@ -1,12 +1,13 @@
 from datetime import date, datetime
+from functools import wraps
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, abort
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Text, ForeignKey
+from sqlalchemy import Integer, String, Text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.testing.plugin.plugin_base import logging
@@ -85,11 +86,24 @@ class Comment(db.Model):
     text: Mapped[str] = mapped_column(Text, nullable=False)
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('users.id'))
     comment_author = relationship('User', back_populates='comments')
-    post_id: Mapped[str] = mapped_column(Integer, db.ForeignKey('blog_posts.id'))  # create a foreign key to the BlogPost table
+    post_id: Mapped[str] = mapped_column(Integer,
+                                         db.ForeignKey('blog_posts.id'))  # create a foreign key to the BlogPost table
     parent_post = relationship("BlogPost", back_populates='comments')
+
 
 with app.app_context():
     db.create_all()
+
+
+# create an admin-only decorator
+def admin_only(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.id != 1:     # check if the current user is the admin
+            return abort(403)
+        return f(*args, **kwargs)    # if the user is the admin, return the original function
+
+    return decorated_function
 
 
 # use werkzeug.security to hash and salt the password when a user registers
