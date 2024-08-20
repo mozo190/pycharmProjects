@@ -1,16 +1,15 @@
+from datetime import date
+
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_login import login_user, current_user, LoginManager, logout_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms.fields.simple import StringField
-from wtforms.validators import DataRequired, Email
 
-from forms import LoginForm, RegisterForm, ContactForm
+from forms import LoginForm, RegisterForm, ContactForm, CreatePostForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -25,7 +24,6 @@ class Base(DeclarativeBase):
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy(app, model_class=Base)
-
 
 # configure Flask-Login
 login_manager = LoginManager()
@@ -138,6 +136,29 @@ def get_all_posts():
     result = db.session.execute(db.select(BlogPost).order_by(BlogPost.date.desc()))
     posts = result.scalars().all()
     return render_template('index.html', all_posts=posts, logged_in=True)
+
+
+@app.route('/new_post', methods=['GET', 'POST'])
+def add_new_post():
+    form = CreatePostForm()
+    if form.validate_on_submit():
+        new_post = BlogPost(
+            title=form.title.data,
+            subtitle=form.subtitle.data,
+            body=form.body.data,
+            img_url=form.img_url.data,
+            author=current_user.name,
+            date=date.today().strftime('%B %d, %Y')
+        )
+        try:
+            db.session.add(new_post)
+            db.session.commit()
+        except:
+            print("There was an issue adding your post")
+            db.session.rollback()
+            return redirect(url_for('new_post'))
+        return redirect(url_for('get_all_posts'))
+    return render_template('make-post.html', form=form, is_edit=False)
 
 
 @app.route('/about')
