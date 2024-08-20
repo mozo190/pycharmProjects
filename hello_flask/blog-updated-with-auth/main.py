@@ -1,7 +1,9 @@
+from datetime import date
 from functools import wraps
 
 from flask import Flask, render_template, flash, redirect, url_for, abort
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
+
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import login_user, current_user, LoginManager, logout_user, UserMixin
@@ -17,7 +19,7 @@ from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
-Bootstrap5(app)
+Bootstrap(app)
 
 # configure Flask-Login
 login_manager = LoginManager()
