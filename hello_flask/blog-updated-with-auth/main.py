@@ -235,6 +235,7 @@ def edit_post(post_id):
 
 
 @app.route('/delete/<int:post_id>')
+@admin_only
 def delete_post(post_id):
     post_to_delete = db.get_or_404(BlogPost, post_id)
     db.session.delete(post_to_delete)
