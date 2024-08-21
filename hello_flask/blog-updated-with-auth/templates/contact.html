@@ -24,7 +24,7 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
 
             {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if massages %}
+            {% if messages %}
             <div class="alert alert-success">
                 {% for category, message in messages %}
                 <p>{{ message }}</p>
