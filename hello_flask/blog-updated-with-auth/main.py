@@ -208,14 +208,8 @@ def add_new_post():
             author=current_user.name,
             date=date.today().strftime('%B %d, %Y')
         )
-        try:
-            db.session.add(new_post)
-            db.session.commit()
-        except SQLAlchemyError as e:
-            logging.error(f"There was an issue adding the post: {e}")
-            db.session.rollback()
-            flash("There was an issue adding your post. Please try again.")
-            return redirect(url_for('add_new_post'))
+        db.session.add(new_post)
+        db.session.commit()
         return redirect(url_for('get_all_posts'))
     return render_template('make-post.html', form=form, current_user=current_user)
 
