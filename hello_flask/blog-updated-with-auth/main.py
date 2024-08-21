@@ -250,12 +250,14 @@ def about():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
+    msg_sent = False
 
     if form.validate_on_submit():
 
+        msg_sent = True
         flash('Your message has been sent successfully!', 'success')
         return redirect(url_for('contact'))
-    return render_template('contact.html', form=form, current_user=current_user)
+    return render_template('contact.html', form=form, msg_sent=msg_sent, current_user=current_user)
 
 
 if __name__ == "__main__":
