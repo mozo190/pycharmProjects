@@ -75,20 +75,20 @@
                         </div>
                         {% endif %}
 
-                    <!-- Message Field -->
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        {{ form.message(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
-                        {% if form.message.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.message.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
+                        <!-- Message Field -->
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            {{ form.message(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
+                            {% if form.message.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.message.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <br>
-                    <button class="btn btn-primary" type="submit">Send Message</button>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Send Message</button>
                 </form>
             </div>
         </div>
