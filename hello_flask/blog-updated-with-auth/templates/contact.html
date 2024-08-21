@@ -40,7 +40,7 @@
                     <!-- New Field -->
                     <div class="form-group">
                         <label for="name">Name</label>
-                        {{ form.name(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
+                        {{ form.name(class_="form-control {% if form.name.errors %} is-invalid {% endif %}", autocomplete="on") }}
                         {% if form.name.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.name.errors %}
