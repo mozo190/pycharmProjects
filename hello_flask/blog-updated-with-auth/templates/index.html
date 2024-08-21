@@ -32,7 +32,9 @@
                     on {{ post.date }}
 
                     <!-- Only show delete button if user id is 1 (admin user) -->
+                    {% if current_user.id == 1 %}
                     <a class="btn btn-danger" href="{{ url_for('delete_post', post_id=post.id) }}">Delete ✘</a>
+                    {% endif %}
                 </p>
             </div>
             <!-- Divider-->
