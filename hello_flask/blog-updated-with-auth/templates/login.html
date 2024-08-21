@@ -25,22 +25,16 @@
         <div class="row">
             <!-- add a flash message here for users registering twice -->
 
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="flash">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <div class="col-lg-8 col-md-10 mx-auto">
-                <form action="{{ url_for('login') }}" method="POST">
-                    {{ form.hidden_tag() }}
-                    <div class="form-group">
-                        {{ form.email.label }}<br>
-                        {{ form.email(class_='form-control') }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label }}<br>
-                        {{ form.password(class_='form-control') }}
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        {{ form.submit(class_="btn btn-primary") }}
-                    </div>
-                </form>
+                <!-- rendering login form -->
+                {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
             </div>
         </div>
     </div>
