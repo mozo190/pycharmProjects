@@ -10,8 +10,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms.validators import email
 
-from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm
+from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm, ContactForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -246,9 +247,15 @@ def about():
     return render_template('about.html', current_user=current_user)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', current_user=current_user)
+    form = ContactForm()
+
+    if form.validate_on_submit():
+
+        flash('Your message has been sent successfully!', 'success')
+        return redirect(url_for('contact'))
+    return render_template('contact.html', form=form, current_user=current_user)
 
 
 if __name__ == "__main__":

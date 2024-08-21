@@ -6,7 +6,11 @@
         <div class="row gx-4 px-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="page-heading">
+                    {% if msg_sent: %}
+                    <h1>Successfully sent your message</h1>
+                else:
                     <h1>Contact Me</h1>
+                    {% endif %}
                     <span class="subheading">Have questions? I have answers.</span>
                 </div>
             </div>
@@ -22,6 +26,7 @@
                 soon as possible.</p>
             <div class="my-5">
                 <form action="{{ url_for('contact') }}" method="post">
+                    <!-- New Field -->
                     <div class="form-group {% if form.name.errors %} has-error {% endif %}">
                         <label for="name">Name</label>
                         {{ form.name(class_="form-control") }}
@@ -33,6 +38,8 @@
                         </div>
                         {% endif %}
                     </div>
+
+                    <!-- Email Field -->
                     <div class="form-group {% if form.email.errors %} has-error {% endif %}">
                         <label for="email">Email</label>
                         {{ form.email(class_="form-control") }}
@@ -44,6 +51,8 @@
                         </div>
                         {% endif %}
                     </div>
+
+                    <!-- Message Field -->
                     <div class="form-group
                     {% if form.message.errors %} has-error {% endif %}">
                         <label for="message">Message</label>
