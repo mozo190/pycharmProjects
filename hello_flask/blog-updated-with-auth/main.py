@@ -8,9 +8,7 @@ from flask_gravatar import Gravatar
 from flask_login import login_user, current_user, LoginManager, logout_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.testing.plugin.plugin_base import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm
