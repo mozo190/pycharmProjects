@@ -27,9 +27,9 @@
             <div class="my-5">
                 <form action="{{ url_for('contact') }}" method="post">
                     <!-- New Field -->
-                    <div class="form-group {% if form.name.errors %} is-invalid {% endif %}">
+                    <div class="form-group">
                         <label for="name">Name</label>
-                        {{ form.name(class_="form-control") }}
+                        {{ form.name(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
                         {% if form.name.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.name.errors %}
@@ -40,9 +40,9 @@
                     </div>
 
                     <!-- Email Field -->
-                    <div class="form-group {% if form.email.errors %} is-invalid {% endif %}">
+                    <div class="form-group">
                         <label for="email">Email</label>
-                        {{ form.email(class_="form-control") }}
+                        {{ form.email(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
                         {% if form.email.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.email.errors %}
@@ -52,11 +52,22 @@
                         {% endif %}
                     </div>
 
+                    <!-- Phone Field -->
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        {{ form.phone(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
+                        {% if form.phone.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
                     <!-- Message Field -->
-                    <div class="form-group
-                    {% if form.message.errors %} is-invalid {% endif %}">
+                    <div class="form-group">
                         <label for="message">Message</label>
-                        {{ form.message(class_="form-control") }}
+                        {{ form.message(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
                         {% if form.message.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.message.errors %}
