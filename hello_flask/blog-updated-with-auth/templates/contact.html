@@ -53,7 +53,7 @@
                     <!-- Email Field -->
                     <div class="form-group">
                         <label for="email">Email</label>
-                        {{ form.email(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
+                        {{ form.email(class_="form-control {% if form.name.errors %} is-invalid {% endif %}", autocomplete="on") }}
                         {% if form.email.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.email.errors %}
@@ -66,7 +66,7 @@
                     <!-- Phone Field -->
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        {{ form.phone(class_="form-control {% if form.name.errors %} is-invalid {% endif %}") }}
+                        {{ form.phone(class_="form-control {% if form.name.errors %} is-invalid {% endif %}", autocomplete="on") }}
                         {% if form.phone.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.phone.errors %}
