@@ -10,7 +10,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms.validators import email
 
 from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm, ContactForm
 
@@ -64,7 +63,7 @@ class BlogPost(db.Model):
     date: Mapped[str] = mapped_column(String(250), nullable=False)
     body: Mapped[str] = mapped_column(Text, nullable=False)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
-    comments = relationship('Comment', back_populates='parent_post')  # create a relationship with the Comment table
+    comments = relationship('Comment', back_populates='parent_post', cascade="all, delete", lazy=True)  # create a relationship with the Comment table
 
 
 # create a User table for all your registered users
