@@ -30,18 +30,18 @@
                 </p>
                 <div class="my-5">
                     <form
-                            id="contactForm"
-                            name="sentMessage"
                             action="{{ url_for('contact') }}"
-                            method="post">
+                            id="contactForm"
+                            method="post"
+                            name="sentMessage">
                         <div class="form-floating">
                             <input
                                     class="form-control"
                                     id="name"
                                     name="name"
-                                    type="text"
                                     placeholder="Enter your name..."
                                     required
+                                    type="text"
                             />
                             <label for="name">Name</label>
                         </div>
@@ -50,9 +50,9 @@
                                     class="form-control"
                                     id="email"
                                     name="email"
-                                    type="email"
                                     placeholder="Enter your email..."
                                     required
+                                    type="email"
                             />
                             <label for="email">Email address</label>
                         </div>
@@ -61,9 +61,9 @@
                                     class="form-control"
                                     id="phone"
                                     name="phone"
-                                    type="tel"
                                     placeholder="Enter your phone number..."
                                     required
+                                    type="tel"
                             />
                             <label for="phone">Phone number</label>
                         </div>
