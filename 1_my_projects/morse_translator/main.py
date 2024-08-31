@@ -8,5 +8,15 @@ morse_dict = {
     '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
     '9': '----.', '0': '-----', ', ': '--..--', '.': '.-.-.-', '?': '..--..',
     '/': '-..-.', '-': '-....-', '(': '-.--.', ')': '-.--.-'
-
 }
+
+
+def convert_to_morse(text):
+    morse_code = []
+    text = text.upper()  # Convert the text to uppercase
+    for letter in text:
+        if letter in morse_dict:
+            morse_code.append(morse_dict[letter])
+        else:
+            morse_code.append('?')
+    return ' '.join(morse_code)
