@@ -20,3 +20,13 @@ def convert_to_morse(text):
         else:
             morse_code.append('?')
     return ' '.join(morse_code)
+
+
+def main():
+    text = input("Enter the text to convert to Morse code: ")
+    converted_text = convert_to_morse(text)
+    print(f'The Morse code for "{text}" is: {converted_text}')
+
+
+if __name__ == "__main__":
+    main()
