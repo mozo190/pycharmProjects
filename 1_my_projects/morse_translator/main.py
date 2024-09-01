@@ -54,5 +54,10 @@ def main():
         print("Invalid input. Please try again.")
 
 
+is_quit = False
+
+while not is_quit:
+    main()
+
 if __name__ == "__main__":
     main()
