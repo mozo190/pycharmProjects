@@ -22,6 +22,19 @@ def convert_to_morse(text):
     return ' '.join(morse_code)
 
 
+def convert_to_text(morse_code):
+    text = []
+    morse_code = morse_code.split(' ')
+    for code in morse_code:
+        for letter, morse in morse_dict.items():
+            if code == morse:
+                text.append(letter)
+                break
+            else:
+                text.append('?')
+    return ''.join(text)
+
+
 def main():
     text = input("Enter the text to convert to Morse code: ")
     converted_text = convert_to_morse(text)
