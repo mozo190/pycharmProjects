@@ -31,6 +31,10 @@ class Dino(Image):
 class DinoGame(Widget):
     def __init__(self, **kwargs):
         super(DinoGame, self).__init__(**kwargs)
+
+        self.ground = Ground()
+        self.add_widget(self.ground)
+
         self.dino = Dino()  # Image(source='dino.png', pos=(100, 0))
         self.add_widget(self.dino)
 
