@@ -1,8 +1,8 @@
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
-from kivy.clock import Clock
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 250
@@ -41,6 +41,18 @@ class Dino(Image):
             self.up = JUMP_VELOCITY
             self.t = 0
 
+    def update(self, dt):
+        if self.jumping:
+            self.up += self.g * self.t  # v = u + at
+            self.y += self.up
+            self.t += dt
+
+            if self.y <= DINO_Y_POS:
+                self.y = DINO_Y_POS
+                self.jumping = False
+                self.t = 0
+                self.up = JUMP_VELOCITY
+
 
 class DinoGame(Widget):
     def __init__(self, **kwargs):
@@ -58,6 +70,14 @@ class DinoGame(Widget):
     def on_key_down(self, window, key, *args):
         if key == 32:  # space key
             self.dino.jump()
+
+    def update(self, dt):
+        self.dino.y += self.dino.up
+        self.dino.up += GRAVITY
+
+        if self.dino.y < DINO_Y_POS:
+            self.dino.y = DINO_Y_POS
+            self.dino.jumping = False
 
 
 class DinoApp(App):
