@@ -11,6 +11,14 @@ Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 Window.clearcolor = (1, 1, 1, 1)
 
 
+class Ground(Image):
+    def __init__(self, **kwargs):
+        super(Ground, self).__init__(**kwargs)
+        self.source = 'static/assets/img/sprites/ground.png'
+        self.size = (1202, 26)
+        self.pos = (0, 0)
+
+
 class Dino(Image):
     def __init__(self, **kwargs):
         super(Dino, self).__init__(**kwargs)
