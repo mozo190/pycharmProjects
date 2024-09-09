@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
+from kivy.clock import Clock
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 250
@@ -51,6 +52,7 @@ class DinoGame(Widget):
         self.dino = Dino()  # Image(source='dino.png', pos=(100, 0))
         self.add_widget(self.dino)
 
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
         Window.bind(on_key_down=self.on_key_down)
 
     def on_key_down(self, window, key, *args):
