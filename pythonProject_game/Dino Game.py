@@ -23,12 +23,12 @@ class Ground(Image):
 
 
 class Dino(Image):
-    def __init__(self, **kwargs):
-        g = GRAVITY
-        up = JUMP_VELOCITY  # INITIAL VELOCITY
-        t = 0
-        jumping = False
+    g = GRAVITY
+    up = JUMP_VELOCITY  # INITIAL VELOCITY
+    t = 0
+    jumping = False
 
+    def __init__(self, **kwargs):
         super(Dino, self).__init__(**kwargs)
         self.source = 'static/assets/img/sprites/dino_.png'
         self.width, self.height = (44, 48)
@@ -72,12 +72,7 @@ class DinoGame(Widget):
             self.dino.jump()
 
     def update(self, dt):
-        self.dino.y += self.dino.up
-        self.dino.up += GRAVITY
-
-        if self.dino.y < DINO_Y_POS:
-            self.dino.y = DINO_Y_POS
-            self.dino.jumping = False
+        self.dino.update(dt)
 
 
 class DinoApp(App):
