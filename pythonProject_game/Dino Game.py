@@ -65,7 +65,7 @@ class DinoGame(Widget):
         self.add_widget(self.dino)
 
         Clock.schedule_interval(self.update, 1.0 / 60.0)
-        Window.bind(on_key_down=self.on_key_down)
+        Window.bind(on_key_down=self.on_key_down)  # bind the key down event
 
     def on_key_down(self, window, key, *args):
         if key == 32:  # space key
