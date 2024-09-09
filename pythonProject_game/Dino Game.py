@@ -8,12 +8,13 @@ SCREEN_HEIGHT = 250
 DINO_Y_POS = 30
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+Window.clearcolor = (1, 1, 1, 1)
 
 
 class Dino(Image):
     def __init__(self, **kwargs):
         super(Dino, self).__init__(**kwargs)
-        self.source = '/dino.png'
+        self.source = 'static/assets/img/sprites/dino_.png'
         self.width, self.height = (44, 48)
         self.size = (self.width, self.height)
         self.pos = (20, DINO_Y_POS)
