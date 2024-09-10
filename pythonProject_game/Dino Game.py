@@ -1,3 +1,4 @@
+import random
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -68,6 +69,19 @@ class Dino(Image):
                 self.jumping = False
                 self.t = 0
                 self.up = JUMP_VELOCITY
+
+
+class Cloud(Image):
+    def __init__(self, **kwargs):
+        super(Cloud, self).__init__(**kwargs)
+        self.source = 'static/assets/img/sprites/cloud.png'
+        self.WIDTH, self.HEIGHT = (70, 40)
+        self.size = (self.WIDTH, self.HEIGHT)
+        self.speed = random.randint(1, 4)
+        self.reset()
+
+    def reset(self):
+        self.pos = random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), random.randint(70, 210)
 
 
 class DinoGame(Widget):
