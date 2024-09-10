@@ -162,7 +162,7 @@ class DinoGame(Widget):
             cactus.update(dt)
 
         if len(self.obstacles) < 2:
-            self.spawn_cactus()
+            self.spawn_obstacle()
 
         # clean up obstacles that have moved off the screen
         self.obstacles = [cactus for cactus in self.obstacles if cactus.x > -cactus.width]
