@@ -86,11 +86,13 @@ class Cactus(Image):
             self.size = (45, 44)
         self.pos = (SCREEN_WIDTH, DINO_Y_POS)
         self.speed = GROUND_SPEED
-        self.reset()
 
-    def reset(self):
-        self.x = SCREEN_WIDTH + random.randint(50, 200)
-        self.y = DINO_Y_POS
+    def update(self, dt):
+        self.x -= self.speed
+        self.pos = (self.x, self.y)
+        if self.x <= -self.width:
+            self.parent.remove_widget(self)
+        self.pos = (self.x, self.y)
 
 
 class Cloud(Image):
