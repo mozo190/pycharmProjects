@@ -17,9 +17,17 @@ Window.clearcolor = (1, 1, 1, 1)
 class Ground(Image):
     def __init__(self, **kwargs):
         super(Ground, self).__init__(**kwargs)
-        self.source = 'static/assets/img/sprites/ground.png'
-        self.size = (1202, 26)
-        self.pos = (0, 0)
+        self.ground_length = 1202
+        self.image1 = Image(source='static/assets/img/sprites/ground.png', pos=(0, 0))
+        self.image1.size = (self.ground_length, 26)
+
+        self.image2 = Image(source='static/assets/img/sprites/ground.png', pos=(self.ground_length, 0))
+        self.image2.size = (self.ground_length, 26)
+
+        self.add_widget(self.image1)
+        self.add_widget(self.image2)
+
+    def update(self, dt):
 
 
 class Dino(Image):
