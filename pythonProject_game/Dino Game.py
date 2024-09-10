@@ -12,6 +12,8 @@ DINO_Y_POS = 30
 GRAVITY = -1.2
 JUMP_VELOCITY = 6
 GROUND_SPEED = 4
+MIN_CACTUS_GAP = 200
+MAX_CACTUS_GAP = 400
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 Window.clearcolor = (1, 1, 1, 1)
@@ -70,6 +72,25 @@ class Dino(Image):
                 self.jumping = False
                 self.t = 0
                 self.up = JUMP_VELOCITY
+
+
+class Cactus(Image):
+    def __init__(self, **kwargs):
+        super(Cactus, self).__init__(**kwargs)
+        cactus_type = random.choice(['static/assets/img/sprites/cacti-big.png',
+                                     'static/assets/img/sprites/cacti-small.png'])
+        self.source = self.type
+        if cactus_type == 'static/assets/img/sprites/cacti-big.png':
+            self.size = (65, 45)
+        else:
+            self.size = (45, 44)
+        self.pos = (SCREEN_WIDTH, DINO_Y_POS)
+        self.speed = GROUND_SPEED
+        self.reset()
+
+    def reset(self):
+        self.x = SCREEN_WIDTH + random.randint(50, 200)
+        self.y = DINO_Y_POS
 
 
 class Cloud(Image):
