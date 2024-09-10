@@ -147,7 +147,7 @@ class DinoGame(Widget):
         if len(self.obstacles) < 2:
             self.spawn_cactus()
 
-        #clean up obstacles that have moved off the screen
+        # clean up obstacles that have moved off the screen
         self.obstacles = [cactus for cactus in self.obstacles if cactus.x > -cactus.width]
 
         for cloud in self.clouds:
@@ -164,6 +164,7 @@ class DinoGame(Widget):
         new_cactus.pos = (new_cactus_x, DINO_Y_POS)
         self.obstacles.append(new_cactus)
         self.add_widget(new_cactus)
+
 
 class DinoApp(App):
     def build(self):
