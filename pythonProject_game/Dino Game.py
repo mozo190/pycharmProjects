@@ -115,6 +115,8 @@ class DinoGame(Widget):
     def update(self, dt):
         self.dino.update(dt)
         self.ground.update(dt)
+        for cloud in self.clouds:
+            cloud.update(dt)
 
 
 class DinoApp(App):
