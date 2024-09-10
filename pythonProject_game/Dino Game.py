@@ -1,4 +1,5 @@
 import random
+
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -83,6 +84,12 @@ class Cloud(Image):
     def reset(self):
         self.pos = random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), random.randint(70, 210)
 
+    def update(self, dt):
+        self.x -= self.speed
+        if self.x <= -self.WIDTH:
+            self.reset()
+        self.pos = (self.x, self.y)
+
 
 class DinoGame(Widget):
     def __init__(self, **kwargs):
@@ -90,6 +97,10 @@ class DinoGame(Widget):
 
         self.ground = Ground()
         self.add_widget(self.ground)
+
+        self.clouds = [Cloud() for _ in range(3)]  # create 3 clouds
+        for cloud in self.clouds:
+            self.add_widget(cloud)
 
         self.dino = Dino()  # Image(source='dino.png', pos=(100, 0))
         self.add_widget(self.dino)
