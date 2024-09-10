@@ -121,6 +121,8 @@ class DinoGame(Widget):
         self.ground = Ground()
         self.add_widget(self.ground)
 
+        self.obstacles = []
+
         self.clouds = [Cloud() for _ in range(3)]  # create 3 clouds
         for cloud in self.clouds:
             self.add_widget(cloud)
@@ -138,6 +140,13 @@ class DinoGame(Widget):
     def update(self, dt):
         self.dino.update(dt)
         self.ground.update(dt)
+
+        for cactus in self.obstacles:
+            cactus.update(dt)
+
+        if len(self.obstacles) < 2:
+            self.spawn_cactus()
+
         for cloud in self.clouds:
             cloud.update(dt)
 
