@@ -9,6 +9,7 @@ SCREEN_HEIGHT = 250
 DINO_Y_POS = 30
 GRAVITY = -1.2
 JUMP_VELOCITY = 6
+GROUND_SPEED = 1
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 Window.clearcolor = (1, 1, 1, 1)
@@ -28,6 +29,15 @@ class Ground(Image):
         self.add_widget(self.image2)
 
     def update(self, dt):
+        self.image1.x -= GROUND_SPEED
+        self.image2.x -= GROUND_SPEED
+
+        if self.image1.x + self.ground_length <= 0:
+            self.image1.x = self.image2.x + self.ground_length
+        elif self.image2.x + self.ground_length <= 0:
+            self.image2.x = self.image1.x + self.ground_length
+
+
 
 
 class Dino(Image):
@@ -81,6 +91,7 @@ class DinoGame(Widget):
 
     def update(self, dt):
         self.dino.update(dt)
+        self.ground.update(dt)
 
 
 class DinoApp(App):
