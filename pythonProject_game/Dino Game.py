@@ -188,6 +188,11 @@ class DinoGame(Widget):
         self.obstacles.append(new_cactus)
         self.add_widget(new_cactus)
 
+    def spawn_ptera(self):
+        new_ptera = Ptera()
+        self.obstacles.append(new_ptera)
+        self.add_widget(new_ptera)
+
 
 class DinoApp(App):
     def build(self):
