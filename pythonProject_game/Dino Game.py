@@ -9,7 +9,7 @@ SCREEN_HEIGHT = 250
 DINO_Y_POS = 30
 GRAVITY = -1.2
 JUMP_VELOCITY = 6
-GROUND_SPEED = 1
+GROUND_SPEED = 4
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 Window.clearcolor = (1, 1, 1, 1)
@@ -36,8 +36,6 @@ class Ground(Image):
             self.image1.x = self.image2.x + self.ground_length
         elif self.image2.x + self.ground_length <= 0:
             self.image2.x = self.image1.x + self.ground_length
-
-
 
 
 class Dino(Image):
