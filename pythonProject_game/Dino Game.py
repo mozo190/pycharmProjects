@@ -79,7 +79,7 @@ class Cactus(Image):
         super(Cactus, self).__init__(**kwargs)
         cactus_type = random.choice(['static/assets/img/sprites/cacti-big.png',
                                      'static/assets/img/sprites/cacti-small.png'])
-        self.source = self.type
+        self.source = cactus_type
         if cactus_type == 'static/assets/img/sprites/cacti-big.png':
             self.size = (65, 45)
         else:
@@ -153,6 +153,17 @@ class DinoGame(Widget):
         for cloud in self.clouds:
             cloud.update(dt)
 
+    def spawn_cactus(self):
+        if self.obstacles:
+            last_cactus = self.obstacles[-1]
+            new_cactus_x = last_cactus.x + last_cactus.width + random.randint(MIN_CACTUS_GAP, MAX_CACTUS_GAP)
+        else:
+            new_cactus_x = SCREEN_WIDTH + random.randint(MIN_CACTUS_GAP, MAX_CACTUS_GAP)
+
+        new_cactus = Cactus()
+        new_cactus.pos = (new_cactus_x, DINO_Y_POS)
+        self.obstacles.append(new_cactus)
+        self.add_widget(new_cactus)
 
 class DinoApp(App):
     def build(self):
