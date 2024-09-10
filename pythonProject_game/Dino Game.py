@@ -170,6 +170,12 @@ class DinoGame(Widget):
         for cloud in self.clouds:
             cloud.update(dt)
 
+    def spawn_obstacle(self):
+        if random.random() < 0.8:  # 80% chance of spawning a cactus
+            self.spawn_cactus()
+        else:
+            self.spawn_ptera()
+
     def spawn_cactus(self):
         if self.obstacles:
             last_cactus = self.obstacles[-1]
