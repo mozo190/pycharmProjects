@@ -12,6 +12,7 @@ DINO_Y_POS = 30
 GRAVITY = -1.2
 JUMP_VELOCITY = 6
 GROUND_SPEED = 4
+PTERA_SPEED = 5
 MIN_CACTUS_GAP = 200
 MAX_CACTUS_GAP = 400
 
@@ -93,6 +94,22 @@ class Cactus(Image):
         if self.x <= -self.width:
             self.parent.remove_widget(self)
         self.pos = (self.x, self.y)
+
+
+class Ptera(Image):
+    def __init__(self, **kwargs):
+        super(Ptera, self).__init__(**kwargs)
+        self.altitude = random.choice([DINO_Y_POS, DINO_Y_POS + 20])
+        self.size = (46, 40)
+        self.pos = (random.randint(750, 1000), self.altitude)
+        self.speed = PTERA_SPEED
+        self.source = 'static/assets/img/sprites/ptera1.png'
+
+    def update(self, dt):
+        self.x -= self.speed
+        self.pos = (self.x, self.y)
+        if self.x <= -self.width:
+            self.parent.remove_widget(self)
 
 
 class Cloud(Image):
