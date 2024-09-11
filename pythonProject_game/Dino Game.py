@@ -166,8 +166,8 @@ class DinoGame(Widget):
         self.ground = Ground()
         self.add_widget(self.ground)
 
-        self.jump_sound = SoundLoader.load('static/assets/audio/jump.wav')
-        self.hit_sound = SoundLoader.load('static/assets/audio/hit.wav')
+        self.jump_sound = SoundLoader.load('static/assets/sounds/jump.wav')
+        self.hit_sound = SoundLoader.load('static/assets/sounds/hit.wav')
 
         self.obstacles = []
         self.obstacle_start = time.time()
@@ -248,10 +248,12 @@ class DinoGame(Widget):
         self.add_widget(new_ptera)
 
     def check_collision(self):
-        if self.crash_sound:
-            self.hit_sound.play()
+        # if self.hit_sound:
+
         for obstacle in self.obstacles:
+
             if self.dino.collide_widget(obstacle):
+                self.hit_sound.play()
                 self.end_game()
 
     def end_game(self):
@@ -264,7 +266,7 @@ class DinoGame(Widget):
         self.replay_button_image.unbind(on_press=self.reset_game)  # unbind the reset_game method from the button
         self.replay_button_image.bind(on_press=self.reset_game)  # bind the reset_game method to the button
 
-    def reset_game(self):
+    def reset_game(self, *args):
         self.game_over = False
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.replay_button_image)
@@ -282,9 +284,9 @@ class DinoGame(Widget):
         self.obstacles = []
 
         # reset ground and clouds
-        # self.ground.reset()
-        # for cloud in self.clouds:
-        #     cloud.reset()
+        self.ground.reset()
+        for cloud in self.clouds:
+            cloud.reset()
 
 
 class DinoApp(App):
