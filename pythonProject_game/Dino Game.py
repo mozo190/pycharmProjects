@@ -55,6 +55,16 @@ class Dino(Image):
         self.width, self.height = (44, 48)
         self.size = (self.width, self.height)
         self.pos = (20, DINO_Y_POS)
+        self.step_images = ['static/assets/img/sprites/dino_.png',
+                            'static/assets/img/sprites/dino_1.png',
+                            'static/assets/img/sprites/dino_2.png']
+        self.step_index = 0
+
+        Clock.schedule_interval(self.step, 0.1)
+
+    def step(self, dt):
+        self.step_index = (self.step_index + 1 ) % 3
+        self.source = self.step_images[self.step_index]
 
     def jump(self):
         if not self.jumping:
