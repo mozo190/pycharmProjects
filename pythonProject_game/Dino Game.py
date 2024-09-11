@@ -245,6 +245,8 @@ class DinoGame(Widget):
                 self.end_game()
 
     def end_game(self):
+        if self.game_over:
+            return  # game is already over
         self.game_over = True
         self.add_widget(self.game_over_image)
         self.add_widget(self.replay_button_image)
