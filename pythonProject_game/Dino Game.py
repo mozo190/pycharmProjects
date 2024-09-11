@@ -46,6 +46,10 @@ class Ground(Image):
         elif self.image2.x + self.ground_length <= 0:
             self.image2.x = self.image1.x + self.ground_length
 
+    def reset(self):
+        self.image1.pos = 0, 0
+        self.image2.pos = self.ground_length, 0
+
 
 class Dino(Image):
     g = GRAVITY
