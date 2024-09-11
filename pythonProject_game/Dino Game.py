@@ -64,7 +64,7 @@ class Dino(Image):
         Clock.schedule_interval(self.step, 0.1)
 
     def step(self, dt):
-        self.step_index = (self.step_index + 1 ) % 3
+        self.step_index = (self.step_index + 1) % 3
         self.source = self.step_images[self.step_index]
 
     def jump(self):
@@ -170,12 +170,10 @@ class DinoGame(Widget):
         self.game_over_image = Image(source='static/assets/img/sprites/game_over.png')
         self.game_over_image.size = (190, 11)
         self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
-        self.add_widget(self.game_over_image)
 
         self.replay_button_image = Button(background_normal='static/assets/img/sprites/replay_button.png')
         self.replay_button_image.size = (70, 70)
         self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
-        self.add_widget(self.replay_button_image)
 
         self.game_over = False
 
@@ -206,7 +204,6 @@ class DinoGame(Widget):
             cloud.update(dt)
 
         self.check_collision()
-
 
     def spawn_obstacle(self):
         if random.random() < 0.8:  # 80% chance a cactus will appear
@@ -240,6 +237,19 @@ class DinoGame(Widget):
         self.game_over = True
         self.add_widget(self.game_over_image)
         self.add_widget(self.replay_button_image)
+
+    def reset_game(self):
+        self.game_over = False
+        self.remove_widget(self.game_over_image)
+        self.remove_widget(self.replay_button_image)
+        self.dino.y = DINO_Y_POS
+        self.dino.jumping = False
+        self.dino.t = 0
+        self.dino.up = JUMP_VELOCITY
+        self.dino.x = 20
+        for obstacle in self.obstacles:
+            self.remove_widget(obstacle)
+        self.obstacles = []
 
 
 class DinoApp(App):
