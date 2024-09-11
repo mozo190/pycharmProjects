@@ -166,6 +166,11 @@ class DinoGame(Widget):
         self.dino = Dino()  # Image(source='dino.png', pos=(100, 0))
         self.add_widget(self.dino)
 
+        self.game_over_image = Image(source='static/assets/img/sprites/game_over.png')
+        self.game_over_image.size = (190, 11)
+        self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
+        self.add_widget(self.game_over_image)
+
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Window.bind(on_key_down=self.on_key_down)  # bind the key down event
 
