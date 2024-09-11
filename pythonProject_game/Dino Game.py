@@ -172,6 +172,7 @@ class DinoGame(Widget):
         self.add_widget(self.dino)
 
         self.game_over_image = Image(source='static/assets/img/sprites/game_over.png')
+        self.game_over_image.size_hint = (None, None)
         self.game_over_image.size = (190, 11)
         self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
 
