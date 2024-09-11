@@ -171,6 +171,11 @@ class DinoGame(Widget):
         self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
         self.add_widget(self.game_over_image)
 
+        self.replay_button_image = Image(source='static/assets/img/sprites/replay_button.png')
+        self.replay_button_image.size = (70, 30)
+        self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
+        self.add_widget(self.replay_button_image)
+
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Window.bind(on_key_down=self.on_key_down)  # bind the key down event
 
