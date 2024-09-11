@@ -18,6 +18,7 @@ PTERA_SPEED = 5
 PTERA_FLAP_INTERVAL = 0.2
 MIN_CACTUS_GAP = 200
 MAX_CACTUS_GAP = 400
+FPS = 1 / 60
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 Window.clearcolor = (1, 1, 1, 1)
@@ -184,7 +185,7 @@ class DinoGame(Widget):
 
         self.game_over = False
 
-        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Clock.schedule_interval(self.update, FPS)  # update at 60Hz
         Window.bind(on_key_down=self.on_key_down)  # bind the key down event
 
     def on_key_down(self, window, key, *args):
@@ -247,6 +248,7 @@ class DinoGame(Widget):
         self.game_over = True
         self.add_widget(self.game_over_image)
         self.add_widget(self.replay_button_image)
+        self.replay_button_image.bind(on_press=self.reset_game)
 
     def reset_game(self):
         self.game_over = False
