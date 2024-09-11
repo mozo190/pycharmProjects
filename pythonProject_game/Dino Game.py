@@ -3,6 +3,7 @@ import random
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -171,10 +172,12 @@ class DinoGame(Widget):
         self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
         self.add_widget(self.game_over_image)
 
-        self.replay_button_image = Image(source='static/assets/img/sprites/replay_button.png')
-        self.replay_button_image.size = (70, 30)
+        self.replay_button_image = Button(background_normal='static/assets/img/sprites/replay_button.png')
+        self.replay_button_image.size = (70, 70)
         self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
         self.add_widget(self.replay_button_image)
+
+        self.game_over = False
 
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Window.bind(on_key_down=self.on_key_down)  # bind the key down event
@@ -184,6 +187,9 @@ class DinoGame(Widget):
             self.dino.jump()
 
     def update(self, dt):
+        if self.game_over:
+            return
+
         self.dino.update(dt)
         self.ground.update(dt)
 
@@ -198,6 +204,9 @@ class DinoGame(Widget):
 
         for cloud in self.clouds:
             cloud.update(dt)
+
+        self.check_collision()
+
 
     def spawn_obstacle(self):
         if random.random() < 0.8:  # 80% chance a cactus will appear
@@ -221,6 +230,16 @@ class DinoGame(Widget):
         new_ptera = Ptera()
         self.obstacles.append(new_ptera)
         self.add_widget(new_ptera)
+
+    def check_collision(self):
+        for obstacle in self.obstacles:
+            if self.dino.collide_widget(obstacle):
+                self.end_game()
+
+    def end_game(self):
+        self.game_over = True
+        self.add_widget(self.game_over_image)
+        self.add_widget(self.replay_button_image)
 
 
 class DinoApp(App):
