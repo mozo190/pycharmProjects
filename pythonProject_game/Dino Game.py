@@ -1,4 +1,5 @@
 import random
+import time
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -14,6 +15,7 @@ GRAVITY = -1.2
 JUMP_VELOCITY = 6
 GROUND_SPEED = 4
 PTERA_SPEED = 5
+PTERA_FLAP_INTERVAL = 0.2
 MIN_CACTUS_GAP = 200
 MAX_CACTUS_GAP = 400
 
@@ -119,7 +121,7 @@ class Ptera(Image):
                             'static/assets/img/sprites/ptera2.png']
         self.flap_index = 0
 
-        Clock.schedule_interval(self.flap, 0.2)
+        Clock.schedule_interval(self.flap, PTERA_FLAP_INTERVAL)
 
     def flap(self, dt):
         self.flap_index = (self.flap_index + 1) % 2
@@ -159,6 +161,8 @@ class DinoGame(Widget):
         self.add_widget(self.ground)
 
         self.obstacles = []
+        self.obstacle_start = time.time()
+        self.minimum_time = 1.5
 
         self.clouds = [Cloud() for _ in range(3)]  # create 3 clouds
         for cloud in self.clouds:
@@ -174,6 +178,7 @@ class DinoGame(Widget):
         self.replay_button_image = Button(background_normal='static/assets/img/sprites/replay_button.png')
         self.replay_button_image.size = (70, 70)
         self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
+        self.replay_button_image.bind(on_press=self.reset_game)
 
         self.game_over = False
 
@@ -182,7 +187,10 @@ class DinoGame(Widget):
 
     def on_key_down(self, window, key, *args):
         if key == 32:  # space key
-            self.dino.jump()
+            if self.game_over:
+                self.reset_game()
+            else:
+                self.dino.jump()
 
     def update(self, dt):
         if self.game_over:
