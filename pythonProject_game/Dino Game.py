@@ -273,6 +273,9 @@ class DinoGame(Widget):
         self.replay_button_image.unbind(on_press=self.reset_game)  # unbind the reset_game method from the button
         self.replay_button_image.bind(on_press=self.reset_game)  # bind the reset_game method to the button
 
+        if self.background_music:
+            self.background_music.stop()
+
     def reset_game(self, *args):
         self.game_over = False
         self.remove_widget(self.game_over_image)
@@ -289,6 +292,10 @@ class DinoGame(Widget):
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
         self.obstacles = []
+
+        #music reset
+        if self.background_music:
+            self.background_music.play()
 
         # reset ground and clouds
         self.ground.reset()
