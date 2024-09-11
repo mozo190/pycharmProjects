@@ -3,6 +3,7 @@ import time
 
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivy.uix.image import Image
@@ -165,6 +166,9 @@ class DinoGame(Widget):
         self.ground = Ground()
         self.add_widget(self.ground)
 
+        self.jump_sound = SoundLoader.load('static/assets/audio/jump.wav')
+        self.hit_sound = SoundLoader.load('static/assets/audio/hit.wav')
+
         self.obstacles = []
         self.obstacle_start = time.time()
         self.minimum_time = 1.5
@@ -244,6 +248,8 @@ class DinoGame(Widget):
         self.add_widget(new_ptera)
 
     def check_collision(self):
+        if self.crash_sound:
+            self.hit_sound.play()
         for obstacle in self.obstacles:
             if self.dino.collide_widget(obstacle):
                 self.end_game()
@@ -251,13 +257,14 @@ class DinoGame(Widget):
     def end_game(self):
         if self.game_over:
             return  # game is already over
+
         self.game_over = True
         self.add_widget(self.game_over_image)
         self.add_widget(self.replay_button_image)
         self.replay_button_image.unbind(on_press=self.reset_game)  # unbind the reset_game method from the button
         self.replay_button_image.bind(on_press=self.reset_game)  # bind the reset_game method to the button
 
-    def reset_game(self, instance):
+    def reset_game(self):
         self.game_over = False
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.replay_button_image)
@@ -275,9 +282,9 @@ class DinoGame(Widget):
         self.obstacles = []
 
         # reset ground and clouds
-        self.ground.reset()
-        for cloud in self.clouds:
-            cloud.reset()
+        # self.ground.reset()
+        # for cloud in self.clouds:
+        #     cloud.reset()
 
 
 class DinoApp(App):
