@@ -99,11 +99,20 @@ class Cactus(Image):
 class Ptera(Image):
     def __init__(self, **kwargs):
         super(Ptera, self).__init__(**kwargs)
-        self.altitude = random.choice([DINO_Y_POS, DINO_Y_POS + 20])
+        self.altitude = random.choice([175, 150, 110, 30])
         self.size = (46, 40)
         self.pos = (random.randint(750, 1000), self.altitude)
         self.speed = PTERA_SPEED
         self.source = 'static/assets/img/sprites/ptera1.png'
+        self.flap_images = ['static/assets/img/sprites/ptera1.png',
+                            'static/assets/img/sprites/ptera2.png']
+        self.flap_index = 0
+
+        Clock.schedule_interval(self.flap, 0.2)
+
+    def flap(self, dt):
+        self.flap_index = (self.flap_index + 1) % 2
+        self.source = self.flap_images[self.flap_index]
 
     def update(self, dt):
         self.x -= self.speed
@@ -171,7 +180,7 @@ class DinoGame(Widget):
             cloud.update(dt)
 
     def spawn_obstacle(self):
-        if random.random() < 0.8:  # 80% chance of spawning a cactus
+        if random.random() < 0.8:  # 80% chance a cactus will appear
             self.spawn_cactus()
         else:
             self.spawn_ptera()
