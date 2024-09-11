@@ -168,6 +168,11 @@ class DinoGame(Widget):
 
         self.jump_sound = SoundLoader.load('static/assets/sounds/jump.wav')
         self.hit_sound = SoundLoader.load('static/assets/sounds/hit.wav')
+        self.background_music = SoundLoader.load('static/assets/sounds/background.mp3')
+
+        if self.background_music:
+            self.background_music.loop = True
+            self.background_music.play()
 
         self.obstacles = []
         self.obstacle_start = time.time()
