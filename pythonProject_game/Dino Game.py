@@ -198,6 +198,8 @@ class DinoGame(Widget):
 
     def on_key_down(self, window, key, *args):
         if key == 32:  # space key
+            if self.jump_sound:
+                self.jump_sound.play()
             if self.game_over:
                 self.reset_game()
             else:
