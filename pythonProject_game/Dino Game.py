@@ -253,7 +253,7 @@ class DinoGame(Widget):
         self.replay_button_image.unbind(on_press=self.reset_game)  # unbind the reset_game method from the button
         self.replay_button_image.bind(on_press=self.reset_game)  # bind the reset_game method to the button
 
-    def reset_game(self):
+    def reset_game(self, instance):
         self.game_over = False
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.replay_button_image)
@@ -269,6 +269,11 @@ class DinoGame(Widget):
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
         self.obstacles = []
+
+        # reset ground and clouds
+        self.ground.reset()
+        for cloud in self.clouds:
+            cloud.reset()
 
 
 class DinoApp(App):
