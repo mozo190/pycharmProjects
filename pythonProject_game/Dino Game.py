@@ -177,6 +177,7 @@ class DinoGame(Widget):
         self.game_over_image.pos = (SCREEN_WIDTH // 2 - 95, SCREEN_HEIGHT // 2 + 50)
 
         self.replay_button_image = Button(background_normal='static/assets/img/sprites/replay_button.png')
+        self.replay_button_image.size_hint = (None, None)
         self.replay_button_image.size = (70, 70)
         self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
         self.replay_button_image.bind(on_press=self.reset_game)
