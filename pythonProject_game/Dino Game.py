@@ -179,7 +179,7 @@ class DinoGame(Widget):
 
         self.replay_button_image = Button(background_normal='static/assets/img/sprites/replay_button.png')
         self.replay_button_image.size_hint = (None, None)
-        self.replay_button_image.size = (70, 70)
+        self.replay_button_image.size = (50, 50)
         self.replay_button_image.pos = (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 - 50)
         self.replay_button_image.bind(on_press=self.reset_game)
 
@@ -248,17 +248,22 @@ class DinoGame(Widget):
         self.game_over = True
         self.add_widget(self.game_over_image)
         self.add_widget(self.replay_button_image)
-        self.replay_button_image.bind(on_press=self.reset_game)
+        self.replay_button_image.unbind(on_press=self.reset_game)  # unbind the reset_game method from the button
+        self.replay_button_image.bind(on_press=self.reset_game)  # bind the reset_game method to the button
 
     def reset_game(self):
         self.game_over = False
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.replay_button_image)
+
+        # reset the dinosaur position and velocity to the initial values
         self.dino.y = DINO_Y_POS
         self.dino.jumping = False
         self.dino.t = 0
         self.dino.up = JUMP_VELOCITY
         self.dino.x = 20
+
+        # remove all the obstacles from the screen
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
         self.obstacles = []
