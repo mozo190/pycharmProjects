@@ -169,7 +169,7 @@ class DinoGame(Widget):
         self.jump_sound = SoundLoader.load('static/assets/sounds/jump.wav')
         self.hit_sound = SoundLoader.load('static/assets/sounds/hit.wav')
         self.background_music = SoundLoader.load('static/assets/sounds/background.mp3')
-        self.game_over_sound = SoundLoader.load('static/assets/sounds/game_over.wav')
+        self.game_over_sound = SoundLoader.load('static/assets/sounds/game_over_sound.wav')
 
         if self.background_music:
             self.background_music.loop = True
@@ -269,6 +269,7 @@ class DinoGame(Widget):
             return  # game is already over
 
         if self.game_over_sound:
+            self.game_over_sound.volume = 0.5
             self.game_over_sound.play()
 
         self.game_over = True
