@@ -101,6 +101,13 @@ class SpaceInvadersGame(Widget):
                 self.remove_widget(bullet)
                 self.bullets.remove(bullet)
 
+        # update the enemies
+        for enemy in self.enemies:
+            enemy.y -= 2
+            if enemy.top < 0:
+                self.remove_widget(enemy)
+                self.enemies.remove(enemy)
+
     def fire_bullet(self):
         bullet = Bullet()
         bullet.size = (2, 10)
