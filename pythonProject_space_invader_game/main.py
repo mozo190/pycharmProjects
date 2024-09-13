@@ -1,3 +1,5 @@
+from random import randint
+
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -63,6 +65,9 @@ class SpaceInvadersGame(Widget):
         self.right_pressed = False
 
         Clock.schedule_interval(self.update, FPS)
+        Clock.schedule_interval(self.spawn_enemies, 3)
+
+        self.add_enemies()
 
     def on_key_down(self, window, key, *args):
         if key == 276:  # left arrow key
@@ -103,10 +108,18 @@ class SpaceInvadersGame(Widget):
         self.add_widget(bullet)
         self.bullets.append(bullet)
 
-    def add_enemy(self):
+    def spawn_enemies(self, dt):
+        # ensure no fewer than 10 enemies on the screen
+        while len(self.enemies) < 15:
+            enemy = Enemy()
+            enemy.pos = (randint(0, SCREEN_WIDTH - enemy.width), SCREEN_HEIGHT)
+            self.add_widget(enemy)
+            self.enemies.append(enemy)
+
+    def add_enemies(self):
         for i in range(10):
             enemy = Enemy()
-            enemy.pos = (i * 100, 500)
+            enemy.pos = (randint(0, SCREEN_WIDTH - enemy.width), SCREEN_HEIGHT)
             self.add_widget(enemy)
             self.enemies.append(enemy)
 
