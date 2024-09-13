@@ -1,11 +1,10 @@
-
 from kivy.app import App
-from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.uix.image import Image
+from kivy.uix.widget import Widget
 
-#set the window size
+# set the window size
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -27,6 +26,20 @@ class SpaceInvadersGame(Widget):
         self.spaceship.size = (74, 74)
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_widget(self.spaceship)
+
+        # bind keyboard events
+        Window.bind(on_key_down=self.on_key_down)
+        Window.bind(on_key_up=self.on_key_up)
+
+        self.left_pressed = False
+        self.right_pressed = False
+
+    def on_key_down(self, window, key, *args):
+        if key == 276:  # left arrow key
+            self.left_pressed = True
+        elif key == 275:  # right arrow key
+            self.right_pressed = True
+
 
 
 class SpaceInvadersApp(App):
