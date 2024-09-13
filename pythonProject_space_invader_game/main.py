@@ -40,6 +40,11 @@ class SpaceInvadersGame(Widget):
         elif key == 275:  # right arrow key
             self.right_pressed = True
 
+    def on_key_up(self, window, key, *args):
+        if key == 276:
+            self.left_pressed = False
+        elif key == 275:
+            self.right_pressed = False
 
 
 class SpaceInvadersApp(App):
