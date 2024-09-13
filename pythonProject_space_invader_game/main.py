@@ -79,10 +79,17 @@ class SpaceInvadersGame(Widget):
             if self.spaceship.right > self.width:
                 self.spaceship.right = self.width
 
+        # update the bullets
+        for bullet in self.bullets:
+            bullet.y += 10
+            if bullet.top > self.height:
+                self.remove_widget(bullet)
+                self.bullets.remove(bullet)
+
     def fire_bullet(self):
         bullet = Bullet()
         bullet.size = (2, 10)
-        bullet.pos = (self.spaceship.center_x-bullet.width/2, self.spaceship.top)
+        bullet.pos = (self.spaceship.center_x - bullet.width / 2, self.spaceship.top)
         self.add_widget(bullet)
         self.bullets.append(bullet)
 
