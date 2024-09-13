@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
+from kivy.properties import ListProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -13,7 +14,22 @@ FPS = 1.0 / 60.0
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 
+class Bullet(Widget):
+    def __init__(self, **kwargs):
+        super(Bullet, self).__init__(**kwargs)
+        with self.canvas:
+            Color(1, 0, 0, 1)
+            self.rect = Rectangle(size=(2, 10), pos=self.pos)
+
+        self.bind(pos=self.update_rect)
+
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+
+
 class SpaceInvadersGame(Widget):
+    bullets = ListProperty([])
+
     def __init__(self, **kwargs):
         super(SpaceInvadersGame, self).__init__(**kwargs)
         with self.canvas:
@@ -44,6 +60,9 @@ class SpaceInvadersGame(Widget):
         elif key == 275:  # right arrow key
             self.right_pressed = True
 
+        elif key == 32:  # space key
+            self.fire_bullet()
+
     def on_key_up(self, window, key, *args):
         if key == 276:
             self.left_pressed = False
@@ -59,6 +78,13 @@ class SpaceInvadersGame(Widget):
             self.spaceship.x += 5  # move the spaceship to the right
             if self.spaceship.right > self.width:
                 self.spaceship.right = self.width
+
+    def fire_bullet(self):
+        bullet = Bullet()
+        bullet.size = (2, 10)
+        bullet.pos = (self.spaceship.center_x-bullet.width/2, self.spaceship.top)
+        self.add_widget(bullet)
+        self.bullets.append(bullet)
 
 
 class SpaceInvadersApp(App):
