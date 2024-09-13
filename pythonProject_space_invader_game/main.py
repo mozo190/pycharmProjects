@@ -53,8 +53,12 @@ class SpaceInvadersGame(Widget):
     def update(self, dt):
         if self.left_pressed:
             self.spaceship.x -= 5  # move the spaceship to the left
+            if self.spaceship.x < 0:
+                self.spaceship.x = 0
         elif self.right_pressed:
             self.spaceship.x += 5  # move the spaceship to the right
+            if self.spaceship.right > self.width:
+                self.spaceship.right = self.width
 
 
 class SpaceInvadersApp(App):
