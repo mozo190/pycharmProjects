@@ -27,8 +27,18 @@ class Bullet(Widget):
         self.rect.pos = self.pos
 
 
+class Enemy(Image):
+    def __init__(self, **kwargs):
+        super(Enemy, self).__init__(**kwargs)
+        self.source = 'static/assets/img/enemy.png'
+        self.size_hint = (None, None)
+        self.size = (50, 50)
+        self.pos = (0, 0)
+
+
 class SpaceInvadersGame(Widget):
     bullets = ListProperty([])
+    enemies = ListProperty([])
 
     def __init__(self, **kwargs):
         super(SpaceInvadersGame, self).__init__(**kwargs)
@@ -89,7 +99,7 @@ class SpaceInvadersGame(Widget):
     def fire_bullet(self):
         bullet = Bullet()
         bullet.size = (2, 10)
-        bullet.pos = (self.spaceship.center_x - bullet.width / 2, self.spaceship.top)
+        bullet.pos = (self.spaceship.center_x - bullet.width / 2, self.spaceship.top)  # set the bullet position
         self.add_widget(bullet)
         self.bullets.append(bullet)
 
