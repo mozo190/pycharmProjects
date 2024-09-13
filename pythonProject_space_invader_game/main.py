@@ -103,6 +103,13 @@ class SpaceInvadersGame(Widget):
         self.add_widget(bullet)
         self.bullets.append(bullet)
 
+    def add_enemy(self):
+        for i in range(10):
+            enemy = Enemy()
+            enemy.pos = (i * 100, 500)
+            self.add_widget(enemy)
+            self.enemies.append(enemy)
+
 
 class SpaceInvadersApp(App):
     def build(self):
