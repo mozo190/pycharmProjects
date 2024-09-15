@@ -38,13 +38,6 @@ class Enemy(Image):
         self.pos = (0, 0)
 
 
-def is_collision(bullet, enemy):
-    if (bullet.x < enemy.right and bullet.right > enemy.x and
-            bullet.y < enemy.top and bullet.top > enemy.y):
-        return True
-    return False
-
-
 class SpaceInvadersGame(Widget):
     bullets = ListProperty([])
     enemies = ListProperty([])
@@ -150,7 +143,7 @@ class SpaceInvadersGame(Widget):
     def check_collision(self):
         for bullet in self.bullets:
             for enemy in self.enemies:
-                if is_collision(bullet, enemy):
+                if self.is_collision(bullet, enemy):
                     self.remove_widget(bullet)
                     self.bullets.remove(bullet)
                     self.remove_widget(enemy)
@@ -160,9 +153,27 @@ class SpaceInvadersGame(Widget):
             if self.is_collision(self.spaceship, enemy):
                 self.game_over()
 
-        def game_over(self):
-            self.game_over_flag = True
+    def is_collision(self, bullet, enemy):
+        if (bullet.x < enemy.right and bullet.right > enemy.x and
+                bullet.y < enemy.top and bullet.top > enemy.y):
+            return True
+        return False
 
+    def game_over(self):
+        self.game_over_flag = True
+        # remove all the bullets and enemies
+        for bullet in self.bullets:
+            self.remove_widget(bullet)
+        for enemy in self.enemies:
+            self.remove_widget(enemy)
+        # clear the lists
+        self.bullets.clear()
+        self.enemies.clear()
+
+        # add the game over image
+        self.game_over_image = Image(source='static/assets/img/game_over.png', size=(600, 400),
+                                     pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
+        self.add_widget(self.game_over_image)
 
 
 class SpaceInvadersApp(App):
