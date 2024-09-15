@@ -32,10 +32,17 @@ class Bullet(Widget):
 class Enemy(Image):
     def __init__(self, **kwargs):
         super(Enemy, self).__init__(**kwargs)
-        self.source = 'static/assets/img/enemy.png'
+        self.source = 'static/assets/img/enemies.png'
         self.size_hint = (None, None)
         self.size = (50, 50)
         self.pos = (0, 0)
+
+
+def is_collision(bullet, enemy):
+    if (bullet.x < enemy.right and bullet.right > enemy.x and
+            bullet.y < enemy.top and bullet.top > enemy.y):
+        return True
+    return False
 
 
 class SpaceInvadersGame(Widget):
@@ -65,7 +72,7 @@ class SpaceInvadersGame(Widget):
         self.right_pressed = False
 
         Clock.schedule_interval(self.update, FPS)
-        Clock.schedule_interval(self.spawn_enemies, 3)
+        Clock.schedule_interval(self.spawn_enemies, 1.0 / 2.0)
 
         self.add_enemies()
 
@@ -103,7 +110,7 @@ class SpaceInvadersGame(Widget):
 
         # update the enemies
         for enemy in self.enemies:
-            enemy.y -= 2
+            enemy.y -= 4
             if enemy.top < 0:
                 self.remove_widget(enemy)
                 self.enemies.remove(enemy)
@@ -129,6 +136,15 @@ class SpaceInvadersGame(Widget):
             enemy.pos = (randint(0, SCREEN_WIDTH - enemy.width), SCREEN_HEIGHT)
             self.add_widget(enemy)
             self.enemies.append(enemy)
+
+    def collision(self):
+        for bullet in self.bullets:
+            for enemy in self.enemies:
+                if is_collision(bullet, enemy):
+                    self.remove_widget(bullet)
+                    self.bullets.remove(bullet)
+                    self.remove_widget(enemy)
+                    self.enemies.remove(enemy)
 
 
 class SpaceInvadersApp(App):
