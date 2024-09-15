@@ -115,6 +115,8 @@ class SpaceInvadersGame(Widget):
                 self.remove_widget(enemy)
                 self.enemies.remove(enemy)
 
+        self.check_collision()
+
     def fire_bullet(self):
         bullet = Bullet()
         bullet.size = (2, 10)
@@ -137,7 +139,7 @@ class SpaceInvadersGame(Widget):
             self.add_widget(enemy)
             self.enemies.append(enemy)
 
-    def collision(self):
+    def check_collision(self):
         for bullet in self.bullets:
             for enemy in self.enemies:
                 if is_collision(bullet, enemy):
