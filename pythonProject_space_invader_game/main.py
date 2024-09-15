@@ -4,7 +4,7 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
-from kivy.properties import ListProperty
+from kivy.properties import ListProperty, ObjectProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -48,6 +48,8 @@ def is_collision(bullet, enemy):
 class SpaceInvadersGame(Widget):
     bullets = ListProperty([])
     enemies = ListProperty([])
+    game_over_flag = False
+    game_over_image = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(SpaceInvadersGame, self).__init__(**kwargs)
@@ -92,6 +94,8 @@ class SpaceInvadersGame(Widget):
             self.right_pressed = False
 
     def update(self, dt):
+        if self.game_over_flag:
+            return
         if self.left_pressed:
             self.spaceship.x -= 5  # move the spaceship to the left
             if self.spaceship.x < 0:
@@ -118,6 +122,8 @@ class SpaceInvadersGame(Widget):
         self.check_collision()
 
     def fire_bullet(self):
+        if self.game_over_flag:
+            return
         bullet = Bullet()
         bullet.size = (2, 10)
         bullet.pos = (self.spaceship.center_x - bullet.width / 2, self.spaceship.top)  # set the bullet position
@@ -125,6 +131,8 @@ class SpaceInvadersGame(Widget):
         self.bullets.append(bullet)
 
     def spawn_enemies(self, dt):
+        if self.game_over_flag:  # do not spawn enemies if the game is over
+            return
         # ensure no fewer than 10 enemies on the screen
         while len(self.enemies) < 15:
             enemy = Enemy()
@@ -147,6 +155,14 @@ class SpaceInvadersGame(Widget):
                     self.bullets.remove(bullet)
                     self.remove_widget(enemy)
                     self.enemies.remove(enemy)
+                    break
+        for enemy in self.enemies[:]:
+            if self.is_collision(self.spaceship, enemy):
+                self.game_over()
+
+        def game_over(self):
+            self.game_over_flag = True
+
 
 
 class SpaceInvadersApp(App):
