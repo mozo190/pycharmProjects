@@ -66,8 +66,10 @@ class SpaceInvadersGame(Widget):
         self.left_pressed = False
         self.right_pressed = False
 
+        self.enemy_speed = 2  # initial speed of the enemies
         Clock.schedule_interval(self.update, FPS)
         Clock.schedule_interval(self.spawn_enemies, 1.0 / 2.0)
+        Clock.schedule_interval(self.increase_enemy_speed, 60)  # increase the enemy speed every 60 seconds
 
         self.add_enemies()
 
@@ -107,7 +109,7 @@ class SpaceInvadersGame(Widget):
 
         # update the enemies
         for enemy in self.enemies:
-            enemy.y -= 4
+            enemy.y -= 2
             if enemy.top < 0:
                 self.remove_widget(enemy)
                 self.enemies.remove(enemy)
