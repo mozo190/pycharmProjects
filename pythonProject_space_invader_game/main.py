@@ -202,12 +202,11 @@ class SpaceInvadersGame(Widget):
         self.add_widget(self.button_layout)
 
     def again_button_pressed(self, instance):
-        # reset the game
-        self.game_over_flag = False
         # remove the game over image and button layout
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.button_layout)
-
+        # reset the game
+        self.game_over_flag = False
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_enemies()
 
