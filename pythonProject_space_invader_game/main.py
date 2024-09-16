@@ -5,6 +5,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.properties import ListProperty, ObjectProperty
+from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -58,6 +59,15 @@ class SpaceInvadersGame(Widget):
         self.spaceship.size = (74, 74)
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_widget(self.spaceship)
+
+        # add Again button
+        self.again_button = Button(text='Again', size=(100, 50), size_hint=(None, None),
+                                   pos=(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 25))
+        self.again_button.bind(on_press=self.again_button_pressed)
+        self.again_button.disabled = True
+        self.again_button.opacity = 0
+        self.add_widget(self.again_button)
+
 
         # bind keyboard events
         Window.bind(on_key_down=self.on_key_down)
@@ -179,6 +189,17 @@ class SpaceInvadersGame(Widget):
         self.game_over_image = Image(source='static/assets/img/game_over.png', size=(600, 400),
                                      pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
         self.add_widget(self.game_over_image)
+
+        # show the again button
+        self.again_button.disabled = False
+        self.again_button.opacity = 1
+
+    def again_button_pressed(self, instance):
+        self.game_over_flag = False
+        self.remove_widget(self.game_over_image)
+        self.again_button.disabled = True
+        self.again_button.opacity = 0
+        self.add_enemies()
 
 
 class SpaceInvadersApp(App):
