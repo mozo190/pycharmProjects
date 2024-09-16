@@ -180,36 +180,40 @@ class SpaceInvadersGame(Widget):
         # add the game over image
         self.game_over_image = Image(source='static/assets/img/game_over.png', size=(600, 400),
                                      pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
+        self.game_over_image.size_hint = (None, None)
         self.add_widget(self.game_over_image)
 
         # create a BoxLayout to hold the play again and quit button
-        button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(200, 50),
-                                  pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 100))
+        self.button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(150, 50),
+                                       pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 200))
 
         # create the play again button
         again_button = Button(text='Play Again', on_press=self.again_button_pressed)
-        again_button.bind(on_press=self.again_button_pressed)  # bind the button to the again_button_pressed method
+        again_button.size_hint = (None, None)
 
         # create the quit button
         quit_button = Button(text="Quit",
                              on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
-        quit_button.bind(on_press=self.quit_button_pressed)
+        quit_button.size_hint = (None, None)
 
         # add the buttons to the button layout
-        button_layout.add_widget(again_button)
-        button_layout.add_widget(quit_button)
+        self.button_layout.add_widget(again_button)
+        self.button_layout.add_widget(quit_button)
 
         # add the button layout to the screen
-        self.add_widget(button_layout)
+        self.add_widget(self.button_layout)
 
     def again_button_pressed(self, instance):
-        self.game_over_flag = False
+        # remove the game over image and button layout
         self.remove_widget(self.game_over_image)
+        self.remove_widget(self.button_layout)
+        # reset the game
+        self.game_over_flag = False
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_enemies()
 
     def quit_button_pressed(self, instance):
-        App.get_running_app().stop()
+        App.get_running_app().stop()  # stop the app
 
 
 class SpaceInvadersApp(App):
