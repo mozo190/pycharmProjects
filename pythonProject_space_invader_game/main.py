@@ -208,6 +208,9 @@ class SpaceInvadersGame(Widget):
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_enemies()
 
+    def quit_button_pressed(self, instance):
+        App.get_running_app().stop()
+
 
 class SpaceInvadersApp(App):
     def build(self):
