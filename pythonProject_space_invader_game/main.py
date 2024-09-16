@@ -73,6 +73,9 @@ class SpaceInvadersGame(Widget):
 
         self.add_enemies()
 
+    def increase_enemy_speed(self, dt):
+        self.enemy_speed += 1  # increase the enemy speed by 1
+
     def on_key_down(self, window, key, *args):
         if key == 276:  # left arrow key
             self.left_pressed = True
