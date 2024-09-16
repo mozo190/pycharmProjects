@@ -188,25 +188,26 @@ class SpaceInvadersGame(Widget):
                                        pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 150))
 
         # create the play again button
-        again_button = Button(text='Play Again', on_press=self.again_button_pressed)
+        self.again_button = Button(text='Again', on_press=self.again_button_pressed)
 
         # create the quit button
-        quit_button = Button(text="Quit",
-                             on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
+        self.quit_button = Button(text="Quit",
+                                  on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
 
         # add the buttons to the button layout
-        self.button_layout.add_widget(again_button)
-        self.button_layout.add_widget(quit_button)
+        self.button_layout.add_widget(self.again_button)
+        self.button_layout.add_widget(self.quit_button)
 
         # add the button layout to the screen
         self.add_widget(self.button_layout)
 
     def again_button_pressed(self, instance):
+        # reset the game
+        self.game_over_flag = False
         # remove the game over image and button layout
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.button_layout)
-        # reset the game
-        self.game_over_flag = False
+
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_enemies()
 
