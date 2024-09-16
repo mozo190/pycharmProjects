@@ -48,6 +48,9 @@ class SpaceInvadersGame(Widget):
 
     def __init__(self, **kwargs):
         super(SpaceInvadersGame, self).__init__(**kwargs)
+        self.quit_button = None
+        self.again_button = None
+        self.button_layout = None
         with self.canvas:
             Color(0, 0, 0, 1)
             self.rect = Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT), pos=(0, 0))
@@ -182,6 +185,7 @@ class SpaceInvadersGame(Widget):
                                      pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
         self.game_over_image.size_hint = (None, None)
         self.add_widget(self.game_over_image)
+        self.children.append(self.game_over_image)  # add the game over image to the children list
 
         # create a BoxLayout to hold the play again and quit button
         self.button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(150, 50),
@@ -192,7 +196,7 @@ class SpaceInvadersGame(Widget):
 
         # create the quit button
         self.quit_button = Button(text="Quit",
-                                  on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
+                                  on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed()
 
         # add the buttons to the button layout
         self.button_layout.add_widget(self.again_button)
@@ -200,8 +204,10 @@ class SpaceInvadersGame(Widget):
 
         # add the button layout to the screen
         self.add_widget(self.button_layout)
+        self.children.append(self.button_layout)  # add the button layout to the children list
 
     def again_button_pressed(self, instance):
+
         # remove the game over image and button layout
         self.remove_widget(self.game_over_image)
         self.remove_widget(self.button_layout)
