@@ -5,6 +5,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.properties import ListProperty, ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
@@ -59,15 +60,6 @@ class SpaceInvadersGame(Widget):
         self.spaceship.size = (74, 74)
         self.spaceship.pos = (SCREEN_WIDTH / 2 - self.spaceship.width / 2, 20)
         self.add_widget(self.spaceship)
-
-        # add Again button
-        self.again_button = Button(text='Again', size=(100, 50), size_hint=(None, None),
-                                   pos=(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 25))
-        self.again_button.bind(on_press=self.again_button_pressed)
-        self.again_button.disabled = True
-        self.again_button.opacity = 0
-        self.add_widget(self.again_button)
-
 
         # bind keyboard events
         Window.bind(on_key_down=self.on_key_down)
@@ -190,9 +182,25 @@ class SpaceInvadersGame(Widget):
                                      pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
         self.add_widget(self.game_over_image)
 
-        # show the again button
-        self.again_button.disabled = False
-        self.again_button.opacity = 1
+        # create a BoxLayout to hold the play again and quit button
+        button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(200, 50),
+                                  pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 100))
+
+        # create the play again button
+        again_button = Button(text='Play Again', on_press=self.again_button_pressed)
+        again_button.bind(on_press=self.again_button_pressed)  # bind the button to the again_button_pressed method
+
+        # create the quit button
+        quit_button = Button(text="Quit",
+                             on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
+        quit_button.bind(on_press=self.quit_button_pressed)
+
+        # add the buttons to the button layout
+        button_layout.add_widget(again_button)
+        button_layout.add_widget(quit_button)
+
+        # add the button layout to the screen
+        self.add_widget(button_layout)
 
     def again_button_pressed(self, instance):
         self.game_over_flag = False
