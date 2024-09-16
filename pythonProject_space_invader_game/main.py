@@ -185,16 +185,14 @@ class SpaceInvadersGame(Widget):
 
         # create a BoxLayout to hold the play again and quit button
         self.button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(150, 50),
-                                       pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 200))
+                                       pos=(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 150))
 
         # create the play again button
         again_button = Button(text='Play Again', on_press=self.again_button_pressed)
-        again_button.size_hint = (None, None)
 
         # create the quit button
         quit_button = Button(text="Quit",
                              on_press=self.quit_button_pressed)  # bind the button to the quit_button_pressed method
-        quit_button.size_hint = (None, None)
 
         # add the buttons to the button layout
         self.button_layout.add_widget(again_button)
