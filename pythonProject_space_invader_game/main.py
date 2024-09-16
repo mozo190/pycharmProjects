@@ -112,7 +112,7 @@ class SpaceInvadersGame(Widget):
 
         # update the enemies
         for enemy in self.enemies:
-            enemy.y -= 2
+            enemy.y -= self.enemy_speed  # dynamically change the speed of the enemies
             if enemy.top < 0:
                 self.remove_widget(enemy)
                 self.enemies.remove(enemy)
