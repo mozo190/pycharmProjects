@@ -1,4 +1,5 @@
 from random import randint
+from kivy.uix.label import Label
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -47,6 +48,9 @@ class SpaceInvadersGame(Widget):
     game_over_flag = False
     game_over_image = ObjectProperty(None)
 
+    score = 0  # initialize the score to 0
+    score_label = ObjectProperty(None)  # create a score label
+
     def __init__(self, **kwargs):
         super(SpaceInvadersGame, self).__init__(**kwargs)
         self.quit_button = None
@@ -55,6 +59,11 @@ class SpaceInvadersGame(Widget):
         with self.canvas:
             Color(0, 0, 0, 1)
             self.rect = Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT), pos=(0, 0))
+
+        # label to display the score
+        self.score_label = Label(text='SCORE: 0', pos=(20, SCREEN_HEIGHT - 40), size_hint=(None, None), font_size=20)
+        self.score_label.color = (1, 1, 1, 1)  # set the color of the label to white
+        self.add_widget(self.score_label)
 
         # Add the spaceship image
         # self.spaceship = Image(source='static/assets/img/spaceship.png', size=(74, 74),
@@ -159,7 +168,11 @@ class SpaceInvadersGame(Widget):
                     self.bullets.remove(bullet)
                     self.remove_widget(enemy)
                     self.enemies.remove(enemy)
+
+                    self.score += 1  # increment the score
+                    self.score_label.text = f'SCORE: {self.score}'  # update the score label
                     break
+
         for enemy in self.enemies[:]:
             if self.is_collision(self.spaceship, enemy):
                 self.game_over()
