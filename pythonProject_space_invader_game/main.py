@@ -69,7 +69,9 @@ class SpaceInvadersGame(Widget):
 
         # add sound to the game
         self.game_over_sound = SoundLoader.load('static/assets/audio/game-over-01.wav')
-        self.game_over_sound.volume = 1
+        self.game_over_sound.volume = 1.5
+        self.shooting_sound = SoundLoader.load('static/assets/audio/shooting_sounds_017.wav')
+        self.shooting_sound.volume = 0.5
 
         # Add the spaceship image
         # self.spaceship = Image(source='static/assets/img/spaceship.png', size=(74, 74),
@@ -148,6 +150,7 @@ class SpaceInvadersGame(Widget):
         bullet.pos = (self.spaceship.center_x - bullet.width / 2, self.spaceship.top)  # set the bullet position
         self.add_widget(bullet)
         self.bullets.append(bullet)
+        self.shooting_sound.play()
 
     def spawn_enemies(self, dt):
         if self.game_over_flag:  # do not spawn enemies if the game is over
