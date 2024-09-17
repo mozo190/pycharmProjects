@@ -1,5 +1,4 @@
 from random import randint
-from kivy.uix.label import Label
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -9,6 +8,7 @@ from kivy.properties import ListProperty, ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
 # set the window size
@@ -62,7 +62,7 @@ class SpaceInvadersGame(Widget):
 
         # label to display the score
         self.score_label = Label(text='SCORE: 0', pos=(10, SCREEN_HEIGHT - 40), size_hint=(None, None),
-                                 font_size=20, size=(100, 40))   # create a label to display the score
+                                 font_size=20, size=(100, 40))  # create a label to display the score
         self.score_label.color = (1, 1, 1, 1)  # set the color of the label to white
         self.add_widget(self.score_label)
 
