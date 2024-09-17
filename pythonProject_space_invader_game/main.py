@@ -61,7 +61,8 @@ class SpaceInvadersGame(Widget):
             self.rect = Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT), pos=(0, 0))
 
         # label to display the score
-        self.score_label = Label(text='SCORE: 0', pos=(20, SCREEN_HEIGHT - 40), size_hint=(None, None), font_size=20)
+        self.score_label = Label(text='SCORE: 0', pos=(10, SCREEN_HEIGHT - 40), size_hint=(None, None),
+                                 font_size=20, size=(100, 40))   # create a label to display the score
         self.score_label.color = (1, 1, 1, 1)  # set the color of the label to white
         self.add_widget(self.score_label)
 
