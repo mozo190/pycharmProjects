@@ -2,6 +2,7 @@ from random import randint
 
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.properties import ListProperty, ObjectProperty
@@ -65,6 +66,10 @@ class SpaceInvadersGame(Widget):
                                  font_size=20, size=(100, 40))  # create a label to display the score
         self.score_label.color = (1, 1, 1, 1)  # set the color of the label to white
         self.add_widget(self.score_label)
+
+        # add sound to the game
+        self.game_over_sound = SoundLoader.load('static/assets/sound/game_over.wav')
+        self.game_over_sound.volume = 0.5
 
         # Add the spaceship image
         # self.spaceship = Image(source='static/assets/img/spaceship.png', size=(74, 74),
