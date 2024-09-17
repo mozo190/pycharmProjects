@@ -138,7 +138,7 @@ class SpaceInvadersGame(Widget):
         if self.game_over_flag:  # do not spawn enemies if the game is over
             return
         # ensure no fewer than 10 enemies on the screen
-        while len(self.enemies) < 15:
+        while len(self.enemies) < 10:
             enemy = Enemy()
             enemy.pos = (randint(0, SCREEN_WIDTH - enemy.width), SCREEN_HEIGHT)
             self.add_widget(enemy)
