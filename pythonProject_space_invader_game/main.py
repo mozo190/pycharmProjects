@@ -72,6 +72,9 @@ class SpaceInvadersGame(Widget):
         self.game_over_sound.volume = 1.5
         self.shooting_sound = SoundLoader.load('static/assets/audio/shooting_sounds_017.wav')
         self.shooting_sound.volume = 0.5
+        self.background_music = SoundLoader.load('static/assets/audio/background-sound_game-music.wav')
+        self.background_music.loop = True
+        self.background_music.play()
 
         # Add the spaceship image
         # self.spaceship = Image(source='static/assets/img/spaceship.png', size=(74, 74),
@@ -194,6 +197,9 @@ class SpaceInvadersGame(Widget):
 
     def game_over(self):
         self.game_over_flag = True
+
+        # stop the background music
+        self.background_music.stop()
 
         # play the game over sound
         if self.game_over_sound:
