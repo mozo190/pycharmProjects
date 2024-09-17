@@ -14,6 +14,7 @@ from kivy.uix.widget import Widget
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 FPS = 1.0 / 60.0
+ENEMY_SPEED = 2
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
@@ -71,7 +72,7 @@ class SpaceInvadersGame(Widget):
         self.left_pressed = False
         self.right_pressed = False
 
-        self.enemy_speed = 2  # initial speed of the enemies
+        self.enemy_speed = ENEMY_SPEED  # initial speed of the enemies
         Clock.schedule_interval(self.update, FPS)
         Clock.schedule_interval(self.spawn_enemies, 1.0 / 2.0)
         Clock.schedule_interval(self.increase_enemy_speed, 60)  # increase the enemy speed every 60 seconds
