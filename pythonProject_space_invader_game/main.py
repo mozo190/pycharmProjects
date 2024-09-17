@@ -215,7 +215,7 @@ class SpaceInvadersGame(Widget):
 
         # add the game over image
         self.game_over_image = Image(source='static/assets/img/game_over.png', size=(600, 400),
-                                     pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 200))
+                                     pos=(SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 150))
         self.game_over_image.size_hint = (None, None)
         self.add_widget(self.game_over_image)
         self.children.append(self.game_over_image)  # add the game over image to the children list
