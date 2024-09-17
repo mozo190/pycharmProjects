@@ -14,7 +14,7 @@ from kivy.uix.widget import Widget
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 FPS = 1.0 / 60.0
-ENEMY_SPEED = 2
+ENEMY_SPEED = 1
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
