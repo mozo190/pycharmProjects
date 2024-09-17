@@ -200,7 +200,6 @@ class SpaceInvadersGame(Widget):
 
         # stop the background music
         self.background_music.stop()
-
         # play the game over sound
         if self.game_over_sound:
             self.game_over_sound.play()
