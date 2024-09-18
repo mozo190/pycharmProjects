@@ -58,6 +58,10 @@ class BrickBreakerGame(Widget):
         self.ball = Ball()
         self.add_widget(self.ball)
 
+        # add bat
+        self.bat = Bat()
+        self.add_widget(self.bat)
+
 
 class BrickBreakerApp(App):
     def build(self):
