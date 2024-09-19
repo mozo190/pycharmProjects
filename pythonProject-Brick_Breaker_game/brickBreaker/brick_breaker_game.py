@@ -3,6 +3,7 @@ from kivy.uix.widget import Widget
 
 from .ball import Ball
 from .bat import Bat
+from .brick import Brick
 
 
 class BrickBreakerGame(Widget):
@@ -24,3 +25,8 @@ class BrickBreakerGame(Widget):
         # add bat
         self.bat = Bat()
         self.add_widget(self.bat)
+
+        # add bricks
+        self.bricks = Brick()
+        self.add_widget(self.bricks)
+        self.bricks.initialize_bricks()
