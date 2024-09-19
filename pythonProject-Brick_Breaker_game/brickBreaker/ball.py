@@ -7,6 +7,7 @@ class Ball(Widget):
     ball_x = NumericProperty(350)
     ball_y = NumericProperty(300)
     ball_vel_x = NumericProperty(2)
+    ball_vel_y = NumericProperty(2)
 
     def __init__(self, **kwargs):
         super(Ball, self).__init__(**kwargs)
@@ -24,4 +25,4 @@ class Ball(Widget):
 
     def move_ball(self):
         self.ball_x += self.ball_vel_x
-        self.ball_y += self.ball_y
+        self.ball_y += self.ball_vel_y

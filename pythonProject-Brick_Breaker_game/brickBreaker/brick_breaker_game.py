@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -30,3 +31,19 @@ class BrickBreakerGame(Widget):
         self.bricks = Brick()
         self.add_widget(self.bricks)
         self.bricks.initialize_bricks()
+
+        # schedule the update function
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+
+    def update(self, dt):
+        self.ball.move_ball()
+        # check for collision of ball with walls
+        if self.ball.ball_x < 0 or self.ball.ball_x > self.width - self.ball.WIDTH:
+            self.ball.ball_vel_x = -self.ball.ball_vel_x
+
+        if self.ball.ball_y < 0:
+            self.ball.ball_y = -self.ball.ball_y
+
+        if self.ball.ball_y > self.height - self.ball.HEIGHT:
+            self.ball.ball_y = -self.ball.ball_y
+        # self.check_collision()
