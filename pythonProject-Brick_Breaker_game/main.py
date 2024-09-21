@@ -1,4 +1,5 @@
 from kivy.app import App
+
 from brickBreaker.brick_breaker_game import BrickBreakerGame
 
 
