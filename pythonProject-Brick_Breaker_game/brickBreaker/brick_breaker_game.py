@@ -15,7 +15,7 @@ class GameOver(Widget):
         self.WIDTH = 800
         self.HEIGHT = 600
         self.gox = 30
-        self.goy = 150
+        self.goy = 50
 
         self.goImage = Image(source='assets/img/gameover.png')
         self.goImage.size = self.WIDTH, self.HEIGHT
@@ -122,6 +122,7 @@ class BrickBreakerGame(Widget):
         self.game_over_flag = True
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
+        self.game_over.drawImage()
         # self.remove_widget(self.ball)
         # self.remove_widget(self.bat)
         # self.remove_widget(self.bricks)
