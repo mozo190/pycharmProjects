@@ -52,7 +52,9 @@ class BrickBreakerGame(Widget):
             self.ball.ball_vel_y *= -1
 
     def check_collision(self, ball, bat):
-        if (ball.x < bat.right and ball.right > bat.x and
-                ball.y < bat.top and ball.top > bat.y):
-            return True
-        return False
+        return (ball.x < bat.right and
+                ball.right > bat.x and
+                ball.y < bat.top and
+                ball.top > bat.y)
+
+
