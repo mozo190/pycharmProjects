@@ -44,6 +44,9 @@ class BrickBreakerGame(Widget):
         elif key == 275: # right arrow key
             self.bat.move_right()
 
+    def on_key_up(self, window, key, *args):
+        pass
+
     def update(self, dt):
         self.ball.move_ball()
         # check for collision of ball with walls
@@ -59,6 +62,12 @@ class BrickBreakerGame(Widget):
         # self.check_collision()
         if self.check_collision(self.ball.ballImage, self.bat.batImage):
             self.ball.ball_vel_y *= -1
+
+        #check the collision fo bat with left and right walls
+        if self.bat.bat_x < 0:
+            self.bat.bat_x = 0
+        elif self.bat.bat_x > self.width - self.bat.WIDTH:
+            self.bat.bat_x = self.width - self.bat.WIDTH
 
     def check_collision(self, ball, bat):
         return (ball.x < bat.right and
