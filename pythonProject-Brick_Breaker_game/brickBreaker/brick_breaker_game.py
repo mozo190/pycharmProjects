@@ -39,9 +39,9 @@ class BrickBreakerGame(Widget):
         Clock.schedule_interval(self.update, 1.0 / 60.0)
 
     def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
-        if key == 276: # left arrow key
+        if key == 276:  # left arrow key
             self.bat.move_left()
-        elif key == 275: # right arrow key
+        elif key == 275:  # right arrow key
             self.bat.move_right()
 
     def on_key_up(self, window, key, *args):
@@ -63,16 +63,26 @@ class BrickBreakerGame(Widget):
         if self.check_collision(self.ball.ballImage, self.bat.batImage):
             self.ball.ball_vel_y *= -1
 
-        #check the collision fo bat with left and right walls
+        # check the collision fo bat with left and right walls
         if self.bat.bat_x < 0:
             self.bat.bat_x = 0
         elif self.bat.bat_x > self.width - self.bat.WIDTH:
-            self.bat.bat_x = self.width - self.bat.WIDTH
+            self.bat.bat_x = self.width - self.bat.WIDTH  # set the bat to the right wall
+
+        # check for collision of ball with bricks
+        bricks_to_remove = []
+        for brick in self.brick.brick_list:
+            if self.check_collision(self.ball.ballImage, brick.brickImage):
+                self.ball.ball_vel_y *= -1
+                brick.pos = 1000, 1000
+                bricks_to_remove.append(brick)
+
+        for brick in bricks_to_remove:
+            self.brick.brick_list.remove(brick)
+            self.remove_widget(brick)
 
     def check_collision(self, ball, bat):
         return (ball.x < bat.right and
                 ball.right > bat.x and
                 ball.y < bat.top and
                 ball.top > bat.y)
-
-
