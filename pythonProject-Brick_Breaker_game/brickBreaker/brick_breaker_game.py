@@ -1,4 +1,5 @@
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -32,8 +33,16 @@ class BrickBreakerGame(Widget):
         self.add_widget(self.bricks)
         self.bricks.initialize_bricks()
 
+        Window.bind(on_key_down=self.on_key_down)
+        Window.bind(on_key_up=self.on_key_up)
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
+
+    def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
+        if key == 276: # left arrow key
+            self.bat.move_left()
+        elif key == 275: # right arrow key
+            self.bat.move_right()
 
     def update(self, dt):
         self.ball.move_ball()

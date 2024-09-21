@@ -20,3 +20,11 @@ class Bat(Widget):
 
     def update_position(self, *args):
         self.batImage.pos = self.bat_x, self.bat_y
+
+    # move the bat to the left
+    def move_left(self):
+        self.bat_x -= 20
+
+    # move the bat to the right
+    def move_right(self):
+        self.bat_x += 20
