@@ -1,5 +1,6 @@
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.properties import BooleanProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
@@ -9,6 +10,8 @@ from .brick import Brick
 
 
 class BrickBreakerGame(Widget):
+    game_over_flag = BooleanProperty(False)
+
     def __init__(self, **kwargs):
         super(BrickBreakerGame, self).__init__(**kwargs)
 
@@ -48,6 +51,9 @@ class BrickBreakerGame(Widget):
         pass
 
     def update(self, dt):
+        if self.game_over_flag:
+            return # do not update the game if it is over
+
         self.ball.move_ball()
         # check for collision of ball with walls
         if self.ball.ball_x < 0 or self.ball.ball_x > self.width - self.ball.WIDTH:
