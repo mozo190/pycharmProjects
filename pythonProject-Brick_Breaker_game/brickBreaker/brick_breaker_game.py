@@ -39,13 +39,20 @@ class BrickBreakerGame(Widget):
         self.ball.move_ball()
         # check for collision of ball with walls
         if self.ball.ball_x < 0 or self.ball.ball_x > self.width - self.ball.WIDTH:
-            self.ball.ball_vel_x = -self.ball.ball_vel_x
+            self.ball.ball_vel_x *= -1
 
         if self.ball.ball_y > self.height - self.ball.HEIGHT:
-            self.ball.ball_vel_y = -self.ball.ball_vel_y
+            self.ball.ball_vel_y *= -1
 
         if self.ball.ball_y < 0:
-            self.ball.ball_vel_y = -self.ball.ball_vel_y
-
+            self.ball.ball_vel_y *= -1
 
         # self.check_collision()
+        if self.check_collision(self.ball.ballImage, self.bat.batImage):
+            self.ball.ball_vel_y *= -1
+
+    def check_collision(self, ball, bat):
+        if (ball.x < bat.right and ball.right > bat.x and
+                ball.y < bat.top and ball.top > bat.y):
+            return True
+        return False
