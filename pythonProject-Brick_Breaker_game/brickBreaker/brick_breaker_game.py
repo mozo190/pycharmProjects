@@ -9,6 +9,24 @@ from .bat import Bat
 from .brick import Brick
 
 
+class GameOver(Widget):
+    def __init__(self, **kwargs):
+        super(GameOver, self).__init__(**kwargs)
+        self.WIDTH = 800
+        self.HEIGHT = 600
+        self.gox = 30
+        self.goy = 150
+
+        self.goImage = Image(source='assets/img/gameover.png')
+        self.goImage.size = self.WIDTH, self.HEIGHT
+        self.goImage.pos = self.gox, self.goy
+        self.add_widget(self.goImage)
+        self.goImage.opacity = 0  # Initialize invisible
+
+    def drawImage(self):
+        self.goImage.opacity = 1  # visible
+
+
 class BrickBreakerGame(Widget):
     game_over_flag = BooleanProperty(False)
 
@@ -36,6 +54,9 @@ class BrickBreakerGame(Widget):
         self.add_widget(self.bricks)
         self.bricks.initialize_bricks()
 
+        self.game_over = GameOver()
+        self.add_widget(self.game_over)
+
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
         # schedule the update function
@@ -52,7 +73,7 @@ class BrickBreakerGame(Widget):
 
     def update(self, dt):
         if self.game_over_flag:
-            return # do not update the game if it is over
+            return  # do not update the game if it is over
 
         self.ball.move_ball()
         # check for collision of ball with walls
@@ -64,6 +85,9 @@ class BrickBreakerGame(Widget):
 
         if self.ball.ball_y < 0:
             self.ball.ball_vel_y *= -1
+
+        if self.ball.ball_y < 0:
+            self.end_game()
 
         # self.check_collision()
         if self.check_collision(self.ball.ballImage, self.bat.batImage):
@@ -93,3 +117,16 @@ class BrickBreakerGame(Widget):
                 ball.right > bat.x and
                 ball.y < bat.top and
                 ball.top > bat.y)
+
+    def end_game(self):
+        self.game_over_flag = True
+        self.ball.ball_vel_x = 0
+        self.ball.ball_vel_y = 0
+        # self.remove_widget(self.ball)
+        # self.remove_widget(self.bat)
+        # self.remove_widget(self.bricks)
+        # self.add_widget(Image(source='assets/img/game_over.bmp'))
+        # Clock.unschedule(self.update)
+        # Window.unbind(on_key_down=self.on_key_down)
+        # Window.unbind(on_key_up=self.on_key_up)
+        # Window.close()
