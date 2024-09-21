@@ -9,6 +9,24 @@ from .bat import Bat
 from .brick import Brick
 
 
+class GameWin(Widget):
+    def __init__(self, **kwargs):
+        super(GameWin, self).__init__(**kwargs)
+        self.WIDTH = 800
+        self.HEIGHT = 600
+        self.gox = 30
+        self.goy = 50
+
+        self.goImage = Image(source='assets/img/win.bmp')
+        self.goImage.size = self.WIDTH, self.HEIGHT
+        self.goImage.pos = self.gox
+        self.add_widget(self.goImage)
+        self.goImage.opacity = 0
+
+    def drawImage(self):
+        self.goImage.opacity = 1
+
+
 class GameOver(Widget):
     def __init__(self, **kwargs):
         super(GameOver, self).__init__(**kwargs)
@@ -56,6 +74,9 @@ class BrickBreakerGame(Widget):
 
         self.game_over = GameOver()
         self.add_widget(self.game_over)
+
+        self.game_win = GameWin()
+        self.add_widget(self.game_win)
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
@@ -107,10 +128,13 @@ class BrickBreakerGame(Widget):
                 self.ball.ball_vel_y *= -1
                 brick.pos = 1000, 1000
                 bricks_to_remove.append(brick)
+                self.bricks.no_of_bricks -= 1
 
         for brick in bricks_to_remove:
             self.bricks.brick_list.remove(brick)
             self.remove_widget(brick)
+        if self.bricks.no_of_bricks == 0:
+            self.win_game()
 
     def check_collision(self, ball, bat):
         return (ball.x < bat.right and
@@ -123,11 +147,10 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
         self.game_over.drawImage()
-        # self.remove_widget(self.ball)
-        # self.remove_widget(self.bat)
-        # self.remove_widget(self.bricks)
-        # self.add_widget(Image(source='assets/img/game_over.bmp'))
-        # Clock.unschedule(self.update)
-        # Window.unbind(on_key_down=self.on_key_down)
-        # Window.unbind(on_key_up=self.on_key_up)
-        # Window.close()
+
+    def win_game(self):
+        self.game_over_flag = True
+        self.ball.ball_vel_x = 0
+        self.ball.ball_vel_y = 0
+        self.game_over.drawImage()
+        self.game_over.goImage.source = 'assets/img/win.bmp'

@@ -7,6 +7,7 @@ class Brick(Widget):
         super(Brick, self).__init__(**kwargs)
         self.brick_w = 50
         self.brick_h = 20
+        self.no_of_bricks = 21
         self.brick_list = []
 
     def initialize_bricks(self):
