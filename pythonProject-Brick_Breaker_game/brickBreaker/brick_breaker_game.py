@@ -152,5 +152,5 @@ class BrickBreakerGame(Widget):
         self.game_over_flag = True
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
-        self.game_over.drawImage()
-        self.game_over.goImage.source = 'assets/img/win.bmp'
+        self.game_win.drawImage()
+
