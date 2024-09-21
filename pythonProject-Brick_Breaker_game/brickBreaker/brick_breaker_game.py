@@ -71,14 +71,15 @@ class BrickBreakerGame(Widget):
 
         # check for collision of ball with bricks
         bricks_to_remove = []
-        for brick in self.brick.brick_list:
-            if self.check_collision(self.ball.ballImage, brick.brickImage):
+
+        for brick in self.bricks.brick_list:
+            if self.check_collision(self.ball.ballImage, brick):
                 self.ball.ball_vel_y *= -1
                 brick.pos = 1000, 1000
                 bricks_to_remove.append(brick)
 
         for brick in bricks_to_remove:
-            self.brick.brick_list.remove(brick)
+            self.bricks.brick_list.remove(brick)
             self.remove_widget(brick)
 
     def check_collision(self, ball, bat):
