@@ -19,7 +19,7 @@ class GameWin(Widget):
 
         self.goImage = Image(source='assets/img/win.bmp')
         self.goImage.size = self.WIDTH, self.HEIGHT
-        self.goImage.pos = self.gox
+        self.goImage.pos = self.gox, self.goy
         self.add_widget(self.goImage)
         self.goImage.opacity = 0
 
