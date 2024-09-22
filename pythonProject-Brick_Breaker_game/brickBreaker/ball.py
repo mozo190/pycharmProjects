@@ -1,3 +1,4 @@
+from kivy.core.audio import SoundLoader
 from kivy.properties import NumericProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
@@ -16,6 +17,9 @@ class Ball(Widget):
         self.ballImage = Image(source='assets/img/ball.bmp')
         self.ballImage.size = self.WIDTH, self.HEIGHT
         self.add_widget(self.ballImage)
+
+        # add sound to ball
+        self.ball_sound = SoundLoader.load('assets/audio/ball-bouncing.wav')
 
         self.bind(ball_x=self.update_position, ball_y=self.update_position)
         self.update_position()

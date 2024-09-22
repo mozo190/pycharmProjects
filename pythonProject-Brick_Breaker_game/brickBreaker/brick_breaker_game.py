@@ -7,8 +7,8 @@ from kivy.uix.widget import Widget
 from .ball import Ball
 from .bat import Bat
 from .brick import Brick
-from .game_win import GameWin
 from .game_over import GameOver
+from .game_win import GameWin
 
 
 class BrickBreakerGame(Widget):
@@ -66,12 +66,15 @@ class BrickBreakerGame(Widget):
         # check for collision of ball with walls
         if self.ball.ball_x < 0 or self.ball.ball_x > self.width - self.ball.WIDTH:
             self.ball.ball_vel_x *= -1
+            self.ball.ball_sound.play()
 
         if self.ball.ball_y > self.height - self.ball.HEIGHT:
             self.ball.ball_vel_y *= -1
+            self.ball.ball_sound.play()
 
         if self.ball.ball_y < 0:
             self.ball.ball_vel_y *= -1
+            self.ball.ball_sound.play()
 
         if self.ball.ball_y < 0:
             self.end_game()
@@ -79,6 +82,7 @@ class BrickBreakerGame(Widget):
         # self.check_collision()
         if self.check_collision(self.ball.ballImage, self.bat.batImage):
             self.ball.ball_vel_y *= -1
+            self.ball.ball_sound.play()  # play the sound of ball hitting the bat
 
         # check the collision fo bat with left and right walls
         if self.bat.bat_x < 0:
@@ -92,6 +96,7 @@ class BrickBreakerGame(Widget):
         for brick in self.bricks.brick_list:
             if self.check_collision(self.ball.ballImage, brick):
                 self.ball.ball_vel_y *= -1
+                self.ball.ball_sound.play()  # play the sound of ball hitting the brick
                 brick.pos = 1000, 1000
                 bricks_to_remove.append(brick)
                 self.bricks.no_of_bricks -= 1
