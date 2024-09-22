@@ -27,7 +27,7 @@ class BrickBreakerGame(Widget):
         self.add_widget(self.background)
 
         # add background sound
-        self.background_sound = SoundLoader.load('assets/audio/carnival-game-theme-loop.wav')
+        self.background_sound = SoundLoader.load('assets/audio/game-music-001.wav')
         self.background_sound.loop = True
         self.background_sound.play()
 
@@ -124,6 +124,7 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
         self.game_over.drawImage()
+        self.background_sound.stop()
 
     def win_game(self):
         self.game_over_flag = True
