@@ -1,4 +1,5 @@
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivy.uix.image import Image
@@ -24,6 +25,11 @@ class BrickBreakerGame(Widget):
         self.background.size = 800, 600
         self.background.pos = 0, 0
         self.add_widget(self.background)
+
+        # add background sound
+        self.background_sound = SoundLoader.load('assets/audio/carnival-game-theme-loop.wav')
+        self.background_sound.loop = True
+        self.background_sound.play()
 
         # add ball
         self.ball = Ball()
