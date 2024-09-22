@@ -30,3 +30,10 @@ class Ball(Widget):
     def move_ball(self):
         self.ball_x += self.ball_vel_x
         self.ball_y += self.ball_vel_y
+
+    # speed up the ball after 30 seconds
+    def speed_up_ball(self, dt):
+        self.ball_vel_x *= 1.1
+        self.ball_vel_y *= 1.1
+
+

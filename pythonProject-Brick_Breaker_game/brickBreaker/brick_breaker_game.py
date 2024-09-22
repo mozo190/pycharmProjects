@@ -49,11 +49,13 @@ class BrickBreakerGame(Widget):
 
         self.game_win = GameWin()
         self.add_widget(self.game_win)
+        self.background_sound.stop()
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Clock.schedule_once(self.ball.speed_up_ball, 30)
 
     def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
         if key == 276:  # left arrow key
