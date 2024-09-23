@@ -165,3 +165,4 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
         self.game_win.drawImage()
+        self.background_sound.stop()
