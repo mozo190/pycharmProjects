@@ -4,8 +4,8 @@ from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
-from plyer import accelerometer
 from kivy.utils import platform
+from plyer import accelerometer
 
 from .ball import Ball
 from .bat import Bat

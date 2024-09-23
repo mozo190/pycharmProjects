@@ -36,5 +36,3 @@ class Ball(Widget):
     def speed_up_ball(self, dt):
         self.ball_vel_x *= 1.1
         self.ball_vel_y *= 1.1
-
-
