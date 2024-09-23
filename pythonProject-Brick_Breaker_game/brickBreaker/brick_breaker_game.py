@@ -60,6 +60,7 @@ class BrickBreakerGame(Widget):
 
         # add accelerometer and enable
         accelerometer.enable()
+        Clock.schedule_interval(self.update_accel, 1.0 / 30.0)
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Clock.schedule_once(self.ball.speed_up_ball, 30)
