@@ -22,7 +22,6 @@ class BrickBreakerGame(Widget):
 
         # add background image
         self.background = Image(source='assets/img/bk.bmp')
-        # self.background.size_hint = (None, None)
         self.background.allow_stretch = True
         self.background.keep_ratio = False
         self.background.size = 800, 600
@@ -52,7 +51,6 @@ class BrickBreakerGame(Widget):
 
         self.game_win = GameWin()
         self.add_widget(self.game_win)
-        # self.background_sound.stop()
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
