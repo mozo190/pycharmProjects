@@ -5,6 +5,7 @@ from kivy.properties import BooleanProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from plyer import accelerometer
+from kivy.utils import platform
 
 from .ball import Ball
 from .bat import Bat
@@ -21,6 +22,7 @@ class BrickBreakerGame(Widget):
 
         # add background image
         self.background = Image(source='assets/img/bk.bmp')
+        # self.background.size_hint = (None, None)
         self.background.allow_stretch = True
         self.background.keep_ratio = False
         self.background.size = 800, 600
@@ -50,7 +52,7 @@ class BrickBreakerGame(Widget):
 
         self.game_win = GameWin()
         self.add_widget(self.game_win)
-        self.background_sound.stop()
+        # self.background_sound.stop()
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
@@ -58,9 +60,11 @@ class BrickBreakerGame(Widget):
         # add touch events
         Window.bind(on_touch_down=self.on_touch_down)
 
-        # add accelerometer and enable
-        accelerometer.enable()
-        Clock.schedule_interval(self.update_accel, 1.0 / 30.0)
+        # add accelerometer and enable only on android
+        if platform == 'android':
+            accelerometer.enable()
+            Clock.schedule_interval(self.update_accel, 1.0 / 30.0)
+
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Clock.schedule_once(self.ball.speed_up_ball, 30)
@@ -153,6 +157,8 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_y = 0
         self.game_over.drawImage()
         self.background_sound.stop()
+        if platform == 'android':
+            accelerometer.disable()
 
     def win_game(self):
         self.game_over_flag = True
