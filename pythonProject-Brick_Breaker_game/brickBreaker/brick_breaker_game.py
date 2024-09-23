@@ -4,6 +4,7 @@ from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
+from plyer import accelerometer
 
 from .ball import Ball
 from .bat import Bat
@@ -53,6 +54,12 @@ class BrickBreakerGame(Widget):
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
+
+        # add touch events
+        Window.bind(on_touch_down=self.on_touch_down)
+
+        # add accelerometer and enable
+        accelerometer.enable()
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Clock.schedule_once(self.ball.speed_up_ball, 30)
