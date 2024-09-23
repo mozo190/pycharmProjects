@@ -20,6 +20,7 @@ class Ball(Widget):
 
         # add sound to ball
         self.ball_sound = SoundLoader.load('assets/audio/ball-bouncing.wav')
+        self.ball_sound.volume = 0.5
 
         self.bind(ball_x=self.update_position, ball_y=self.update_position)
         self.update_position()
