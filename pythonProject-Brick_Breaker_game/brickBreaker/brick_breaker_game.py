@@ -80,6 +80,12 @@ class BrickBreakerGame(Widget):
         else:
             self.bat.move_right()
 
+    def update_accel(self, dt):
+        accel = accelerometer.acceleration
+        if accel:
+            x, y, z = accel
+            self.update_bat_position(x)
+
     def update(self, dt):
         if self.game_over_flag:
             return  # do not update the game if it is over
