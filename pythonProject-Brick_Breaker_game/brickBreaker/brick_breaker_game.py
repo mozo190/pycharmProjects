@@ -74,6 +74,12 @@ class BrickBreakerGame(Widget):
     def on_key_up(self, window, key, *args):
         pass
 
+    def on_touch_down(self, touch):
+        if touch.x < self.width / 2:
+            self.bat.move_left()
+        else:
+            self.bat.move_right()
+
     def update(self, dt):
         if self.game_over_flag:
             return  # do not update the game if it is over
