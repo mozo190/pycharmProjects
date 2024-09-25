@@ -53,8 +53,8 @@ class BrickBreakerGame(Widget):
         self.game_win = GameWin()
         self.add_widget(self.game_win)
 
-        self.current_level = 0 # initialize the current level to 0
-        self.trophy_manager = TrophyManager(num_trophies=5, widget=self) # create a trophy manager
+        self.current_level = 0  # initialize the current level to 0
+        self.trophy_manager = TrophyManager(num_trophies=5, widget=self)  # create a trophy manager
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
@@ -166,5 +166,7 @@ class BrickBreakerGame(Widget):
         self.game_over_flag = True
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
+        self.trophy_manager.update_trophies(self.current_level)  # update the trophy
+        self.current_level += 1  # increment the current level
         self.game_win.drawImage()
         self.background_sound.stop()
