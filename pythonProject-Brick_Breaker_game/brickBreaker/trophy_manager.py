@@ -13,7 +13,7 @@ class TrophyManager:
             trophy = Image(source='assets/img/Golden-champion-cup-black-white.png')
             trophy.size = 50, 50
             trophy.pos = 10 + i * 50, self.widget.height - 50
-            self.widget.append(trophy)
+            self.trophies.append(trophy)
             self.widget.add_widget(trophy)
 
     def update_trophies(self, level):
