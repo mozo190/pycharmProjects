@@ -55,6 +55,7 @@ class BrickBreakerGame(Widget):
 
         self.current_level = 0  # initialize the current level to 0
         self.trophy_manager = TrophyManager(num_trophies=5, widget=self)  # create a trophy manager
+        self.initialize_level()
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
@@ -70,6 +71,21 @@ class BrickBreakerGame(Widget):
         # schedule the update function
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Clock.schedule_once(self.ball.speed_up_ball, 30)
+
+    def initialize_level(self):
+        # initialize the level
+        level_data = [
+            {'rows': 3, 'cols': 7},
+            {'rows': 4, 'cols': 8},
+            {'rows': 5, 'cols': 9},
+            {'rows': 6, 'cols': 10},
+            {'rows': 7, 'cols': 11}
+        ]
+        if self.current_level < len(level_data):
+            rows, cols = level_data[self.current_level]
+            self.bricks.initialize_bricks(rows, cols)
+        else:
+            self.game_win.drawImage()
 
     def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
         if key == 276:  # left arrow key
