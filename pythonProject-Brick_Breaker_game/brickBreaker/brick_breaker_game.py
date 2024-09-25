@@ -12,6 +12,7 @@ from .bat import Bat
 from .brick import Brick
 from .game_over import GameOver
 from .game_win import GameWin
+from .trophy_manager import TrophyManager
 
 
 class BrickBreakerGame(Widget):
@@ -51,6 +52,9 @@ class BrickBreakerGame(Widget):
 
         self.game_win = GameWin()
         self.add_widget(self.game_win)
+
+        self.current_level = 0 # initialize the current level to 0
+        self.trophy_manager = TrophyManager(num_trophies=5, widget=self) # create a trophy manager
 
         Window.bind(on_key_down=self.on_key_down)
         Window.bind(on_key_up=self.on_key_up)
