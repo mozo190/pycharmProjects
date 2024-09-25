@@ -45,7 +45,7 @@ class BrickBreakerGame(Widget):
         # add bricks
         self.bricks = Brick()
         self.add_widget(self.bricks)
-        self.bricks.initialize_bricks()
+        self.bricks.initialize_bricks(3, 7)
 
         self.game_over = GameOver()
         self.add_widget(self.game_over)
@@ -75,11 +75,11 @@ class BrickBreakerGame(Widget):
     def initialize_level(self):
         # initialize the level
         level_data = [
-            {'rows': 3, 'cols': 7},
-            {'rows': 4, 'cols': 8},
-            {'rows': 5, 'cols': 9},
-            {'rows': 6, 'cols': 10},
-            {'rows': 7, 'cols': 11}
+            (3, 7),
+            (4, 8),
+            (5, 9),
+            (6, 10),
+            (7, 11)
         ]
         if self.current_level < len(level_data):
             rows, cols = level_data[self.current_level]
