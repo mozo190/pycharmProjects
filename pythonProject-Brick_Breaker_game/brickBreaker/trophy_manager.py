@@ -10,9 +10,9 @@ class TrophyManager:
 
     def initialize_trophies(self):
         for i in range(self.num_trophies):
-            trophy = Image(source='assets/img/Golden-champion-cup-black-white.png')
+            trophy = Image(source='assets/img/trophy_bl_w.png')
             trophy.size = 50, 50
-            trophy.pos = 10 + i * 50, self.widget.height - 50
+            trophy.pos = 1 + i * 50, 600 - 55
             self.trophies.append(trophy)
             self.widget.add_widget(trophy)
 
@@ -21,8 +21,8 @@ class TrophyManager:
             # remove the old trophy
             self.widget.remove_widget(self.trophies[level])
             # create and add the new trophy
-            trophy = Image(source='assets/img/Golden-champion-cup.png')
+            trophy = Image(source='assets/img/trophy.png')
             trophy.size = 50, 50
-            trophy.pos = 10 + level * 50, self.widget.height - 50
+            trophy.pos = 1 + level * 50, self.widget.height - 55
             self.trophies[level] = trophy
             self.widget.add_widget(trophy)
