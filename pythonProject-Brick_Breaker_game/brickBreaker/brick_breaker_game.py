@@ -45,7 +45,6 @@ class BrickBreakerGame(Widget):
         # add bricks
         self.bricks = Brick()
         self.add_widget(self.bricks)
-        self.bricks.initialize_bricks(3, 7)
 
         self.game_over = GameOver()
         self.add_widget(self.game_over)
