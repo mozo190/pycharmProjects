@@ -71,20 +71,20 @@ class BrickBreakerGame(Widget):
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Clock.schedule_once(self.ball.speed_up_ball, 30)
 
-    def initialize_level(self):
-        # initialize the level
-        level_data = [
-            (3, 7),
-            (4, 8),
-            (5, 9),
-            (6, 10),
-            (7, 11)
-        ]
-        if self.current_level < len(level_data):
-            rows, cols = level_data[self.current_level]
-            self.bricks.initialize_bricks(rows, cols)
-        else:
-            self.game_win.drawImage()
+    # def initialize_level(self):
+    #     # initialize the level
+    #     level_data = [
+    #         (3, 7),
+    #         (4, 8),
+    #         (5, 9),
+    #         (6, 10),
+    #         (7, 11)
+    #     ]
+    #     if self.current_level < len(level_data):
+    #         rows, cols = level_data[self.current_level]
+    #         self.bricks.initialize_bricks(rows, cols)
+    #     else:
+    #         self.game_win.drawImage()
 
     def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
         if key == 276:  # left arrow key
@@ -183,8 +183,19 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_y = 0
         self.trophy_manager.update_trophies(self.current_level)  # update the trophy
         self.current_level += 1  # increment the current level
-        if self.current_level < 5:
-            self.bricks.initialize_bricks()  # initialize the bricks for the next level
+
+        level_data = [
+            (3, 7),
+            (4, 8),
+            (5, 9),
+            (6, 10),
+            (7, 11)
+        ]
+
+        if self.current_level < len(level_data):
+            rows, cols = level_data[self.current_level]
+            self.bricks.initialize_bricks(rows, cols)  # initialize the bricks for the next level
+
         else:
             self.game_win.drawImage()
         self.background_sound.stop()

@@ -23,6 +23,6 @@ class TrophyManager:
             # create and add the new trophy
             trophy = Image(source='assets/img/trophy.png')
             trophy.size = 50, 50
-            trophy.pos = 1 + level * 50, self.widget.height - 55
+            trophy.pos = 1 + level * 50, 600 - 55
             self.trophies[level] = trophy
             self.widget.add_widget(trophy)

@@ -11,7 +11,7 @@ class Brick(Widget):
         self.brick_list = []
 
     def initialize_bricks(self, rows, cols):
-        screen_width = self.width  # Window width dynamically
+        screen_width = 800  # Window width dynamically
         total_bricks_width = cols * self.brick_w  # in one line all bricks width
         total_spacing = screen_width - total_bricks_width  # space between bricks
         spacing = total_spacing / (cols + 1)
@@ -19,7 +19,7 @@ class Brick(Widget):
         for row in range(rows):
             for col in range(cols):
                 x_pos = spacing + col * (self.brick_w + spacing)  # 50 is the starting x position
-                y_pos = 450 - row * (self.brick_h + 10)  # 450 is the starting y position
+                y_pos = 550 - row * (self.brick_h + 10)  # 450 is the starting y position
                 brick = Image(source='assets/img/brick.bmp')
                 brick.size = self.brick_w, self.brick_h
                 brick.pos = x_pos, y_pos
