@@ -178,7 +178,7 @@ class BrickBreakerGame(Widget):
             accelerometer.disable()
 
     def win_game(self):
-        self.game_over_flag = True
+
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
         self.trophy_manager.update_trophies(self.current_level)  # update the trophy
@@ -198,4 +198,5 @@ class BrickBreakerGame(Widget):
 
         else:
             self.game_win.drawImage()
+            self.game_over_flag = True
         self.background_sound.stop()
