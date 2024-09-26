@@ -195,7 +195,7 @@ class BrickBreakerGame(Widget):
         if self.current_level < len(level_data):
             rows, cols = level_data[self.current_level]
             self.bricks.initialize_bricks(rows, cols)  # initialize the bricks for the next level
-
+            self.ball.update_position()  # reset the ball
         else:
             self.game_win.drawImage()
             self.game_over_flag = True
