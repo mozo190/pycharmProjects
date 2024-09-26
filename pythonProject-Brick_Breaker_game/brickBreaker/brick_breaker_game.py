@@ -199,8 +199,8 @@ class BrickBreakerGame(Widget):
             # ball reposition
             self.ball.ball_x = self.width / 2
             self.ball.ball_y = self.height / 2
-            self.ball.ball_vel_x = 2  # reset the ball velocity
-            self.ball.ball_vel_y = 2
+            self.ball.ball_vel_x = 4  # reset the ball velocity
+            self.ball.ball_vel_y = 4
             self.ball.update_position()  # reset the ball
         else:
             self.game_win.drawImage()
