@@ -8,4 +8,4 @@ class PlayButton(Button):
         self.background_down = 'assets/img/button_press.png'
         self.size_hint = None, None
         self.size = 200, 100
-        self.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+        self.pos = 300, 200

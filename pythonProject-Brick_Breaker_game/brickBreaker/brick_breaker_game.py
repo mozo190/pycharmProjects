@@ -88,10 +88,11 @@ class BrickBreakerGame(Widget):
         pass
 
     def on_touch_down(self, touch, *args):
-        if touch.x < self.width / 2:
-            self.bat.move_left()
-        else:
-            self.bat.move_right()
+        if hasattr(touch, 'x') and hasattr(touch, 'y'):
+            if touch.x < self.width / 2:
+                self.bat.move_left()
+            else:
+                self.bat.move_right()
 
     def update_accel(self, dt):
         accel = accelerometer.acceleration
