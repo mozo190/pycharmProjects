@@ -25,3 +25,4 @@ class Background(Widget):
 
     def play_music(self):
         self.background_sound.play()
+

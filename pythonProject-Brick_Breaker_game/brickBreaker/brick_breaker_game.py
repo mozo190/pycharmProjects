@@ -80,22 +80,25 @@ class BrickBreakerGame(Widget):
             self.game_win.drawImage()
 
     def on_key_down(self, window, key, scancode, codepoint, modifier, *args):
-        if key == 276:  # left arrow key
+        if key == 27:  # escape key
+            self.pause_game()
+        elif key == 276:  # left arrow key
             self.bat.move_left()
         elif key == 275:  # right arrow key
             self.bat.move_right()
-        elif key == 27:  # escape key
-            self.pause_game()  # pause the game
+        elif key == 32:
+            if self.is_paused:
+                self.resume_game()  # resume the game when the space key is pressed
+            else:
+                self.pause_game()  # pause the game when the space key is pressed
 
     def pause_game(self):
-        if self.is_paused:
-            self.is_paused = False
-            Clock.unschedule(self.update)
-            self.background.stop_music()
-        else:
-            self.is_paused = True
-            Clock.schedule_interval(self.update, 1.0 / 60.0)
-            self.background.play_music()
+        self.is_paused = True  # set the pause flag to True
+        self.background.stop_music()  # stop the background music
+
+    def resume_game(self):
+        self.is_paused = False
+        self.background.play_music()
 
     def on_key_up(self, window, key, *args):
         pass
