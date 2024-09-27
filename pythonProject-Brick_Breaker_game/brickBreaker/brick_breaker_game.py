@@ -1,8 +1,6 @@
 from kivy.clock import Clock
-from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
-from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from kivy.utils import platform
 from plyer import accelerometer
@@ -13,6 +11,7 @@ from .bat import Bat
 from .brick import Brick
 from .game_over import GameOver
 from .game_win import GameWin
+from .play_button import PlayButton
 from .trophy_manager import TrophyManager
 
 
@@ -23,6 +22,7 @@ class BrickBreakerGame(Widget):
         super(BrickBreakerGame, self).__init__(**kwargs)
 
         # add background image
+        self.play_button = None
         self.background = Background()
         self.add_widget(self.background)
 
@@ -200,3 +200,21 @@ class BrickBreakerGame(Widget):
         self.background.stop_music()
         if not self.game_over_flag:
             self.background.play_music()
+
+    def add_play_button(self):
+        self.play_button = PlayButton()  # create a play button
+        self.play_button.bind(on_press=self.restart_game)  # bind the start_game function to the play button
+        self.add_widget(self.play_button)  # add the play button to the screen
+
+    def restart_game(self):
+        self.remove_widget(self.play_button)  # remove the play button
+        self.game_over_flag = False  # reset the game over flag
+        self.ball.update_position()  # reset the ball position
+        self.bat.update_position()  # reset the bat position
+        self.bricks.initialize_bricks(3, 7)  # initialize the bricks for the first level
+        self.ball.ball_vel_x = 2  # reset the ball velocity
+        self.ball.ball_vel_y = 2  # reset the ball velocity
+        self.background.play_music()  # play the background music
+        if platform == 'android':
+            accelerometer.enable()
+            Clock.schedule_interval(self.update_accel, 1.0 / 30.0)
