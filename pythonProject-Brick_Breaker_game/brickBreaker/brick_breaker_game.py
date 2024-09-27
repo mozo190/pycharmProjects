@@ -17,6 +17,7 @@ from .trophy_manager import TrophyManager
 
 class BrickBreakerGame(Widget):
     game_over_flag = BooleanProperty(False)
+    is_paused = BooleanProperty(False)  # initialize the pause flag to False
 
     def __init__(self, **kwargs):
         super(BrickBreakerGame, self).__init__(**kwargs)
