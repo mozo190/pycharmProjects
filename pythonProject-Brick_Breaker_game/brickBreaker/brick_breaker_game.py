@@ -215,7 +215,7 @@ class BrickBreakerGame(Widget):
             self.background.play_music()
 
     def add_play_button(self):
-        self.play_button = PlayButton()  # create a play button
+        self.play_button = PlayButton(self)  # create a play button
         self.play_button.bind(on_press=self.restart_game)  # bind the start_game function to the play button
         self.add_widget(self.play_button)  # add the play button to the screen
 

@@ -4,8 +4,9 @@ from kivy.uix.image import Image
 
 
 class PlayButton(ButtonBehavior, Image):
-    def __init__(self, **kwargs):
+    def __init__(self, game, **kwargs):
         super(PlayButton, self).__init__(**kwargs)
+        self.game = game
         self.source = 'assets/img/play-button-icon-small.png'
         # self.background_down = 'assets/img/button_press.png'
         self.size_hint = None, None
@@ -17,4 +18,4 @@ class PlayButton(ButtonBehavior, Image):
         self.bind(on_press=self.on_press)
 
     def on_press(self):
-        self.parent.restart_game()
+        self.game.restart_game()
