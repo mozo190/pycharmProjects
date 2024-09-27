@@ -19,3 +19,9 @@ class Background(Widget):
         self.background_sound = SoundLoader.load('assets/audio/game-music-001.wav')
         self.background_sound.loop = True
         self.background_sound.play()
+
+    def stop_music(self):
+        self.background_sound.stop()
+
+    def play_music(self):
+        self.background_sound.play()
