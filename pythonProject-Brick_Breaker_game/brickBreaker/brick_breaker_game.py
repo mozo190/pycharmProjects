@@ -7,6 +7,7 @@ from kivy.uix.widget import Widget
 from kivy.utils import platform
 from plyer import accelerometer
 
+from .background import Background
 from .ball import Ball
 from .bat import Bat
 from .brick import Brick
@@ -22,7 +23,8 @@ class BrickBreakerGame(Widget):
         super(BrickBreakerGame, self).__init__(**kwargs)
 
         # add background image
-
+        self.background = Background()
+        self.add_widget(self.background)
 
         # add ball
         self.ball = Ball()
@@ -163,7 +165,7 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_x = 0
         self.ball.ball_vel_y = 0
         self.game_over.drawImage()
-        self.background_sound.stop()
+        self.background.stop_music()
         if platform == 'android':
             accelerometer.disable()
 
@@ -195,6 +197,6 @@ class BrickBreakerGame(Widget):
         else:
             self.game_win.drawImage()
             self.game_over_flag = True
-        self.background_sound.stop()
+        self.background.stop_music()
         if not self.game_over_flag:
-            self.background_sound.play()
+            self.background.play_music()
