@@ -22,17 +22,7 @@ class BrickBreakerGame(Widget):
         super(BrickBreakerGame, self).__init__(**kwargs)
 
         # add background image
-        self.background = Image(source='assets/img/bk.bmp')
-        self.background.allow_stretch = True
-        self.background.keep_ratio = False
-        self.background.size = 800, 600
-        self.background.pos = 0, 0
-        self.add_widget(self.background)
 
-        # add background sound
-        self.background_sound = SoundLoader.load('assets/audio/game-music-001.wav')
-        self.background_sound.loop = True
-        self.background_sound.play()
 
         # add ball
         self.ball = Ball()
