@@ -212,7 +212,7 @@ class BrickBreakerGame(Widget):
         self.play_button.bind(on_press=self.restart_game)  # bind the start_game function to the play button
         self.add_widget(self.play_button)  # add the play button to the screen
 
-    def restart_game(self):
+    def restart_game(self, instance):
         self.remove_widget(self.play_button)  # remove the play button
         self.game_over_flag = False  # reset the game over flag
         self.ball.update_position()  # reset the ball position

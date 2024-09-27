@@ -16,3 +16,10 @@ class PlayButton(Button):
 
     def on_press(self):
         print("Play button pressed!")
+
+    # override the on_touch_down method
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            super(PlayButton, self).on_touch_down(touch)
+            return True  # if the touch is on the button, return True
+        return False  # if the touch is not on the button, return False
