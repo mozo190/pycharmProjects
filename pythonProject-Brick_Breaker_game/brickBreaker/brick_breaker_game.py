@@ -84,6 +84,8 @@ class BrickBreakerGame(Widget):
             self.bat.move_left()
         elif key == 275:  # right arrow key
             self.bat.move_right()
+        elif key == 27:  # escape key
+            self.pause_game()  # pause the game
 
     def on_key_up(self, window, key, *args):
         pass
