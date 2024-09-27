@@ -87,6 +87,16 @@ class BrickBreakerGame(Widget):
         elif key == 27:  # escape key
             self.pause_game()  # pause the game
 
+    def pause_game(self):
+        if self.is_paused:
+            self.is_paused = False
+            Clock.unschedule(self.update)
+            self.background.stop_music()
+        else:
+            self.is_paused = True
+            Clock.schedule_interval(self.update, 1.0 / 60.0)
+            self.background.play_music()
+
     def on_key_up(self, window, key, *args):
         pass
 
@@ -117,6 +127,8 @@ class BrickBreakerGame(Widget):
             self.bat.move_right()
 
     def update(self, dt):
+        if self.is_paused:
+            return
         if self.game_over_flag:
             return  # do not update the game if it is over
 
