@@ -166,6 +166,7 @@ class BrickBreakerGame(Widget):
         self.ball.ball_vel_y = 0
         self.game_over.drawImage()
         self.background.stop_music()
+        self.add_play_button()
         if platform == 'android':
             accelerometer.disable()
 
@@ -198,6 +199,10 @@ class BrickBreakerGame(Widget):
             self.game_win.drawImage()
             self.game_over_flag = True
         self.background.stop_music()
+        self.add_play_button()
+        if platform == 'android':
+            accelerometer.disable()
+
         if not self.game_over_flag:
             self.background.play_music()
 
