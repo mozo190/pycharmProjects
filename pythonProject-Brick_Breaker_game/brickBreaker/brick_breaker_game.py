@@ -221,6 +221,7 @@ class BrickBreakerGame(Widget):
 
     def restart_game(self):
         self.remove_widget(self.play_button)  # remove the play button
+        self.remove_widget(self.game_over)  # remove the game over image
         self.game_over_flag = False  # reset the game over flag
         self.ball.update_position()  # reset the ball position
         self.bat.update_position()  # reset the bat position
