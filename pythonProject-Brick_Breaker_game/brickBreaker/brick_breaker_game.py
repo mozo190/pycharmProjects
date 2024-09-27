@@ -93,6 +93,13 @@ class BrickBreakerGame(Widget):
                 self.bat.move_left()
             else:
                 self.bat.move_right()
+        return True
+
+    def on_touch_move(self, touch):
+        # continue to move the bat as long as the touch is on the bat
+        if hasattr(touch, 'x') and hasattr(touch, 'y'):
+            self.bat.center_x = touch.x  # move the bat to the touch x position
+        return True
 
     def update_accel(self, dt):
         accel = accelerometer.acceleration

@@ -28,3 +28,14 @@ class Bat(Widget):
     # move the bat to the right
     def move_right(self):
         self.bat_x += 20
+
+    def on_touch_move(self, touch):
+        if not self.collide_point(*touch.pos):
+            return False # if the touch is not on the bat, ignore it
+        self.bat_x = touch.x - self.WIDTH / 2
+        # Ensure the bat does not go off the screen
+        if self.bat_x < 0:
+            self.bat_x = 0
+        elif self.bat_x > 800 - self.WIDTH:
+            self.bat_x = 800 - self.WIDTH
+        return True
