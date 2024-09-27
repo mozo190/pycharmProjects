@@ -31,7 +31,7 @@ class Bat(Widget):
 
     def on_touch_move(self, touch):
         if not self.collide_point(*touch.pos):
-            return False # if the touch is not on the bat, ignore it
+            return False  # if the touch is not on the bat, ignore it
         self.bat_x = touch.x - self.WIDTH / 2
         # Ensure the bat does not go off the screen
         if self.bat_x < 0:

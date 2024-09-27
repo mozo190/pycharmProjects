@@ -163,10 +163,7 @@ class BrickBreakerGame(Widget):
             self.win_game()
 
     def check_collision(self, ball, bat):
-        return (ball.x < bat.right and
-                ball.right > bat.x and
-                ball.y < bat.top and
-                ball.top > bat.y)
+        return ball.collide_widget(bat)
 
     def end_game(self):
         self.game_over_flag = True
