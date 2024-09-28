@@ -66,7 +66,7 @@ class SnakeGame(Widget):
             self.snake.snake[i].pos = prev_position[i - 1]
 
         # check if snake eats the food
-        if self.check_collision(self.snake.snake, self.food.food):
+        if self.check_collision(self.snake.snake[0], self.food.food):
             print("Eating the food")
             self.grow_snake(prev_position[-1])
             self.spawn_food()
@@ -86,10 +86,4 @@ class SnakeGame(Widget):
         food_y = random.randint(0, (SCREEN_HEIGHT - 30)//20)*20
         self.food.food.pos = food_x, food_y
 
-
-
-        # check if snake is out of the screen
-        if x < 0 or x > SCREEN_WIDTH - 30 or y < 0 or y > SCREEN_HEIGHT - 30:
-
-            pass
 
