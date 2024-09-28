@@ -34,14 +34,15 @@ class SnakeGame(Widget):
         Window.bind(on_key_down=self.on_key_down)
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
-        if key == 273:
+        if key == 82:
             self.direction = 'up'
-        elif key == 274:
+        elif key == 81:
             self.direction = 'down'
-        elif key == 275:
+        elif key == 79:
             self.direction = 'right'
-        elif key == 276:
+        elif key == 80:
             self.direction = 'left'
+        print(f"key pressed: {key}")
 
     def update(self, dt):
         if self.direction == 'up':
