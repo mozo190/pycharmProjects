@@ -58,6 +58,7 @@ class HelicopterGame(Widget):
                 if self.check_collision(obstacle):
                     self.restart_game()
 
+
     def check_collision(self, obstacle):
         # check if the player has collided with the top part of the obstacle
         if (self.player.x < obstacle.x + obstacle.width and
@@ -80,6 +81,10 @@ class HelicopterGame(Widget):
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
         self.obstacles.clear()
+        #remove game over label if it exists
+        if self.game_over_label:
+            self.remove_widget(self.game_over_label)
+            self.game_over_label = None
         # reset game state
         self.game_started = False
         # add title and instructions
