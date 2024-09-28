@@ -18,5 +18,3 @@ class Helicopter(Widget):
             self.rect = Rectangle(texture=self.actor_image)
             self.rect.pos = (self.x, self.y)
             self.rect.size = (self.width, self.height)
-
-
