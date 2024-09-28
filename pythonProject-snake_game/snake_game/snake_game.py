@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.uix.widget import Widget
@@ -26,17 +27,38 @@ class SnakeGame(Widget):
         self.food = Food()
         self.add_widget(self.food)
 
+        #initial direction of the snake
+        self.direction = 'right'
+
+        #creating clock event to move the snake
+        Clock.schedule_interval(self.update, 1.0 / 10.0)
+
         Window.bind(on_key_down=self.on_key_down)
 
     def on_key_down(self, instance, keyboard, keycode, text, modifiers):
         if keycode == 273:  # up
-            self.snake.move_up()
+            self.direction = 'up'
         elif keycode == 274:  # down
-            self.snake.move_down()
+            self.direction = 'down'
         elif keycode == 275:  # right
-            self.snake.move_right()
-        elif keycode == 276:  # left key
-            self.snake.move_left()
+            self.direction = 'right'
+        elif keycode == 276:  # left arrow key
+            self.direction = 'left'
         else:
             pass
         return True
+
+    def update(self, dt):
+        x, y = self.snake.pos
+        if self.direction == 'up':
+            y += 20
+        elif self.direction == 'down':
+            y -= 20
+        elif self.direction == 'right':
+            x += 20
+        elif self.direction == 'left':
+            x -= 20
+        self.snake.move(self.direction)
+        self.snake.check_collision(self.food)
+        self.snake.check_boundaries()
+        self.snake.check_self_collision()
