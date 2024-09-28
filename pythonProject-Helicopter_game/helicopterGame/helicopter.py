@@ -2,7 +2,7 @@ from kivy.core.image import Image as CoreImage
 from kivy.graphics import Rectangle
 from kivy.uix.widget import Widget
 
-from config import screenWidth, screenHeight
+from helicopterGame.config import screenWidth, screenHeight
 
 
 class Helicopter(Widget):
@@ -13,11 +13,10 @@ class Helicopter(Widget):
         self.x = screenWidth / 2 - self.width / 2
         self.y = screenHeight / 2 - self.height / 2
 
-        self.actor_image = CoreImage('assets/img/actor.gif').texture
+        self.actor_image = CoreImage('assets/img/yellow-cartoon-helicopter.png').texture
         with self.canvas:
             self.rect = Rectangle(texture=self.actor_image)
             self.rect.pos = (self.x, self.y)
             self.rect.size = (self.width, self.height)
 
-    def on_pos(self, *args):
-        self.rect.pos = self.pos
+
