@@ -33,26 +33,24 @@ class SnakeGame(Widget):
 
         Window.bind(on_key_down=self.on_key_down)
 
-    def on_key_down(self, window, keyboard, key, text, modifiers):
-        if key == 273:  # up
+    def on_key_down(self, instance, keyboard, key, text, modifiers):
+        if key == 273:
             self.direction = 'up'
-        elif key == 274:  # down
+        elif key == 274:
             self.direction = 'down'
-        elif key == 275:  # right
+        elif key == 275:
             self.direction = 'right'
-        elif key == 276:  # left arrow key
+        elif key == 276:
             self.direction = 'left'
-        return True
 
     def update(self, dt):
-        # get current position of the snake's head
-        x, y = self.snake.snake.pos
         if self.direction == 'up':
-            y += 10
+            self.snake.snake.pos[1] += 10
         elif self.direction == 'down':
-            y -= 10
+            self.snake.snake.pos[1] -= 10
         elif self.direction == 'right':
-            x += 10
+            self.snake.snake.pos[0] += 10
         elif self.direction == 'left':
-            x -= 10
-        self.snake.snake.pos = x, y
+            self.snake.snake.pos[0] -= 10
+
+        # check if snake is out of the screen
