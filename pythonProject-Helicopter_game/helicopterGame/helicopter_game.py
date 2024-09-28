@@ -40,7 +40,7 @@ class HelicopterGame(Widget):
             self.player.move_helicopter()  # move the helicopter
 
             # generate obstacles
-            if random.random() < 0.01:
+            if random.random() < 0.02:
                 obstacle_gap = random.randint(self.min_gap, self.height - self.min_gap)
                 obstacle = Obstacle(gap=obstacle_gap)
                 self.add_widget(obstacle)
