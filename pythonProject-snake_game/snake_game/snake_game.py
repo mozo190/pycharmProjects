@@ -4,6 +4,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.uix.image import Image
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
@@ -24,8 +25,6 @@ class SnakeGame(Widget):
         self.game_over = False
         self.init_game()
 
-        # initial direction of the snake
-        self.direction = 'right'
 
         # creating clock event to move the snake
         Clock.schedule_interval(self.update, 1.0 / 10.0)
@@ -40,6 +39,17 @@ class SnakeGame(Widget):
         # add food
         self.food = Food()
         self.add_widget(self.food)
+
+        # initial direction of the snake
+        self.direction = 'right'
+
+        self.spawn_food()
+
+        #game over message
+        self.game_over_label = Label(text="Game Over: Press Space Play Again", size=(SCREEN_WIDTH, 40),
+                                     pos=(SCREEN_WIDTH//2-300, SCREEN_HEIGHT//2), font_size=30)
+
+        self.game_over_label.opacity = 0
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
         if key == 82:
@@ -62,6 +72,12 @@ class SnakeGame(Widget):
             x += 10
         elif self.direction == 'left':
             x -= 10
+
+        # check if snake hits the wall
+        if x < 0 or x > SCREEN_WIDTH or y < 0 or y > SCREEN_HEIGHT:
+            self.game_over = True
+            self.game_over_label.opacity = 1
+            return
 
         prev_position = [(segment.pos[0], segment.pos[1]) for segment in
                          self.snake.snake]  # save the previous position of the snake
