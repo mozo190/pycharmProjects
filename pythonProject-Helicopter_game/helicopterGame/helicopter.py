@@ -4,7 +4,7 @@ from kivy.uix.widget import Widget
 
 from helicopterGame.config import screenWidth, screenHeight
 
-gravity = 0.5
+gravity = 0.05
 upward_movement = -1.8
 
 
