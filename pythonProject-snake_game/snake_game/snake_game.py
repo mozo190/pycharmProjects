@@ -1,5 +1,6 @@
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.graphics import Color, Rectangle
 from kivy.uix.widget import Widget
 
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
@@ -15,3 +16,7 @@ class SnakeGame(Widget):
         self.snake.start()
         self.add_widget(self.snake)
         Clock.schedule_interval(self.snake.move, 1.0 / 10.0)
+
+        with self.canvas:
+            Color(0, 1, 0, 1)  # add green color background
+            Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
