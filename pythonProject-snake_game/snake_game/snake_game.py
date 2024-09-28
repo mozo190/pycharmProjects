@@ -75,8 +75,7 @@ class SnakeGame(Widget):
 
         # check if snake hits the wall
         if x < 0 or x > SCREEN_WIDTH or y < 0 or y > SCREEN_HEIGHT:
-            self.game_over = True
-            self.game_over_label.opacity = 1
+            self.end_game()
             return
 
         prev_position = [(segment.pos[0], segment.pos[1]) for segment in
@@ -107,3 +106,8 @@ class SnakeGame(Widget):
         food_x = random.randint(0, (SCREEN_WIDTH - 30) // 20) * 20
         food_y = random.randint(0, (SCREEN_HEIGHT - 30) // 20) * 20
         self.food.food.pos = food_x, food_y
+
+    def end_game(self):
+        self.game_over = True
+        self.game_over_label.opacity = 1
+        Clock.unschedule(self.update)
