@@ -18,6 +18,7 @@ class Helicopter(Widget):
         self.y = screenHeight / 2 - self.height / 2
         self.dy = 0  # initial vertical speed
         self.helicopter_sound = SoundLoader.load('assets/audio/helicopter.wav')
+        self.helicopter_sound.loop = True
 
         self.actor_image = CoreImage('assets/img/yellow-cartoon-helicopter.png').texture
         with self.canvas:
@@ -28,7 +29,9 @@ class Helicopter(Widget):
     def move_helicopter(self):
         self.y -= self.dy  # move the helicopter up or down
         self.rect.pos = (self.x, self.y)
-        self.helicopter_sound.play()
+
+        if not self.helicopter_sound.state == 'play': # play the helicopter sound only if it is moving
+            self.helicopter_sound.play()
 
     def reset_position(self):
         self.x = screenWidth / 2 - self.width / 2
@@ -42,3 +45,7 @@ class Helicopter(Widget):
     def on_touch_down(self, touch):  # move the helicopter up when the screen is touched
         self.dy = upward_movement  # move the helicopter up
         self.helicopter_sound.play()  # play the helicopter sound
+
+    def stop_helicopter_sound(self):
+        if self.helicopter_sound.state == 'play': # stop the helicopter sound if it is playing
+            self.helicopter_sound.stop()
