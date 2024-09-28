@@ -22,7 +22,21 @@ class SnakeGame(Widget):
         self.add_widget(self.snake)
         # Clock.schedule_interval(self.snake.move, 1.0 / 10.0)
 
-        #add food
+        # add food
         self.food = Food()
         self.add_widget(self.food)
 
+        Window.bind(on_key_down=self.on_key_down)
+
+    def on_key_down(self, instance, keyboard, keycode, text, modifiers):
+        if keycode == 273:  # up
+            self.snake.move_up()
+        elif keycode == 274:  # down
+            self.snake.move_down()
+        elif keycode == 275:  # right
+            self.snake.move_right()
+        elif keycode == 276:  # left key
+            self.snake.move_left()
+        else:
+            pass
+        return True

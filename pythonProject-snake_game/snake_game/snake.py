@@ -9,3 +9,5 @@ class Snake(Widget):
         self.snake.pos = 100, 100
         self.snake.size = 30, 30
         self.add_widget(self.snake)
+
+    #initial direction of the snake
