@@ -19,7 +19,7 @@ class Helicopter(Widget):
         self.dy = 0  # initial vertical speed
         self.helicopter_sound = SoundLoader.load('assets/audio/helicopter.wav')
         self.helicopter_sound.loop = True
-        self.heli_crash_sound = SoundLoader.load('assets/audio/crash.wav')  # load the crash sound
+        self.heli_crash_sound = SoundLoader.load('assets/audio/helicrash.wav')  # load the crash sound
 
         self.actor_image = CoreImage('assets/img/yellow-cartoon-helicopter.png').texture
         with self.canvas:
