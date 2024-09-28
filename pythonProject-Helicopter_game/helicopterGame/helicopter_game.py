@@ -54,7 +54,7 @@ class HelicopterGame(Widget):
                     self.remove_widget(obstacle)
                     self.obstacles.remove(obstacle)
                 if self.check_collision(obstacle):
-                    self.game_over()
+                    self.restart_game()
 
     def check_collision(self, obstacle):
         # check if the player has collided with the top part of the obstacle
@@ -71,7 +71,16 @@ class HelicopterGame(Widget):
             return True
         return False
 
-    def game_over(self):
+    def restart_game(self):
+        # reset the player's position and speed
+        self.player.reset_position()
+        # remove all obstacles
+        for obstacle in self.obstacles:
+            self.remove_widget(obstacle)
+        self.obstacles.clear()
+        # reset game state
         self.game_started = False
-        self.clear_widgets()
-        self.add_widget(TitleLabel(text='Game Over', font_size=50, pos=(self.width / 2, self.height / 2)))
+        # add title and instructions
+        self.title = TitleLabel()
+        self.title.text = 'Game Over! Press Space to Restart'
+        self.add_widget(self.title)
