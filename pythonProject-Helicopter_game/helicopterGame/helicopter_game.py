@@ -62,4 +62,7 @@ class HelicopterGame(Widget):
                 return True
         return False
 
-
+    def game_over(self):
+        self.game_started = False
+        self.clear_widgets()
+        self.add_widget(TitleLabel(text='Game Over', font_size=50, pos=(self.width / 2, self.height / 2)))
