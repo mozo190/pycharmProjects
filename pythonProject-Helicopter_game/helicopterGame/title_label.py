@@ -16,3 +16,4 @@ class TitleLabel(Widget):
         self.instructions.font_size = '25sp'
         self.instructions.pos = screenWidth / 2 - self.instructions.width / 2, screenHeight / 2
         self.add_widget(self.instructions)
+

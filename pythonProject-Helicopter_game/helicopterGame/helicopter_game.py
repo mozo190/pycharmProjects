@@ -1,3 +1,4 @@
+from kivy.core.window import Window
 from kivy.uix.widget import Widget
 
 from helicopterGame.helicopter import Helicopter
@@ -14,3 +15,5 @@ class HelicopterGame(Widget):
         # add title and instructions to the game
         self.title = TitleLabel()
         self.add_widget(self.title)
+
+        Window.bind(on_key_down=self.key_down)
