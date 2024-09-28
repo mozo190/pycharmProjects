@@ -48,11 +48,11 @@ class SnakeGame(Widget):
         # get current position of the snake's head
         x, y = self.snake.snake.pos
         if self.direction == 'up':
-            y += 20
+            y += 10
         elif self.direction == 'down':
-            y -= 20
+            y -= 10
         elif self.direction == 'right':
-            x += 20
+            x += 10
         elif self.direction == 'left':
-            x -= 20
+            x -= 10
         self.snake.snake.pos = x, y
