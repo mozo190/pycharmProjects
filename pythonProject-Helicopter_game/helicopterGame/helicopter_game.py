@@ -17,3 +17,9 @@ class HelicopterGame(Widget):
         self.add_widget(self.title)
 
         Window.bind(on_key_down=self.key_down)
+        self.game_started = False  # initialize the game_started flag to False
+
+    def key_down(self, window, key, *args):
+        if key == 32:  # space key
+            self.remove_widget(self.title)
+            self.player.start_game()
