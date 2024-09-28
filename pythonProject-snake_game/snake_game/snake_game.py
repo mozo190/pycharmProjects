@@ -45,10 +45,11 @@ class SnakeGame(Widget):
         self.spawn_food()
 
         # game over message
-        self.game_over_label = Label(text="Game Over: Press Space Play Again", size=(SCREEN_WIDTH, 40),
-                                     pos=(SCREEN_WIDTH // 2 - 300, SCREEN_HEIGHT // 2), font_size=30)
+        self.game_over_label = Label(text="Game Over: Press Space to Play Again", size=(SCREEN_WIDTH, 40),
+                                     pos=(SCREEN_WIDTH // 2 - 18, SCREEN_HEIGHT // 2), font_size=30)
 
-        self.game_over_label.opacity = 0
+        self.game_over_label.opacity = 0  # hide the game over message
+        self.add_widget(self.game_over_label)
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
         if key == 44:  # space key
