@@ -58,13 +58,18 @@ class HelicopterGame(Widget):
 
     def check_collision(self, obstacle):
         # check if the player has collided with the top part of the obstacle
-        if (self.player.x < obstacle.x + obstacle.width and self.player.x + self.player.width > obstacle.x and
-                self.player.y < obstacle.y_top + obstacle.height_top and self.player.y + self.player.height > obstacle.y_top):
+        if (self.player.x < obstacle.x + obstacle.width and
+                self.player.x + self.player.width > obstacle.x and
+                self.player.y < obstacle.y_top + obstacle.height_top and
+                self.player.y + self.player.height > obstacle.y_top):
             return True
         # check if the player has collided with the bottom part of the obstacle
-        if (self.player.x < obstacle.x + obstacle.width and self.player.x + self.player.width > obstacle.x and
-                self.player.y < obstacle.y_bottom + obstacle.height_bottom and self.player.y + self.player.height > obstacle.y_bottom):
+        if (self.player.x < obstacle.x + obstacle.width and
+                self.player.x + self.player.width > obstacle.x and
+                self.player.y < obstacle.y_bottom + obstacle.height_bottom and
+                self.player.y + self.player.height > obstacle.y_bottom):
             return True
+        return False
 
     def game_over(self):
         self.game_started = False
