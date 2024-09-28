@@ -31,4 +31,7 @@ class Helicopter(Widget):
         self.x = screenWidth / 2 - self.width / 2
         self.y = screenHeight / 2 - self.height / 2
         self.dy = 0
-        self.rect.pos = (self.x, self.y)
+
+        if hasattr(self, 'rect'):
+            self.rect.pos = (self.x, self.y)
+
