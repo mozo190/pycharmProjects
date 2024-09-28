@@ -31,6 +31,10 @@ class SnakeGame(Widget):
         Window.bind(on_key_down=self.on_key_down)
 
     def init_game(self):
+        if hasattr(self, 'snake'):
+            self.remove_widget(self.snake)
+        if hasattr(self, 'food'):
+            self.remove_widget(self.food)
         # add the snake to the game
         self.snake = Snake()
         self.add_widget(self.snake)
@@ -46,7 +50,7 @@ class SnakeGame(Widget):
 
         # game over message
         self.game_over_label = Label(text="Game Over: Press Space to Play Again", size=(SCREEN_WIDTH, 40),
-                                     pos=(SCREEN_WIDTH // 2 - 18, SCREEN_HEIGHT // 2), font_size=30)
+                                     pos=(SCREEN_WIDTH // 2 - 300, SCREEN_HEIGHT // 2), font_size=30)
 
         self.game_over_label.opacity = 0  # hide the game over message
         self.add_widget(self.game_over_label)
@@ -55,6 +59,7 @@ class SnakeGame(Widget):
         if key == 44:  # space key
             if self.game_over:
                 self.reset_game()
+
         if key == 82:
             self.direction = 'up'
         elif key == 81:
