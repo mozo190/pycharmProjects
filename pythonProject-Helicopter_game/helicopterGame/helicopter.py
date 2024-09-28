@@ -26,3 +26,8 @@ class Helicopter(Widget):
     def move_helicopter(self):
         self.y -= self.dy  # move the helicopter up or down
         self.rect.pos = (self.x, self.y)
+
+    def reset_position(self):
+        self.y = screenHeight / 2 - self.height / 2
+        self.dy = 0
+        self.rect.pos = (self.x, self.y)

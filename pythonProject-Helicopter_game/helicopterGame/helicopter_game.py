@@ -5,6 +5,7 @@ from kivy.core.window import Window
 from kivy.uix.widget import Widget
 
 from helicopterGame.helicopter import Helicopter, upward_movement, gravity
+from helicopterGame.instructions_label import InstructionsLabel
 from helicopterGame.obstacle import Obstacle
 from helicopterGame.title_label import TitleLabel
 
@@ -13,6 +14,7 @@ class HelicopterGame(Widget):
     def __init__(self, **kwargs):
         super(HelicopterGame, self).__init__(**kwargs)
 
+        self.game_over_label = None
         self.player = Helicopter()
         self.add_widget(self.player)
         self.obstacles = []  # list to store obstacles widgets
@@ -73,7 +75,7 @@ class HelicopterGame(Widget):
 
     def restart_game(self):
         # reset the player's position and speed
-        # self.player.reset_position()
+
         # remove all obstacles
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
@@ -81,6 +83,6 @@ class HelicopterGame(Widget):
         # reset game state
         self.game_started = False
         # add title and instructions
-        self.title = TitleLabel()
-        # self.title.text = 'Game Over! Press Space to Restart'
-        self.add_widget(self.title)
+        self.game_over_label = InstructionsLabel()
+        self.add_widget(self.game_over_label)
+        self.player.reset_position()
