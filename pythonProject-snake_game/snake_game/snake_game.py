@@ -19,7 +19,6 @@ class SnakeGame(Widget):
             Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
 
         self.snake = Snake()
-        # self.snake.start()
         self.add_widget(self.snake)
 
         # add food
