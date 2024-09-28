@@ -42,16 +42,19 @@ class SnakeGame(Widget):
             self.direction = 'right'
         elif key == 80:
             self.direction = 'left'
-        print(f"key pressed: {key}")
+        # print(f"key pressed: {key}")
 
     def update(self, dt):
+        x, y = self.snake.snake.pos
         if self.direction == 'up':
-            self.snake.snake.pos[1] += 10
+            y += 10
         elif self.direction == 'down':
-            self.snake.snake.pos[1] -= 10
+            y -= 10
         elif self.direction == 'right':
-            self.snake.snake.pos[0] += 10
+            x += 10
         elif self.direction == 'left':
-            self.snake.snake.pos[0] -= 10
+            x -= 10
+
+        self.snake.snake.pos = x, y
 
         # check if snake is out of the screen
