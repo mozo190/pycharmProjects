@@ -21,12 +21,8 @@ class SnakeGame(Widget):
             Color(1, 1, 0.5, 0.9)  # add color background
             Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
 
-        self.snake = Snake()
-        self.add_widget(self.snake)
-
-        # add food
-        self.food = Food()
-        self.add_widget(self.food)
+        self.game_over = False
+        self.init_game()
 
         # initial direction of the snake
         self.direction = 'right'
@@ -35,6 +31,15 @@ class SnakeGame(Widget):
         Clock.schedule_interval(self.update, 1.0 / 10.0)
 
         Window.bind(on_key_down=self.on_key_down)
+
+    def init_game(self):
+        # add the snake to the game
+        self.snake = Snake()
+        self.add_widget(self.snake)
+
+        # add food
+        self.food = Food()
+        self.add_widget(self.food)
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
         if key == 82:
