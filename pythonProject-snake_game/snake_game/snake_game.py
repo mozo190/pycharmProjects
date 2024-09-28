@@ -47,7 +47,7 @@ class SnakeGame(Widget):
         # print(f"key pressed: {key}")
 
     def update(self, dt):
-        x, y = self.snake.snake.pos
+        x, y = self.snake.snake[0].pos
         if self.direction == 'up':
             y += 10
         elif self.direction == 'down':
@@ -62,8 +62,8 @@ class SnakeGame(Widget):
         self.snake.snake[0].pos = x, y
 
         # self.snake.snake.pos = x, y
-        for i in range(1, len(self.snake.body)):
-            self.snake.body[i].pos = prev_position[i - 1]
+        for i in range(1, len(self.snake.snake)):
+            self.snake.snake[i].pos = prev_position[i - 1]
 
         # check if snake eats the food
         if self.check_collision(self.snake.snake, self.food.food):
