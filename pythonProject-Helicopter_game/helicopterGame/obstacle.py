@@ -24,3 +24,9 @@ class Obstacle(Widget):
         with self.canvas:
             self.rect_top = Rectangle(pos=(self.x, self.y_top), size=(self.width, self.height_top))
             self.rect_bottom = Rectangle(pos=(self.x, self.y_bottom), size=(self.width, self.height_bottom))
+
+    def move_obstacle(self):
+        self.x += self.dx
+        self.rect_top.pos = (self.x, self.y_top)
+        self.rect_bottom.pos = (self.x, self.y_bottom)
+        # return self.x < -self.width
