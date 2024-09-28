@@ -44,7 +44,6 @@ class Helicopter(Widget):
 
     def on_touch_down(self, touch):  # move the helicopter up when the screen is touched
         self.dy = upward_movement  # move the helicopter up
-        self.helicopter_sound.play()  # play the helicopter sound
 
     def stop_helicopter_sound(self):
         if self.helicopter_sound.state == 'play': # stop the helicopter sound if it is playing
