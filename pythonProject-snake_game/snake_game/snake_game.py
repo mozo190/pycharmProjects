@@ -1,6 +1,8 @@
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
 
+from snake_game.snake import Snake
+
 
 class SnakeGame(Widget):
     def __init__(self, **kwargs):
