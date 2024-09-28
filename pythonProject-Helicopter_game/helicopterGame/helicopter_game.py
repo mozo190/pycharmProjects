@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
 
@@ -17,6 +18,8 @@ class HelicopterGame(Widget):
         self.add_widget(self.title)
 
         Window.bind(on_key_down=self.key_down)
+
+        Clock.schedule_interval(self.update, 1.0 / 60.0)  # call the update function 60 times per second
         self.game_started = False  # initialize the game_started flag to False
 
     def key_down(self, window, key, *args):
