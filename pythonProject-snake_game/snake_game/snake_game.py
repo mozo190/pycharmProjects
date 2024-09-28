@@ -51,7 +51,7 @@ class SnakeGame(Widget):
         self.game_over_label.opacity = 0
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
-        if key == 32:
+        if key == 44:  # space key
             if self.game_over:
                 self.reset_game()
         if key == 82:
@@ -62,7 +62,7 @@ class SnakeGame(Widget):
             self.direction = 'right'
         elif key == 80:
             self.direction = 'left'
-        # print(f"key pressed: {key}")
+        print(f"key pressed: {key}")
 
     def update(self, dt):
         x, y = self.snake.snake[0].pos
