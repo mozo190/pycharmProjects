@@ -26,4 +26,4 @@ class Helicopter(Widget):
     def move_helicopter(self):
         self.y -= self.dy  # move the helicopter up or down
         self.rect.pos = (self.x, self.y)
-        self.dy += gravity
+
