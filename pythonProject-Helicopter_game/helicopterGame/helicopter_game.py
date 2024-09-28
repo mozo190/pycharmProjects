@@ -75,7 +75,7 @@ class HelicopterGame(Widget):
 
     def restart_game(self):
         # reset the player's position and speed
-
+        self.player.reset_position()
         # remove all obstacles
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
@@ -85,4 +85,4 @@ class HelicopterGame(Widget):
         # add title and instructions
         self.game_over_label = InstructionsLabel()
         self.add_widget(self.game_over_label)
-        self.player.reset_position()
+
