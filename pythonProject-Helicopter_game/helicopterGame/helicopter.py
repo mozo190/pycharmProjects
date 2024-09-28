@@ -2,7 +2,7 @@ from kivy.core.image import Image as CoreImage
 from kivy.graphics import Rectangle
 from kivy.uix.widget import Widget
 
-from main import screenWidth, screenHeight
+from config import screenWidth, screenHeight
 
 
 class Helicopter(Widget):
@@ -18,3 +18,6 @@ class Helicopter(Widget):
             self.rect = Rectangle(texture=self.actor_image)
             self.rect.pos = (self.x, self.y)
             self.rect.size = (self.width, self.height)
+
+    def on_pos(self, *args):
+        self.rect.pos = self.pos

@@ -1,11 +1,8 @@
 from kivy.app import App
 from kivy.core.window import Window
 
+from helicopterGame.config import screenWidth, screenHeight
 from helicopterGame.helicopter_game import HelicopterGame
-
-# screen dimension
-screenWidth = 600
-screenHeight = 400
 
 # set window size
 Window.size = (screenWidth, screenHeight)
