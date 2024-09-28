@@ -24,5 +24,5 @@ class HelicopterGame(Widget):
             self.remove_widget(self.title)
             self.player.start_game()
             self.game_started = True
-        elif key == 273:  # up key
+        elif key == 273 and self.game_started:  # up key
             self.player.dy = upward_movement  # move the helicopter up when the up key is pressed
