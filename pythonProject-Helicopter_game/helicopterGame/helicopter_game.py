@@ -1,7 +1,7 @@
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
 
-from helicopterGame.helicopter import Helicopter
+from helicopterGame.helicopter import Helicopter, upward_movement
 from helicopterGame.title_label import TitleLabel
 
 
@@ -23,3 +23,6 @@ class HelicopterGame(Widget):
         if key == 32:  # space key
             self.remove_widget(self.title)
             self.player.start_game()
+            self.game_started = True
+        elif key == 273:  # up key
+            self.player.dy = upward_movement  # move the helicopter up when the up key is pressed
