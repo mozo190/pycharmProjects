@@ -31,9 +31,12 @@ class HelicopterGame(Widget):
 
     def key_down(self, window, key, *args):
         if key == 32:  # space key
-            self.remove_widget(self.title)
-            # self.player.start_game()
-            self.game_started = True
+            if not self.game_started:
+                if self.game_over_label:
+                    self.remove_widget(self.game_over_label)
+                    self.game_over_label = None
+                self.remove_widget(self.title) # remove the title and instructions
+                self.game_started = True
         elif key == 273 and self.game_started:  # up key
             self.player.dy = upward_movement  # move the helicopter up when the up key is pressed
 
@@ -81,10 +84,7 @@ class HelicopterGame(Widget):
         for obstacle in self.obstacles:
             self.remove_widget(obstacle)
         self.obstacles.clear()
-        #remove game over label if it exists
-        if self.game_over_label:
-            self.remove_widget(self.game_over_label)
-            self.game_over_label = None
+
         # reset game state
         self.game_started = False
         # add title and instructions
