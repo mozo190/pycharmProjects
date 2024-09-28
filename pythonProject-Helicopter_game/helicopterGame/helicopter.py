@@ -19,6 +19,7 @@ class Helicopter(Widget):
         self.dy = 0  # initial vertical speed
         self.helicopter_sound = SoundLoader.load('assets/audio/helicopter.wav')
         self.helicopter_sound.loop = True
+        self.heli_crash_sound = SoundLoader.load('assets/audio/crash.wav')  # load the crash sound
 
         self.actor_image = CoreImage('assets/img/yellow-cartoon-helicopter.png').texture
         with self.canvas:
@@ -30,7 +31,7 @@ class Helicopter(Widget):
         self.y -= self.dy  # move the helicopter up or down
         self.rect.pos = (self.x, self.y)
 
-        if not self.helicopter_sound.state == 'play': # play the helicopter sound only if it is moving
+        if not self.helicopter_sound.state == 'play':  # play the helicopter sound only if it is moving
             self.helicopter_sound.play()
 
     def reset_position(self):
@@ -46,5 +47,8 @@ class Helicopter(Widget):
         self.dy = upward_movement  # move the helicopter up
 
     def stop_helicopter_sound(self):
-        if self.helicopter_sound.state == 'play': # stop the helicopter sound if it is playing
+        if self.helicopter_sound.state == 'play':  # stop the helicopter sound if it is playing
             self.helicopter_sound.stop()
+
+    def play_crash_sound(self):
+        self.heli_crash_sound.play()

@@ -67,13 +67,16 @@ class HelicopterGame(Widget):
                 self.player.x + self.player.width > obstacle.x and
                 self.player.y < obstacle.y_top + obstacle.height_top and
                 self.player.y + self.player.height > obstacle.y_top):
+            self.player.play_crash_sound()
             return True
         # check if the player has collided with the bottom part of the obstacle
         if (self.player.x < obstacle.x + obstacle.width and
                 self.player.x + self.player.width > obstacle.x and
                 self.player.y < obstacle.y_bottom + obstacle.height_bottom and
                 self.player.y + self.player.height > obstacle.y_bottom):
+            self.player.play_crash_sound()
             return True
+
         return False
 
     def restart_game(self):
