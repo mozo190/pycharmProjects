@@ -1,9 +1,10 @@
+import random
+
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
-import random
 
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
 from snake_game.food import Food
@@ -27,10 +28,10 @@ class SnakeGame(Widget):
         self.food = Food()
         self.add_widget(self.food)
 
-        #initial direction of the snake
+        # initial direction of the snake
         self.direction = 'right'
 
-        #creating clock event to move the snake
+        # creating clock event to move the snake
         Clock.schedule_interval(self.update, 1.0 / 10.0)
 
         Window.bind(on_key_down=self.on_key_down)
@@ -57,11 +58,11 @@ class SnakeGame(Widget):
         elif self.direction == 'left':
             x -= 10
 
-        prev_position = [(segment.pos[0], segment.pos[1]) for segment in self.snake.snake]  # save the previous position of the snake
+        prev_position = [(segment.pos[0], segment.pos[1]) for segment in
+                         self.snake.snake]  # save the previous position of the snake
 
         self.snake.snake[0].pos = x, y
 
-        # self.snake.snake.pos = x, y
         for i in range(1, len(self.snake.snake)):
             self.snake.snake[i].pos = prev_position[i - 1]
 
@@ -81,9 +82,7 @@ class SnakeGame(Widget):
         self.add_widget(new_snake)
 
     def spawn_food(self):
-        #spawn food at random position
-        food_x = random.randint(0, (SCREEN_WIDTH - 30)//20)*20
-        food_y = random.randint(0, (SCREEN_HEIGHT - 30)//20)*20
+        # spawn food at random position
+        food_x = random.randint(0, (SCREEN_WIDTH - 30) // 20) * 20
+        food_y = random.randint(0, (SCREEN_HEIGHT - 30) // 20) * 20
         self.food.food.pos = food_x, food_y
-
-
