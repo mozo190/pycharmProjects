@@ -57,7 +57,3 @@ class SnakeGame(Widget):
         elif self.direction == 'left':
             x -= 20
         self.snake.snake.pos = x, y
-        # self.snake.move(self.direction)
-        # self.snake.check_collision(self.food)
-        # self.snake.check_boundaries()
-        # self.snake.check_self_collision()
