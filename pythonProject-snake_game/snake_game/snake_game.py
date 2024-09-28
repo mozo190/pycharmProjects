@@ -13,10 +13,10 @@ class SnakeGame(Widget):
     def __init__(self, **kwargs):
         super(SnakeGame, self).__init__(**kwargs)
         self.snake = Snake()
-        self.snake.start()
+        # self.snake.start()
         self.add_widget(self.snake)
-        Clock.schedule_interval(self.snake.move, 1.0 / 10.0)
+        # Clock.schedule_interval(self.snake.move, 1.0 / 10.0)
 
         with self.canvas:
-            Color(0, 1, 0, 1)  # add green color background
+            Color(0, 1, 0, 0.5)  # add green color background
             Rectangle(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
