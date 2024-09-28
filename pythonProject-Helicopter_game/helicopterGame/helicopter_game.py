@@ -35,7 +35,7 @@ class HelicopterGame(Widget):
                 if self.game_over_label:
                     self.remove_widget(self.game_over_label)
                     self.game_over_label = None
-                self.remove_widget(self.title) # remove the title and instructions
+                self.remove_widget(self.title)  # remove the title and instructions
                 self.game_started = True
         elif key == 273 and self.game_started:  # up key
             self.player.dy = upward_movement  # move the helicopter up when the up key is pressed
@@ -60,7 +60,6 @@ class HelicopterGame(Widget):
                     self.obstacles.remove(obstacle)
                 if self.check_collision(obstacle):
                     self.restart_game()
-
 
     def check_collision(self, obstacle):
         # check if the player has collided with the top part of the obstacle
@@ -90,4 +89,3 @@ class HelicopterGame(Widget):
         # add title and instructions
         self.game_over_label = InstructionsLabel()
         self.add_widget(self.game_over_label)
-

@@ -34,4 +34,3 @@ class Helicopter(Widget):
 
         if hasattr(self, 'rect'):
             self.rect.pos = (self.x, self.y)
-
