@@ -26,7 +26,7 @@ class SnakeGame(Widget):
         self.init_game()
 
         # creating clock event to move the snake
-        Clock.schedule_interval(self.update, 1.0 / 10.0)
+        Clock.schedule_interval(self.update, 1.0 / 5.0)
 
         Window.bind(on_key_down=self.on_key_down)
 
