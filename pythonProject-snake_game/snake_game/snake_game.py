@@ -25,7 +25,6 @@ class SnakeGame(Widget):
         self.game_over = False
         self.init_game()
 
-
         # creating clock event to move the snake
         Clock.schedule_interval(self.update, 1.0 / 10.0)
 
@@ -45,9 +44,9 @@ class SnakeGame(Widget):
 
         self.spawn_food()
 
-        #game over message
+        # game over message
         self.game_over_label = Label(text="Game Over: Press Space Play Again", size=(SCREEN_WIDTH, 40),
-                                     pos=(SCREEN_WIDTH//2-300, SCREEN_HEIGHT//2), font_size=30)
+                                     pos=(SCREEN_WIDTH // 2 - 300, SCREEN_HEIGHT // 2), font_size=30)
 
         self.game_over_label.opacity = 0
 
@@ -111,3 +110,9 @@ class SnakeGame(Widget):
         self.game_over = True
         self.game_over_label.opacity = 1
         Clock.unschedule(self.update)
+
+        # remove snake and food
+        for segment in self.snake.snake:
+            self.remove_widget(segment)
+
+        self.remove_widget(self.food.food)
