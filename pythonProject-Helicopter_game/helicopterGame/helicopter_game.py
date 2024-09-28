@@ -1,4 +1,5 @@
 import random
+
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
@@ -14,7 +15,7 @@ class HelicopterGame(Widget):
 
         self.player = Helicopter()
         self.add_widget(self.player)
-        self.obstacles = [] # list to store obstacles widgets
+        self.obstacles = []  # list to store obstacles widgets
         self.min_gap = self.player.height * 4  # minimum gap between obstacles
 
         # add title and instructions to the game
@@ -52,3 +53,13 @@ class HelicopterGame(Widget):
                 if obstacle.x < -obstacle.width:
                     self.remove_widget(obstacle)
                     self.obstacles.remove(obstacle)
+                if self.check_collision(obstacle):
+                    self.game_over()
+
+    def check_collision(self, obstacle):
+        if self.player.x < obstacle.x + obstacle.width and self.player.x + self.player.width > obstacle.x:
+            if self.player.y < obstacle.y_top or self.player.y + self.player.height > obstacle.y_top + obstacle.height_top:
+                return True
+        return False
+
+
