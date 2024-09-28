@@ -51,6 +51,9 @@ class SnakeGame(Widget):
         self.game_over_label.opacity = 0
 
     def on_key_down(self, instance, keyboard, key, text, modifiers):
+        if key == 32:
+            if self.game_over:
+                self.reset_game()
         if key == 82:
             self.direction = 'up'
         elif key == 81:
@@ -64,13 +67,13 @@ class SnakeGame(Widget):
     def update(self, dt):
         x, y = self.snake.snake[0].pos
         if self.direction == 'up':
-            y += 10
+            y += 20
         elif self.direction == 'down':
-            y -= 10
+            y -= 20
         elif self.direction == 'right':
-            x += 10
+            x += 20
         elif self.direction == 'left':
-            x -= 10
+            x -= 20
 
         # check if snake hits the wall
         if x < 0 or x > SCREEN_WIDTH or y < 0 or y > SCREEN_HEIGHT:
@@ -116,3 +119,9 @@ class SnakeGame(Widget):
             self.remove_widget(segment)
 
         self.remove_widget(self.food.food)
+
+    def reset_game(self):
+        self.game_over = False
+        self.game_over_label.opacity = 0
+        self.init_game()
+        Clock.schedule_interval(self.update, 1.0 / 10.0)
