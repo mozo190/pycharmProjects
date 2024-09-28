@@ -26,3 +26,6 @@ class Background(Widget):
     def play_music(self):
         self.background_sound.play()
 
+    def on_touch_down(self, touch):
+        return False
+
