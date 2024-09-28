@@ -1,7 +1,9 @@
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
+from kivy.uix.image import Image
 from kivy.uix.widget import Widget
+import random
 
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
 from snake_game.food import Food
@@ -55,6 +57,39 @@ class SnakeGame(Widget):
         elif self.direction == 'left':
             x -= 10
 
-        self.snake.snake.pos = x, y
+        prev_position = [(segment.pos[0], segment.pos[1]) for segment in self.snake.snake]  # save the previous position of the snake
+
+        self.snake.snake[0].pos = x, y
+
+        # self.snake.snake.pos = x, y
+        for i in range(1, len(self.snake.body)):
+            self.snake.body[i].pos = prev_position[i - 1]
+
+        # check if snake eats the food
+        if self.check_collision(self.snake.snake, self.food.food):
+            print("Eating the food")
+            self.grow_snake(prev_position[-1])
+            self.spawn_food()
+
+    def check_collision(self, snake, food):
+        return snake.collide_widget(food)
+
+    def grow_snake(self, position):
+        # add new snake to the body
+        new_snake = Image(source='assets/img/snake_.png', size_hint=(None, None), size=(30, 30), pos=position)
+        self.snake.snake.append(new_snake)
+        self.add_widget(new_snake)
+
+    def spawn_food(self):
+        #spawn food at random position
+        food_x = random.randint(0, (SCREEN_WIDTH - 30)//20)*20
+        food_y = random.randint(0, (SCREEN_HEIGHT - 30)//20)*20
+        self.food.food.pos = food_x, food_y
+
+
 
         # check if snake is out of the screen
+        if x < 0 or x > SCREEN_WIDTH - 30 or y < 0 or y > SCREEN_HEIGHT - 30:
+
+            pass
+
