@@ -21,7 +21,6 @@ class SnakeGame(Widget):
         self.snake = Snake()
         # self.snake.start()
         self.add_widget(self.snake)
-        # Clock.schedule_interval(self.snake.move, 1.0 / 10.0)
 
         # add food
         self.food = Food()
@@ -35,21 +34,20 @@ class SnakeGame(Widget):
 
         Window.bind(on_key_down=self.on_key_down)
 
-    def on_key_down(self, instance, keyboard, keycode, text, modifiers):
-        if keycode == 273:  # up
+    def on_key_down(self, window, keyboard, key, text, modifiers):
+        if key == 273:  # up
             self.direction = 'up'
-        elif keycode == 274:  # down
+        elif key == 274:  # down
             self.direction = 'down'
-        elif keycode == 275:  # right
+        elif key == 275:  # right
             self.direction = 'right'
-        elif keycode == 276:  # left arrow key
+        elif key == 276:  # left arrow key
             self.direction = 'left'
-        else:
-            pass
         return True
 
     def update(self, dt):
-        x, y = self.snake.pos
+        # get current position of the snake's head
+        x, y = self.snake.snake.pos
         if self.direction == 'up':
             y += 20
         elif self.direction == 'down':
@@ -58,7 +56,8 @@ class SnakeGame(Widget):
             x += 20
         elif self.direction == 'left':
             x -= 20
-        self.snake.move(self.direction)
-        self.snake.check_collision(self.food)
-        self.snake.check_boundaries()
-        self.snake.check_self_collision()
+        self.snake.snake.pos = x, y
+        # self.snake.move(self.direction)
+        # self.snake.check_collision(self.food)
+        # self.snake.check_boundaries()
+        # self.snake.check_self_collision()
