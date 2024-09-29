@@ -71,6 +71,10 @@ class SnakeGame(Widget):
         print(f"key pressed: {key}")
 
     def update(self, dt):
+        if self.game_over:
+            return
+
+        #move the snake
         x, y = self.snake.snake[0].pos
         if self.direction == 'up':
             y += 20
