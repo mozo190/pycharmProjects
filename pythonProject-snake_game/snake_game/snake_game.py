@@ -7,6 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
+from snake_game.biting_sound import BitingSound
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
 from snake_game.food import Food
 from snake_game.score import Score
@@ -36,6 +37,11 @@ class SnakeGame(Widget):
             self.remove_widget(self.snake)
         if hasattr(self, 'food'):
             self.remove_widget(self.food)
+
+        # if score label exists, remove it
+        if hasattr(self, 'score_label'):
+            self.remove_widget(self.score_label)
+
         # add the snake to the game
         self.snake = Snake()
         self.add_widget(self.snake)
@@ -52,6 +58,9 @@ class SnakeGame(Widget):
         self.direction = 'right'
 
         self.spawn_food()
+
+        # add biting sound
+        self.biting_sound = BitingSound()
 
         # game over message
         self.game_over_label = Label(text="Game Over: Press Space to Play Again", size=(SCREEN_WIDTH, 40),
@@ -108,8 +117,10 @@ class SnakeGame(Widget):
             print("Eating the food")
             self.grow_snake(prev_position[-1])
             self.spawn_food()
+            self.biting_sound.play_biting()
             self.number_of_score += 1
             self.score_label.text = f"Score: {self.number_of_score}"
+
 
     def check_collision(self, snake, food):
         return snake.collide_widget(food)
