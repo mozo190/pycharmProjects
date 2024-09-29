@@ -9,6 +9,7 @@ from kivy.uix.widget import Widget
 
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
 from snake_game.food import Food
+from snake_game.score import Score
 from snake_game.snake import Snake
 
 Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -42,6 +43,10 @@ class SnakeGame(Widget):
         # add food
         self.food = Food()
         self.add_widget(self.food)
+
+        self.number_of_score = 0
+        self.score_label = Score()
+        self.add_widget(self.score_label)
 
         # initial direction of the snake
         self.direction = 'right'
@@ -103,6 +108,8 @@ class SnakeGame(Widget):
             print("Eating the food")
             self.grow_snake(prev_position[-1])
             self.spawn_food()
+            self.number_of_score += 1
+            self.score_label.text = f"Score: {self.number_of_score}"
 
     def check_collision(self, snake, food):
         return snake.collide_widget(food)
