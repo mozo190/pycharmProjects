@@ -138,6 +138,7 @@ class SnakeGame(Widget):
         self.food.food.pos = food_x, food_y
 
     def end_game(self):
+        self.biting_sound.stop_biting()
         self.game_over = True
         self.game_over_label.opacity = 1
         Clock.unschedule(self.update)

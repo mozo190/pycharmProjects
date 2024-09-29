@@ -7,3 +7,6 @@ class BitingSound:
 
     def play_biting(self):
         self.sound.play()
+
+    def stop_biting(self):
+        self.sound.stop()
