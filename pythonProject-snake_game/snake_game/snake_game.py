@@ -10,6 +10,7 @@ from kivy.uix.widget import Widget
 from snake_game.biting_sound import BitingSound
 from snake_game.config import SCREEN_HEIGHT, SCREEN_WIDTH
 from snake_game.food import Food
+from snake_game.game_over_sound import GameOverSound
 from snake_game.score import Score
 from snake_game.snake import Snake
 
@@ -61,6 +62,7 @@ class SnakeGame(Widget):
 
         # add biting sound
         self.biting_sound = BitingSound()
+        self.game_over_sound = GameOverSound()
 
         # game over message
         self.game_over_label = Label(text="Game Over: Press Space to Play Again", size=(SCREEN_WIDTH, 40),
@@ -139,6 +141,7 @@ class SnakeGame(Widget):
 
     def end_game(self):
         self.biting_sound.stop_biting()
+        self.game_over_sound.play_game_over()
         self.game_over = True
         self.game_over_label.opacity = 1
         Clock.unschedule(self.update)
