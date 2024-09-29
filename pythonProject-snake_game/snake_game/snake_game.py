@@ -86,7 +86,7 @@ class SnakeGame(Widget):
             x -= 20
 
         # check if snake hits the wall
-        if x < 0 or x > SCREEN_WIDTH or y < 0 or y > SCREEN_HEIGHT:
+        if x < 0 or x > SCREEN_WIDTH or y < 0 or y >= SCREEN_HEIGHT:
             self.end_game()
             return
 
