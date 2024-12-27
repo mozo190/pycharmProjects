@@ -11,22 +11,27 @@ This is a simple Helicopter Game built using Kivy Framework in Python.
 ## Installation
 
 1. Clone the repository
+
 ```sh
-    git clone https://github.com/mozo190/pycharmProjects/tree/master/pythonProject-Brick_Breaker_game.git
+    git clone https://github.com/mozo190/pycharmProjects/tree/master/pythonProject-Helicopter_game.git
     cd helicopter-game
 ```
+
 2. Create a virtual environment
+
 ```sh
     python -m venv venv
     venv\Scripts\activate
 ```
 
 3. Install the requirements
+
 ```sh
     pip install -r requirements.txt
 ```
 
 4. Run the game
+
 ```sh
     python main.py
 ```
