@@ -93,7 +93,7 @@ class SnakeGame(Widget):
         if self.game_over:
             return
 
-        #move the snake
+        # move the snake
         x, y = self.snake.snake[0].pos
         if self.direction == 'up':
             y += 20
@@ -125,7 +125,6 @@ class SnakeGame(Widget):
             self.biting_sound.play_biting()
             self.number_of_score += 1
             self.score_label.text = f"Score: {self.number_of_score}"
-
 
     def check_collision(self, snake, food):
         return snake.collide_widget(food)
