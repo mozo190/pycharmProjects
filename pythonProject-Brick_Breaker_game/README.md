@@ -67,6 +67,12 @@ If you'd like to contribute to the development of the game, please follow these 
    ```
 5. Create a Pull Request in the main repo, and wait for the review.
 
+## Screenshots
+
+Here are some screenshots of the game:
+
+![Screenshot 1](assets/img/screenshot.png)
+
 ## License
 
 This project is licensed under the MIT License. For more information, please read the `LICENSE` file.
